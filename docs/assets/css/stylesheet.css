@@ -31,10 +31,7 @@
 		6.2 Back to Top
 	7 Extra
 
-=======================================================*/
-/* =================================== */
-/*  1. Basic Style 
-/* =================================== */
+/* ============================================= 1. Basic Style ============================================= */
 body, html {
   height: 100%;
 }
@@ -133,7 +130,7 @@ body {
 
 code {
   padding: 2px 5px;
-  background-color: #f9f2f4;
+  background-color: #921136;
   border-radius: 4px;
 }
 
@@ -184,8 +181,9 @@ iframe {
   border: 0 !important;
 }
 
+/* --------------------------------------------------- */
 h1, h2, h3, h4, h5, h6 {
-  color: #252b33;
+  color: rgba(250, 250, 250, 0.85);
   line-height: 1.5;
   margin: 0 0 1.5rem 0;
   font-family: Roboto, sans-serif;
@@ -208,9 +206,7 @@ dl, ol, ul, pre, blockquote, .table {
   padding: 1.5rem;
 }
 
-/* ===================================== */
-/* 2. Допоміжні класи
-/* ===================================== */
+/* =============================================  2. Допоміжні класи ============================================= */
 /* Box Shadow */
 .shadow-md {
   -webkit-box-shadow: 0px 0px 50px -35px rgba(0, 0, 0, 0.4) !important;
@@ -613,12 +609,10 @@ dl, ol, ul, pre, blockquote, .table {
 }
 
 hr {
-  border-top: 1px solid rgba(16, 85, 96, 0.1);
+  border-top: 1px solid rgba(59, 211, 235, 0.1);
 }
 
-/* =================================== */
-/*  3. Layouts
-/* =================================== */
+/* ============================================= 3. Layouts ============================================= */
 #main-wrapper {
   background: #fff;
 }
@@ -649,7 +643,7 @@ hr {
   width: 260px;
   height: calc(100% - 70px);
   z-index: 1;
-  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  border-right: 1px solid rgba(59, 211, 235, 0.1);
   transition: all 0.3s;
 }
 .idocs-navigation > .nav {
@@ -763,9 +757,10 @@ hr {
 /*=== 3.3 Розділювач розділів ===*/
 .divider {
   margin: 4rem 0;
+  border-top: 1px solid rgba(59, 211, 235, 0.1); /* Задаємо товщину 2px і чорний колір */
 }
 
-/* =================================== 4. Header =================================== */
+/* ============================================= 4. Header ============================================= */
 #header {
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
@@ -796,6 +791,7 @@ hr {
   color: #0c2f55;
 }
 
+/*-----------------------------------------*/
 .primary-menu {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
@@ -805,8 +801,9 @@ hr {
   -ms-flex-item-align: stretch;
   align-self: stretch;
   background: #fff;
-  border-bottom: 1px solid #efefef;
+  border-bottom: 1px solid rgba(59, 211, 235, 0.1);
 }
+
 .primary-menu.bg-transparent {
   position: absolute;
   z-index: 999;
@@ -1695,9 +1692,7 @@ hr {
   }
 }
 
-/* ===================================== */
-/* 5. Елементи
-/* ===================================== */
+/* ===================================== 5. Елементи ===================================== */
 /*=== 5.1 Стиль списку ===*/
 .list-style-1 > li {
   position: relative;
@@ -2423,7 +2418,7 @@ hr {
   width: 26px;
   font-size: 18px;
   text-align: center;
-  color: #4d555a;
+  color: #dee2e6;
   text-decoration: none;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
