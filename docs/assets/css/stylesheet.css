@@ -130,9 +130,11 @@ body {
 
 code {
   padding: 2px 5px;
-  background-color: #921136;
+  background-color: rgba(146, 17, 54, 0.3); /* Напівпрозорий фон */
   border-radius: 4px;
+  color: #d95d97; /* Колір тексту */
 }
+
 
 form {
   padding: 0;
