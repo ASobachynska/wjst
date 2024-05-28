@@ -277,18 +277,32 @@ wjst.render('{{ mystuff() }}', { locals: locals });
 // => &amp;lt;p&amp;gt;Things&amp;lt;/p&amp;gt; </code></pre>
           </section>
           <hr class="divider">
-<!------------------ Logic Tags ------------------>
-          <section id="idocs_variables">
-          <h2>Logic Tags</h2>
-          <p>Wjst includes some basic operational blocks, called Tags, for helping you control output on a larger scale than variables. Tags are written using curly-percent syntax: .</p>
           
+<!------------------ Logic Tags ------------------>
+          <section id="idocs_logic_tags">
+          <h2>Logic Tags</h2>
+          <p>Wjst includes some basic operational blocks, called Tags, for helping you control output on a larger scale than variables. 
+            Tags are written using curly-percent syntax: .</p>
+            
           <pre><code class="JavaScript">{% if foo %}bar{% endif %}
-            // Create a list of people, only if there are items in the people array
-            {% for person in people %}
-              {% if loop.first %}<ol>{% endif %}
-                <li>{{ person.name }}</li>
-              {% if loop.last %}</ol>{% endif %}
-            {% endfor %}</code></pre>
+// Create a list of people, only if there are items in the people array
+{% for person in people %}
+{% if loop.first %}<ol>{% endif %}
+<li>{{ person.name }}</li>
+{% if loop.last %}</ol>{% endif %}
+{% endfor %}</code></pre>
+
+            <p><code class="JavaScript">end</code> tags may also have any set of extra context within them, and will just be ignore. 
+             This is useful for scoping and understanding which block you are closing and where.</p>
+
+<pre><code class="JavaScript">{% block tacos %}
+  //...
+{% endblock tacos %}
+{% block burritos %}
+  {% if foo %}
+    // ...
+  {% endif the above will render if foo == true %}
+{% endblock burritos %}</code></pre>
 
           </section>
 
