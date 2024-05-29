@@ -86,29 +86,49 @@
 
           <!-- Getting Started ============================ -->
           <section id="idocs_start">
-            <h1>Getting Started</h1>
+            <h1>Wjst</h1>
+            <p>A simple, powerful, and extendable JavaScript Template Engine.</p>
           </section>
-
-          <!-- Installation ============================ -->
-          <section id="idocs_installation">
-            <h2>Installation</h2>
-            <p class="lead">Via NPM:</p>
-            <pre><code class="JavaScript">$ npm install wjst --save</code></pre>
-          </section>
-
-          <hr class="divider">
           
-          <section id="idocs_basic_usage">
-            <h2>Basic Usage</h2>
-            <p>Wjst has multiple ways to compile and render templates. Check the API documentation for more detailed information and usage.</p>
-              <pre><code class="JavaScript">const wjst = require('wjst');
+          <hr class="divider">
 
-// Compile a file and store it, rendering it later
-const tpl = wjst.compileFile('/path/to/template.html');
-console.log(tpl({ article: { title: 'Wjst is fun!' }}));
-                
-// Immediately render a Wjst template from a string
-console.log(wjst.render('{% if foo %}Hooray!{% endif %}', { locals: { foo: true }})); </code></pre>
+            <h2>Super Quick Start</h2>
+            <p>For a more in-depth intro, check out the Getting Started docs.</p>
+          </section>
+
+            <h3>Install Wjst</h3>і
+              <pre><code class="JavaScript">npm install wjst --save</code></pre>
+              
+            <h3>Create Your Template</h3>
+            <pre><code class="JavaScript">{% raw %}&lt;h1&gt;{{ pagename|title }}&lt;/h1&gt;
+&lt;ul&gt;
+{% for author in authors %}
+  &lt;li{% if loop.first %} class="first"{% endif %}&gt;
+    {{ author }}
+  &lt;/li&gt;
+{% endfor %}
+&lt;/ul&gt;{% endraw %}</code></pre>              
+
+            <h3>Render Your Template</h3>
+            <p>Wjst has multiple ways to compile and render templates. Check the API documentation for more detailed information and usage.</p>
+            <pre><code class="JavaScript">{% raw %}const wjst  = require('wjst');
+              wjst.renderFile('/path/to/template.html', {
+                  pagename: 'awesome people',
+                  authors: ['Den', 'Paul', 'Jane']
+              });{% endraw %}</code></pre>              
+
+            <h3>The End Result</h3>
+            <p>Wjst has multiple ways to compile and render templates. Check the API documentation for more detailed information and usage.</p>
+              <pre><code class="JavaScript">{% raw %}<h1>Awesome People</h1>
+                <ul>
+                  <li class="first">Den</li>
+                  <li>Paul</li>
+                  <li>Jane</li>
+                </ul>{% endraw %}</code></pre>
+
+            <h2>Features</h2>
+            <p>Wjst has multiple ways to compile and render templates. Check the API documentation for more detailed information and usage.</p>
+
               </section>
           <hr class="divider">
 
