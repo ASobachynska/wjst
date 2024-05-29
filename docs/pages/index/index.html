@@ -50,8 +50,8 @@
 
           <!-- Logo -->
           <a class="logo ml-md-3" href="../index/index.html" title="iDocs Template"> <img
-              src="/wjst/assets/images/logo-light.png" alt="iDocs Template" /> </a>
-          <span class="text-2 ml-2">v1.0</span>
+              src="/wjst/assets/images/avatar.png" alt="iDocs Template" /> </a>
+          <span class="text-2 ml-5">Wjst - A Node.js and Browser JavaScript Template Engine</span>
           <!-- Logo End -->
 
           <!-- Navbar Toggler -->
@@ -96,7 +96,7 @@
             <p>For a more in-depth intro, check out the Getting Started docs.</p>
           </section>
 
-            <h3>Install Wjst</h3>і
+            <h3>Install Wjst</h3>
               <pre><code class="JavaScript">npm install wjst --save</code></pre>
               
             <h3>Create Your Template</h3>
@@ -112,26 +112,57 @@
             <h3>Render Your Template</h3>
             <p>Wjst has multiple ways to compile and render templates. Check the API documentation for more detailed information and usage.</p>
             <pre><code class="JavaScript">{% raw %}const wjst  = require('wjst');
-              wjst.renderFile('/path/to/template.html', {
-                  pagename: 'awesome people',
-                  authors: ['Den', 'Paul', 'Jane']
-              });{% endraw %}</code></pre>              
+wjst.renderFile('/path/to/template.html', {
+  pagename: 'awesome people',
+  authors: ['Den', 'Paul', 'Jane']
+});{% endraw %}</code></pre>              
 
             <h3>The End Result</h3>
             <p>Wjst has multiple ways to compile and render templates. Check the API documentation for more detailed information and usage.</p>
-              <pre><code class="JavaScript">{% raw %}<h1>Awesome People</h1>
-                <ul>
-                  <li class="first">Den</li>
-                  <li>Paul</li>
-                  <li>Jane</li>
-                </ul>{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}&lt;h1&gt;Awesome People&lt;h1&gt;
+&lt;ul&gt;
+  &lt;li class="first"&gt;Den&lt;/li&gt;
+  &lt;li&gt;Paul&lt;/li&gt;
+  &lt;li&gt;Jane&lt;/li&gt;
+&lt;/ul&gt;{% endraw %}</code></pre>
 
-            <h2>Features</h2>
-            <p>Wjst has multiple ways to compile and render templates. Check the API documentation for more detailed information and usage.</p>
-
-              </section>
           <hr class="divider">
 
+          <h2>Features</h2>
+          <ul>
+            <li>Available for node.js <em>and</em> major web browsers!</li>
+            <li>
+              Uses similar methodologies as Django, Jinja2, and Twig template
+              engines.
+            </li>
+            <li><a href="http://expressjs.com/">Express</a> compatible.</li>
+            <li>Object-Oriented template inheritance.</li>
+            <li>
+              Apply filters and transformations to output in your templates.
+            </li>
+            <li>Automatically escapes all output for safe HTML rendering.</li>
+            <li>Lots of iteration and conditionals supported.</li>
+            <li>Robust without the bloat.</li>
+            <li>Extendable and customizable.</li>
+            <li>Great <a href="/wjst/coverage.html">code coverage</a>.</li>
+          </ul>
+
+          <hr class="divider">
+
+          <h2>Resources</h2>
+        <ul>
+          <li>
+            <a href="https://github.com/webartwork/wjst/issues">Bug Reports</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/questions/tagged/wjst">Stack Overflow Questions</a>
+          </li>
+          <li>
+            <a href="https://github.com/jonschlinkert/sublime-swig">Syntax Highlighting for Sublime Text</a>
+          </li>
+        </ul>
+              </section>
+          <hr class="divider">
         </div>
       </div>
     </div>
