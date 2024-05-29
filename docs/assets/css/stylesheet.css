@@ -766,7 +766,6 @@ hr {
 
   .idocs-content {
     margin-left: 0px;
-    padding: 0px;
   }
 }
 
@@ -786,7 +785,7 @@ hr {
 /*=== 3.3 Розділювач розділів ===*/
 .divider {
   margin: 4rem 0;
-  border-top: 1px solid rgba(59, 211, 235, 0.1); /* Задаємо товщину 2px і чорний колір */
+  border-top: 1px solid rgba(59, 211, 235, 0.1);
 }
 
 /* ============================================= 4. Header ============================================= */
@@ -807,6 +806,18 @@ hr {
   display: flex;
   -ms-flex-item-align: stretch;
   align-self: stretch;
+}
+
+@media (max-width: 768px) {
+  .logo.ml-md-3 {
+    margin-left: 15px; /* Зсуваємо лого праворуч */
+  }
+}
+
+@media (max-width: 768px) {
+  .text-2 {
+    display: none;
+  }
 }
 
 /*=== 4.1 Main Navigation ===*/
@@ -1146,6 +1157,7 @@ hr {
   -o-transform-origin: left center;
   transform-origin: left center;
 }
+
 .navbar-toggler span:nth-child(2) {
   top: 14px;
   -webkit-transform-origin: left center;
@@ -2334,7 +2346,7 @@ hr {
   color: #252b33;
   margin-left: 260px;
   padding: 66px 0px;
-  padding: 4.125rem 0;
+  padding: 0rem 0rem 4rem;
 }
 #footer .nav .nav-item {
   display: inline-block;
@@ -2425,7 +2437,7 @@ hr {
   color: #252b33;
   margin-left: 0px;
   padding: 66px 0px;
-  padding: 4.125rem 0;
+  padding: 0rem 0rem 4rem;
 }
 #footer-1 .nav .nav-item {
   display: inline-block;
