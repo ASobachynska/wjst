@@ -83,13 +83,34 @@ $('.navbar-toggler').on('click', function() {
 });
 
 
+// /*------------------------
+//    Side Navigation
+// -------------------------- */
+
+// $('#sidebarCollapse').on('click', function () {
+// 	$('#sidebarCollapse span:nth-child(3)').toggleClass('w-50');
+// 	$('.idocs-navigation-new').toggleClass('active');
+// });
+
+
+// /*------------------------
+//    Sections Scroll
+// -------------------------- */
+
+// $('.smooth-scroll,.idocs-navigation a').on('click', function() {
+// 	event.preventDefault();
+//     var sectionTo = $(this).attr('href');
+// 	$('html, body').stop().animate({
+//       scrollTop: $(sectionTo).offset().top - 120}, 1000, 'easeInOutExpo');
+// });
+
 /*------------------------
    Side Navigation
 -------------------------- */
 
 $('#sidebarCollapse').on('click', function () {
-	$('#sidebarCollapse span:nth-child(3)').toggleClass('w-50');
-	$('.idocs-navigation').toggleClass('active');
+    $('#sidebarCollapse span:nth-child(3)').toggleClass('w-50');
+    $('.idocs-navigation-new').toggleClass('active');
 });
 
 
@@ -97,12 +118,29 @@ $('#sidebarCollapse').on('click', function () {
    Sections Scroll
 -------------------------- */
 
-$('.smooth-scroll,.idocs-navigation a').on('click', function() {
-	event.preventDefault();
-    var sectionTo = $(this).attr('href');
-	$('html, body').stop().animate({
-      scrollTop: $(sectionTo).offset().top - 120}, 1000, 'easeInOutExpo');
+$('.idocs-navigation-new .nav-link').on('click', function(event) {
+    event.preventDefault();
+
+    var target = $(this).attr('href');
+    
+    // Перевірка, чи це підрозділ (чи має це посилання "#")
+    if (target.charAt(0) === '#') {
+        // Скролимо в потрібне місце
+        $('html, body').stop().animate({
+            scrollTop: $(target).offset().top - 120
+        }, 1000, 'easeInOutExpo');
+    } else {
+        // Перевірка, чи цей розділ вже активний
+        if ($(this).hasClass('active')) {
+            // Якщо розділ вже активний, не виконуємо жодних дій
+            return;
+        } else {
+            // Переходимо на нову сторінку
+            window.location.href = target;
+        }
+    }
 });
+
 
 /*-----------------------------
     Magnific Popup
