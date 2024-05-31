@@ -634,7 +634,7 @@ hr {
     max-width: 1170px !important;
   }
 }
-
+ 
 /*=== 3.1 Бічна навігація ===*/
 .idocs-navigation {
   position: fixed;
@@ -2526,12 +2526,14 @@ hr {
 @media (max-width: 767.98px) {
   #footer {
     margin-left: 0px;
+    padding: 4rem 0rem 4rem;
   }
 }
 
 @media (max-width: 767.98px) {
   #footer-1 {
     margin-left: 0px;
+    padding: 0rem 0rem 4rem;
   }
 }
 
