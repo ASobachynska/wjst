@@ -132,14 +132,18 @@ $('.idocs-navigation-new .nav-link').on('click', function(event) {
     } else {
         // Перевірка, чи цей розділ вже активний
         if ($(this).hasClass('active')) {
-            // Якщо розділ вже активний, не виконуємо жодних дій
-            return;
+            // Якщо розділ вже активний і це не підрозділ,
+            // скролимо вверх сам розділ
+            $('html, body').stop().animate({
+                scrollTop: $(target).offset().top - 120
+            }, 1000, 'easeInOutExpo');
         } else {
             // Переходимо на нову сторінку
             window.location.href = target;
         }
     }
 });
+
 
 
 /*-----------------------------
