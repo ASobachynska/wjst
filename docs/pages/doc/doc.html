@@ -49,9 +49,11 @@
               class="w-75"></span><span class="w-50"></span></button>
 
           <!-- Logo -->
-          <a class="logo ml-md-3" href="/" title="iDocs Template"> <img
-              src="/wjst/assets/images/logo-light.png" alt="iDocs Template" /> </a>
-          <span class="text-2 ml-2">v1.0</span>
+          <a class="logo ml-md-3" href="/" title="WAW">
+            <img src="/wjst/assets/images/avatar.png" alt="WAW" width="55"/>
+          </a>
+          
+          <span class="text-2 ml-3">Wjst - A Node.js and Browser JavaScript Template Engine</span>
           <!-- Logo End -->
 
           <!-- Navbar Toggler -->
@@ -60,7 +62,7 @@
 
           <div id="header-nav" class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
-              <li><a href="../index/index.html">Home</a></li>
+              <li><a href="/">Home</a></li>
             </ul>
           </div>
           <ul class="social-icons social-icons-lg ml-lg-2 mr-2">
@@ -91,12 +93,11 @@
               <li class="nav-item"><a class="nav-link" href="#idocs_comments">Comments</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_whitespace_control">Whitespace Control</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_template_inheritance">Template Inheritance</a></li>
-              <li class="nav-item"><a class="nav-link" href="#idocs_browser_usage">Browser Usage</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_express_js">Express.js</a></li>
             </ul>
           </li>
 
-          <li class="nav-item"><a class="nav-link active" href="#idocs_wjst_api">Wjst API</a>
+          <li class="nav-item"><a class="nav-link active" href="api.html">Wjst API</a>
             <ul class="nav flex-column">
               <li class="nav-item"><a class="nav-link" href="#idocs_object_wjstopts">Object: WjstOpts</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_object_cacheoptions">Object: CacheOptions</a></li>
@@ -313,7 +314,8 @@ wjst.render('{{ mystuff() }}', { locals: locals });
               <hr class="divider">
           </section>
 
-          <section id="idocs_logic_tags">
+<!------------------ Comments ------------------>
+          <section id="idocs_comments">
             <h2>Comments</h2>
             <p>Comment tags are simply ignored by the parser. They will removed before your templates are rendered so that no one can see them unless they have access to your source code. Comments are written using the curly-hash syntax:</p>
             <pre><code class="JavaScript">{% raw %}{#
@@ -323,6 +325,7 @@ It will be fully stripped and ignored during parsing.
           </section>
           <hr class="divider">
 
+<!------------------ Whitespace Control ------------------>
           <section id="idocs_whitespace_control">
             <h2>Whitespace Control</h2>
             <p>Any whitespace in your templates is left in your final output templates. However, you can control the whitespace around logic tags by using whitespace controls.</p>
@@ -335,6 +338,7 @@ It will be fully stripped and ignored during parsing.
           </section>
           <hr class="divider">
 
+<!------------------ Template Inheritance ------------------>         
           <section id="idocs_template_inheritance">
             <h2>Template Inheritance</h2>
             <p>Wjst uses extends & block for template inheritance.</p>
@@ -372,7 +376,8 @@ It will be fully stripped and ignored during parsing.
           </section>
           <hr class="divider">
 
-          <section id="idocs_template_inheritance">
+<!------------------ Using Wjst with Express.js ------------------>           
+          <section id="idocs_express_js">
             <h2>Using Wjst with Express.js</h2>
             <p>Wjst is easily compatible with Express, the simple web application framework for node. The following is a basic example of integrating Wjst with Express:</p>
             <pre><code class="JavaScript">{% raw %}const app = require('express')(),
