@@ -218,22 +218,30 @@
               <tbody>
                 <tr>
                   <tr>
-                    <th scope="row">autoescape</th>
+                    <th scope="row"><code class="JavaScript">autoescape</code></th>
                     <td>boolean</td>
-                    <td>Controls whether or not variable output will automatically be escaped for safe HTML output. Defaults to true. Functions executed in variable statements will not be auto-escaped. Your application/functions should take care of their own auto-escaping.</td>
+                    <td>Controls whether or not variable output will automatically be escaped for safe HTML output. Defaults to <code class="JavaScript">true</code>. Functions executed in variable statements will not be auto-escaped. Your application/functions should take care of their own auto-escaping.</td>
                   </tr>
                 <tr>
                   <tr>
-                    <th scope="row">autoescape</th>
-                    <td>boolean</td>
-                    <td>Controls whether or not variable output will automatically be escaped for safe HTML output. Defaults to true. Functions executed in variable statements will not be auto-escaped. Your application/functions should take care of their own auto-escaping.</td>
+                    <th scope="row"><code class="JavaScript">varControls</code></th>
+                    <td>array</td>
+                    <td>Open and close controls for variables. Defaults to <code class="JavaScript">{%raw%}['{{', '}}']{%endraw%}</code>.</td>
                   </tr>
                 </tr>
                 <tr>
-                  <th scope="row">3</th>
-                  <td>Larry</td>
-                  <td>the Bird</td>
-                  <td>@twitter</td>
+                  <tr>
+                    <th scope="row"><code class="JavaScript">tagControls</code></th>
+                    <td>array</td>
+                    <td>Open and close controls for tags. Defaults to <code class="JavaScript">{%raw%}['{%', '%}']{%endraw%}</code>.</td>
+                  </tr>
+                </tr>
+                <tr>
+                  <tr>
+                    <th scope="row"><code class="JavaScript">autoescape</code></th>
+                    <td>boolean</td>
+                    <td>Controls whether or not variable output will automatically be escaped for safe HTML output. Defaults to true. Functions executed in variable statements will not be auto-escaped. Your application/functions should take care of their own auto-escaping.</td>
+                  </tr>
                 </tr>
               </tbody>
             </table>
@@ -261,9 +269,7 @@
               examples are equivalent:</p>
             <pre><code class="JavaScript"> </code></pre>
             <p>However, notation style follows the same rules as JavaScript.
-              If a key includes non-alpha-numeric characters, it must be accessed using bracket-notation, not
-              dot-notation.</p>
-
+              If a key includes non-alpha-numeric characters, it must be accessed using bracket-notation, not dot-notation.</p>
           </section>
           <hr class="divider">
 
