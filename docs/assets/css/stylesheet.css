@@ -191,6 +191,23 @@ h1, h2, h3, h4, h5, h6 {
   font-family: Roboto, sans-serif;
 }
 
+.small-font {
+  font-size: 0.9em; /* Розмір шрифту 75% від стандартного */
+}
+
+/* Медіа-запити для зменшення розміру шрифту на менших екранах */
+@media (max-width: 768px) {
+  .small-font {
+      font-size: 0.65em; /* Розмір шрифту зменшується для середніх екранів */
+  }
+}
+
+@media (max-width: 480px) {
+  .small-font {
+      font-size: 0.55em; /* Розмір шрифту зменшується ще більше для малих екранів */
+  }
+}
+
 h1 {
   font-size: 3rem;
 }

@@ -143,7 +143,7 @@
 
   &.table-striped {
     tbody tr:nth-of-type(#{$table-striped-order}) {
-      background-color: $table-dark-accent-bg;
+      background-color: $table-light-accent-bg;
     }
   }
 

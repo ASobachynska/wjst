@@ -103,7 +103,6 @@ $('.navbar-toggler').on('click', function() {
 // 	$('html, body').stop().animate({
 //       scrollTop: $(sectionTo).offset().top - 120}, 1000, 'easeInOutExpo');
 // });
-
 /*------------------------
    Side Navigation
 -------------------------- */
@@ -133,9 +132,9 @@ $('.idocs-navigation-new .nav-link').on('click', function(event) {
         // Перевірка, чи цей розділ вже активний
         if ($(this).hasClass('active')) {
             // Якщо розділ вже активний і це не підрозділ,
-            // скролимо вверх сам розділ
+            // скролимо в самий верх сторінки
             $('html, body').stop().animate({
-                scrollTop: $(target).offset().top - 120
+                scrollTop: 0
             }, 1000, 'easeInOutExpo');
         } else {
             // Переходимо на нову сторінку
