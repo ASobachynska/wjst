@@ -238,9 +238,23 @@
                 </tr>
                 <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">autoescape</code></th>
-                    <td>boolean</td>
-                    <td>Controls whether or not variable output will automatically be escaped for safe HTML output. Defaults to true. Functions executed in variable statements will not be auto-escaped. Your application/functions should take care of their own auto-escaping.</td>
+                    <th scope="row"><code class="JavaScript">cmtControls</code></th>
+                    <td>array</td>
+                    <td>Open and close controls for comments. Defaults to <code class="JavaScript">{%raw%}['{#', '#}']{%endraw%}</code>.</td>
+                  </tr>
+                </tr>
+                <tr>
+                  <tr>
+                    <th scope="row"><code class="JavaScript">locals</code></th>
+                    <td>object</td>
+                    <td>Default variable context to be passed to <b>all</b> templates.</td>
+                  </tr>
+                </tr>
+                <tr>
+                  <tr>
+                    <th scope="row"><code class="JavaScript">cmtControls</code></th>
+                    <td>array</td>
+                    <td>Open and close controls for comments. Defaults to <code class="JavaScript">{%raw%}['{#', '#}']{%endraw%}</code>.</td>
                   </tr>
                 </tr>
               </tbody>
