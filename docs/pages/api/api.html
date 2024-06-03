@@ -252,9 +252,16 @@
                 </tr>
                 <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">cmtControls</code></th>
-                    <td>array</td>
-                    <td>Open and close controls for comments. Defaults to <code class="JavaScript">{%raw%}['{#', '#}']{%endraw%}</code>.</td>
+                    <th scope="row"><code class="JavaScript">cache</code></th>
+                    <td>CacheOptions</td>
+                    <td>Cache control for templates. Defaults to saving in <code class="JavaScript">{%raw%}'memory'{%endraw%}</code>. Send <code class="JavaScript">{%raw%}false{%endraw%}</code> to disable. Send an object with <code class="JavaScript">{%raw%}get{%endraw%}</code> and <code class="JavaScript">{%raw%}set{%endraw%}</code> functions to customize.</td>
+                  </tr>
+                </tr>
+                <tr>
+                  <tr>
+                    <th scope="row"><code class="JavaScript">loader</code></th>
+                    <td>TemplateLoader</td>
+                    <td>The method that Wjst will use to load templates. Defaults to <code class="JavaScript">{%raw%}wjst.loaders.fs{%endraw%}</code>.</td>
                   </tr>
                 </tr>
               </tbody>
