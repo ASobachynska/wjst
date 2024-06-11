@@ -198,14 +198,16 @@
 
           <!-- Getting Started ============================ -->
           <section id="idocs_wjst_api">
-          <h1>Wjst API</h1>
+            <h1>Wjst API</h1>
           </section>
 
-<!------------------ idocs object wjstopts ------------------>
+          <!------------------ idocs object wjstopts ------------------>
           <section id="idocs_object_wjstopts">
-            <h2>Installation</h2>
-            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L17">lib/wjst.js#L17</a></p>
-            <p>Wjst Options Object. This object can be passed to many of the API-level Wjst methods to control various aspects of the engine. All keys are optional.</p>
+            <h2>Object Type: WjstOpts</h2>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L17">lib/wjst.js#L17</a></p>
+            <p>Wjst Options Object. This object can be passed to many of the API-level Wjst methods to control various
+              aspects of the engine. All keys are optional.</p>
             <h3>Properties</h3>
             <table class="table table-bordered table-dark table-striped">
               <thead>
@@ -217,113 +219,123 @@
               </thead>
               <tbody>
                 <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">autoescape</code></th>
-                    <td>boolean</td>
-                    <td>Controls whether or not variable output will automatically be escaped for safe HTML output. Defaults to <code class="JavaScript">true</code>. Functions executed in variable statements will not be auto-escaped. Your application/functions should take care of their own auto-escaping.</td>
-                  </tr>
                 <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">varControls</code></th>
-                    <td>array</td>
-                    <td>Open and close controls for variables. Defaults to <code class="JavaScript">{%raw%}['{{', '}}']{%endraw%}</code>.</td>
-                  </tr>
+                  <th scope="row"><code class="JavaScript">autoescape</code></th>
+                  <td>boolean</td>
+                  <td>Controls whether or not variable output will automatically be escaped for safe HTML output.
+                    Defaults to <code class="JavaScript">true</code>. Functions executed in variable statements will not
+                    be auto-escaped. Your application/functions should take care of their own auto-escaping.</td>
                 </tr>
                 <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">tagControls</code></th>
-                    <td>array</td>
-                    <td>Open and close controls for tags. Defaults to <code class="JavaScript">{%raw%}['{%', '%}']{%endraw%}</code>.</td>
-                  </tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">varControls</code></th>
+                  <td>array</td>
+                  <td>Open and close controls for variables. Defaults to <code
+                      class="JavaScript">{%raw%}['{{', '}}']{%endraw%}</code>.</td>
+                </tr>
                 </tr>
                 <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">cmtControls</code></th>
-                    <td>array</td>
-                    <td>Open and close controls for comments. Defaults to <code class="JavaScript">{%raw%}['{#', '#}']{%endraw%}</code>.</td>
-                  </tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">tagControls</code></th>
+                  <td>array</td>
+                  <td>Open and close controls for tags. Defaults to <code
+                      class="JavaScript">{%raw%}['{%', '%}']{%endraw%}</code>.</td>
+                </tr>
                 </tr>
                 <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">locals</code></th>
-                    <td>object</td>
-                    <td>Default variable context to be passed to <b>all</b> templates.</td>
-                  </tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">cmtControls</code></th>
+                  <td>array</td>
+                  <td>Open and close controls for comments. Defaults to <code
+                      class="JavaScript">{%raw%}['{#', '#}']{%endraw%}</code>.</td>
+                </tr>
                 </tr>
                 <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">cache</code></th>
-                    <td>CacheOptions</td>
-                    <td>Cache control for templates. Defaults to saving in <code class="JavaScript">{%raw%}'memory'{%endraw%}</code>. Send <code class="JavaScript">{%raw%}false{%endraw%}</code> to disable. Send an object with <code class="JavaScript">{%raw%}get{%endraw%}</code> and <code class="JavaScript">{%raw%}set{%endraw%}</code> functions to customize.</td>
-                  </tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">locals</code></th>
+                  <td>object</td>
+                  <td>Default variable context to be passed to <b>all</b> templates.</td>
+                </tr>
                 </tr>
                 <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">loader</code></th>
-                    <td>TemplateLoader</td>
-                    <td>The method that Wjst will use to load templates. Defaults to <code class="JavaScript">{%raw%}wjst.loaders.fs{%endraw%}</code>.</td>
-                  </tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">cache</code></th>
+                  <td>CacheOptions</td>
+                  <td>Cache control for templates. Defaults to saving in <code
+                      class="JavaScript">{%raw%}'memory'{%endraw%}</code>. Send <code
+                      class="JavaScript">{%raw%}false{%endraw%}</code> to disable. Send an object with <code
+                      class="JavaScript">{%raw%}get{%endraw%}</code> and <code
+                      class="JavaScript">{%raw%}set{%endraw%}</code> functions to customize.</td>
+                </tr>
+                </tr>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">loader</code></th>
+                  <td>TemplateLoader</td>
+                  <td>The method that Wjst will use to load templates. Defaults to <code
+                      class="JavaScript">{%raw%}wjst.loaders.fs{%endraw%}</code>.</td>
+                </tr>
                 </tr>
               </tbody>
             </table>
           </section>
 
+          <!------------------ idocs object cacheoptions ------------------>
           <hr class="divider">
 
-          <section id="idocs_object_wjstopts">
-            <h2>Basic Usage</h2>
-            <p>Wjst has multiple ways to compile and render templates. Check the API documentation for more detailed
-              information and usage.</p>
-            <pre><code class="JavaScript"> </code></pre>
-          </section>
-
-          <hr class="divider">
-
-<!------------------ idocs object cacheoptions ------------------>
           <section id="idocs_object_cacheoptions">
-            <h2>Variables</h2>
-            <p>Variables that are passed to templates can be output using double-curly-brackets:
-              . All variable output is automatically <b>autoescaped</b>, with the exception of function output.</p>
-
-            <h3>Notation</h3>
-            <p>Accessing properties of objects can be done using either dot-notation or bracket-notation. The following
-              examples are equivalent:</p>
-            <pre><code class="JavaScript"> </code></pre>
-            <p>However, notation style follows the same rules as JavaScript.
-              If a key includes non-alpha-numeric characters, it must be accessed using bracket-notation, not dot-notation.</p>
+            <h2>Object Type: CacheOptions</h2>
+            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L34">lib/wjst.js#L34</a></p>
+            <p>Cache control for templates. Defaults to saving all templates into memory.</p>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">// Default
+wjst.setDefaults({ cache: 'memory' });</code></pre>
+            <pre><code class="JavaScript">// Disables caching in Wjst.
+wjst.setDefaults({ cache: false });</code></pre>
+            <pre><code class="JavaScript">// Custom cache storage and retrieval
+wjst.setDefaults({
+  cache: {
+  get: function (key) { ... },
+  set: function (key, val) { ... }
+  }
+});</code></pre>
           </section>
+
+          <!------------------ idocs object templateLoader ------------------>
           <hr class="divider">
 
-<!------------------ idocs object templateLoader ------------------>
           <section id="idocs_object_templateLoader">
-            <h2>Logic Tags</h2>
-            <p>Wjst includes some basic operational blocks, called Tags, for helping you control output on a larger
-              scale than variables.
-              Tags are written using curly-percent syntax: .</p>
-
-            <pre><code class="JavaScript">{% raw %} {% endraw %}</code></pre>
-
-            <p><code class="JavaScript">end</code> tags may also have any set of extra context within them, and will
-              just be ignore.
-              This is useful for scoping and understanding which block you are closing and where.</p>
-
-            <pre><code class="JavaScript">{% raw %} {% endraw %}</code></pre></code></pre>
-
-            <p>View the Tags documentation for a full list of tags and usage instructions.</p>
-            <hr class="divider">
+            <h2>Object Type: TemplateLoader</h2>
+            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L53">lib/wjst.js#L53</a></p>
+            <p>Configure Wjst to use either the <code class="JavaScript">wjst.loaders.fs</code> or <code
+                class="JavaScript">wjst.loaders.memory</code> template loader. Or, you can write your own!</p>
+            <p>For more information, please see the Template Loaders documentation.</p>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">// Default, FileSystem loader
+wjst.setDefaults({ loader: wjst.loaders.fs() });</code></pre>
+            <pre><code class="JavaScript">// FileSystem loader allowing a base path
+// With this, you don't use relative URLs in your template references
+wjst.setDefaults({ loader: wjst.loaders.fs(__dirname + '/templates') });</code></pre>
+            <pre><code class="JavaScript">{%raw%}// Memory Loader
+wjst.setDefaults({ loader: wjst.loaders.memory({
+  layout: '{% block foo %}{% endblock %}',
+  page1: '{% extends "layout" %}{% block foo %}Tacos!{% endblock %}'
+})});{%endraw%}</code></pre>
           </section>
 
-<!------------------ idocs wjst version ------------------>
+          <hr class="divider">
+
+          <!------------------ idocs wjst version ------------------>
           <section id="idocs_wjst_version">
-            <h2>Comments</h2>
-            <p>Comment tags are simply ignored by the parser. They will removed before your templates are rendered so
-              that no one can see them unless they have access to your source code. Comments are written using the
-              curly-hash syntax:</p>
-            <pre><code class="JavaScript">{% raw %} {% endraw %}</code></pre></code></pre>
+            <h2>wjst.version</h2>
+            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L15">lib/wjst.js#L15</a></p>
+            <h3>Examples</h3>
+            <p>Wjst version number as a string.</p>
+            <pre><code class="JavaScript">if (wjst.version === "1.4.2") { ... }</code></pre></code></pre>
           </section>
           <hr class="divider">
 
-<!------------------ idocs wjst setDefaults ------------------>
+          <!------------------ idocs wjst setDefaults ------------------>
           <section id="idocs_wjst_setDefaults">
             <h2>Whitespace Control</h2>
             <p>Any whitespace in your templates is left in your final output templates. However, you can control the
@@ -338,7 +350,7 @@
           </section>
           <hr class="divider">
 
-<!------------------ idocs wjst setDefaultTZOffset ------------------>
+          <!------------------ idocs wjst setDefaultTZOffset ------------------>
           <section id="idocs_wjst_setDefaultTZOffset">
             <h2>Template Inheritance</h2>
             <p>Wjst uses extends & block for template inheritance.</p>
@@ -354,7 +366,7 @@
           </section>
           <hr class="divider">
 
-<!------------------ idocs wjst invalidateCache ------------------>
+          <!------------------ idocs wjst invalidateCache ------------------>
           <section id="idocs_wjst_invalidateCache">
             <h2>Using Wjst with Express.js</h2>
             <p>Wjst is easily compatible with Express, the simple web application framework for node. The following is a
@@ -363,7 +375,7 @@
           </section>
           <hr class="divider">
 
-<!------------------ idocs wjst setFilter ------------------>
+          <!------------------ idocs wjst setFilter ------------------>
           <section id="idocs_wjst_setFilter">
             <h2>Using Wjst with Express.js</h2>
             <p>Wjst is easily compatible with Express, the simple web application framework for node. The following is a
@@ -372,7 +384,7 @@
           </section>
           <hr class="divider">
 
-<!------------------ idocs wjst setTag ------------------>
+          <!------------------ idocs wjst setTag ------------------>
           <section id="idocs_wjst_setTag">
             <h2>Using Wjst with Express.js</h2>
             <p>Wjst is easily compatible with Express, the simple web application framework for node. The following is a
@@ -381,7 +393,7 @@
           </section>
           <hr class="divider">
 
-<!------------------ idocs wjst setExtension ------------------>
+          <!------------------ idocs wjst setExtension ------------------>
           <section id="idocs_wjst_setExtension">
             <h2>Using Wjst with Express.js</h2>
             <p>Wjst is easily compatible with Express, the simple web application framework for node. The following is a
@@ -390,7 +402,7 @@
           </section>
           <hr class="divider">
 
-<!------------------ idocs wjst precompile ------------------>
+          <!------------------ idocs wjst precompile ------------------>
           <section id="idocs_wjst_precompile">
             <h2>Using Wjst with Express.js</h2>
             <p>Wjst is easily compatible with Express, the simple web application framework for node. The following is a
@@ -398,8 +410,8 @@
             <pre><code class="JavaScript">{% raw %} {% endraw %}</code></pre>
           </section>
           <hr class="divider">
-          
-<!------------------ idocs wjst render ------------------>
+
+          <!------------------ idocs wjst render ------------------>
           <section id="idocs_wjst_render">
             <h2>Using Wjst with Express.js</h2>
             <p>Wjst is easily compatible with Express, the simple web application framework for node. The following is a
@@ -408,7 +420,7 @@
           </section>
           <hr class="divider">
 
-<!------------------ idocs wjst renderFile ------------------>
+          <!------------------ idocs wjst renderFile ------------------>
           <section id="idocs_wjst_renderFile">
             <h2>Using Wjst with Express.js</h2>
             <p>Wjst is easily compatible with Express, the simple web application framework for node. The following is a
@@ -417,7 +429,7 @@
           </section>
           <hr class="divider">
 
-<!------------------ idocs wjst compile ------------------>
+          <!------------------ idocs wjst compile ------------------>
           <section id="idocs_wjst_compile">
             <h2>Using Wjst with Express.js</h2>
             <p>Wjst is easily compatible with Express, the simple web application framework for node. The following is a
@@ -426,7 +438,7 @@
           </section>
           <hr class="divider">
 
-<!------------------ idocs wjst compileFile ------------------>
+          <!------------------ idocs wjst compileFile ------------------>
           <section id="idocs_wjst_compileFile">
             <h2>Using Wjst with Express.js</h2>
             <p>Wjst is easily compatible with Express, the simple web application framework for node. The following is a
@@ -435,7 +447,7 @@
           </section>
           <hr class="divider">
 
-<!------------------ idocs wjst compileFile ------------------>
+          <!------------------ idocs wjst compileFile ------------------>
           <section id="idocs_wjst_compileFile">
             <h2>Using Wjst with Express.js</h2>
             <p>Wjst is easily compatible with Express, the simple web application framework for node. The following is a
@@ -444,7 +456,7 @@
           </section>
           <hr class="divider">
 
-<!------------------ idocs wjst run ------------------>
+          <!------------------ idocs wjst run ------------------>
           <section id="idocs_wjst_run">
             <h2>Using Wjst with Express.js</h2>
             <p>Wjst is easily compatible with Express, the simple web application framework for node. The following is a
