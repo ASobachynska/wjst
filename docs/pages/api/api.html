@@ -337,50 +337,129 @@ wjst.setDefaults({ loader: wjst.loaders.memory({
 
           <!------------------ idocs wjst setDefaults ------------------>
           <section id="idocs_wjst_setDefaults">
-            <h2>Whitespace Control</h2>
-            <p>Any whitespace in your templates is left in your final output templates. However, you can control the
-              whitespace around logic tags by using whitespace controls.</p>
-            <p>To remove whitespace, simply put a dash (-) at the beginning or end of your tag to remove the preceding
-              or following whitespace, respectively.</p>
-            <pre><code class="JavaScript">{% raw %}// seq = [1, 2, 3, 4, 5]
-{% for item in seq -%}{{ item }} <br>
-{%- endfor %}
-// => 12345 {% endraw %}</code></pre>
-            <p><i>Note: there must <b>not</b> be any space between the tag open/close mark and the dash.</i></p>
+            <h2>wjst.setDefaults( options )</h2>
+            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L143">lib/wjst.js#L143</a></p>
+            <p>Set defaults for the base and all new Wjst environments.</p>
+            <h3>Parameters</h3>
+            <table class="table table-bordered table-dark table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Optional</th>
+                  <th scope="col">Default</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">options</code></th>
+                  <th scope="row"><code class="JavaScript">WjstOpts</code></th>
+                  <td>✔</td>
+                  <th scope="row"><code class="JavaScript">{}</code></th>
+                  <td>Wjst options object.</td>
+                </tr>
+                </tr>
+              </tbody>
+            </table>
+            <h3>Returns</h3>
+            <p><code class="JavaScript">undefined:</code></p>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}wjst.setDefaults({ cache: false });
+// => Disables Cache{% endraw %}</code></pre>
+              <pre><code class="JavaScript">{% raw %}wjst.setDefaults({ locals: { now: function () { return new Date(); } }});
+// => sets a globally accessible method for all template
+//    contexts, allowing you to print the current date
+// => {{ now()|date('F jS, Y') }}{% endraw %}</code></pre>
           </section>
           <hr class="divider">
 
           <!------------------ idocs wjst setDefaultTZOffset ------------------>
           <section id="idocs_wjst_setDefaultTZOffset">
-            <h2>Template Inheritance</h2>
-            <p>Wjst uses extends & block for template inheritance.</p>
+            <h2>wjst.setDefaultTZOffset( offset )</h2>
+            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L153">lib/wjst.js#L153</a></p>
+            <p>Set the default TimeZone offset for date formatting via the date filter. This is a global setting and will affect all Wjst environments, old or new.</p>
             <h3>layout.html</h3>
             <p>To remove whitespace, simply put a dash (-) at the beginning or end of your tag to remove the preceding
               or following whitespace, respectively.</p>
             <pre><code class="JavaScript">{% raw %} {% endraw %}</code></pre>
-
-            <h3>index.html</h3>
-            <p>To remove whitespace, simply put a dash (-) at the beginning or end of your tag to remove the preceding
-              or following whitespace, respectively.</p>
-            <pre><code class="JavaScript">{% raw %} {% endraw %}</code></pre>
+            <h3>Parameters</h3>
+            <table class="table table-bordered table-dark table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Optional</th>
+                  <th scope="col">Default</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">offset</code></th>
+                  <th scope="row"><code class="JavaScript">number</code></th>
+                  <td></td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Offset from GMT, in minutes.</td>
+                </tr>
+                </tr>
+              </tbody>
+            </table>
+            <h3>Returns</h3>
+            <p><code class="JavaScript">undefined:</code></p>
           </section>
           <hr class="divider">
 
           <!------------------ idocs wjst invalidateCache ------------------>
           <section id="idocs_wjst_invalidateCache">
-            <h2>Using Wjst with Express.js</h2>
-            <p>Wjst is easily compatible with Express, the simple web application framework for node. The following is a
-              basic example of integrating Wjst with Express:</p>
-            <pre><code class="JavaScript">{% raw %} {% endraw %}</code></pre>
+            <h2>wjst.Wjst( opts )</h2>
+            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L171">lib/wjst.js#L171</a></p>
+            <p>Create a new, separate Wjst compile/render environment.</p>
+            <h3>Parameters</h3>
+            <table class="table table-bordered table-dark table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Optional</th>
+                  <th scope="col">Default</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">opts</code></th>
+                  <th scope="row"><code class="JavaScript">WjstOpts</code></th>
+                  <td>✔</td>
+                  <th scope="row"><code class="JavaScript">{}</code></th>
+                  <td>Wjst options object.</td>
+                </tr>
+                </tr>
+              </tbody>
+            </table>
+            <h3>Returns</h3>
+            <p><code class="JavaScript">object:</code>New Wjst environment.</p>
+            <h3>Examples</h3>
+            <p><code class="JavaScript">const wjst = require('wjst');
+const mywjst = new wjst.Wjst({varControls: ['<%=', '%>']});
+mywjst.render('Tacos are <%= tacos =>!', { locals: { tacos: 'delicious' }});
+// => Tacos are delicious!
+wjst.render('Tacos are <%= tacos =>!', { locals: { tacos: 'delicious' }});
+// => 'Tacos are <%= tacos =>!'</code></p>
           </section>
           <hr class="divider">
 
           <!------------------ idocs wjst setFilter ------------------>
           <section id="idocs_wjst_setFilter">
-            <h2>Using Wjst with Express.js</h2>
-            <p>Wjst is easily compatible with Express, the simple web application framework for node. The following is a
-              basic example of integrating Wjst with Express:</p>
-            <pre><code class="JavaScript">{% raw %} {% endraw %}</code></pre>
+            <h2>wjst.invalidateCache( )</h2>
+            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L251">lib/wjst.js#L251</a></p>
+            <h3>Returns</h3>
+            <p><code class="JavaScript">undefined:</code></p>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}wjst.invalidateCache();{% endraw %}</code></pre>
           </section>
           <hr class="divider">
 
@@ -458,13 +537,61 @@ wjst.setDefaults({ loader: wjst.loaders.memory({
 
           <!------------------ idocs wjst run ------------------>
           <section id="idocs_wjst_run">
-            <h2>Using Wjst with Express.js</h2>
-            <p>Wjst is easily compatible with Express, the simple web application framework for node. The following is a
-              basic example of integrating Wjst with Express:</p>
-            <pre><code class="JavaScript">{% raw %} {% endraw %}</code></pre>
-          </section>
-          <hr class="divider">
-
+            <h2>wjst.run(tpl, locals, filepath)</h2>
+            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L715">lib/wjst.js#L715</a></p>
+            <p>Run a pre-compiled template function. This is most useful in the browser when you've pre-compiled your templates with the Wjst command-line tool.</p>
+            <h3>Parameters</h3>
+            <table class="table table-bordered table-dark table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Optional</th>
+                  <th scope="col">Default</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">tpl</code></th>
+                  <th scope="row"><code class="JavaScript">function</code></th>
+                  <td></td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Pre-compiled Wjst template function. Use the Wjst CLI to compile your templates.</td>
+                </tr>
+                </tr>
+                <tr>
+                  <tr>
+                    <th scope="row"><code class="JavaScript">locals</code></th>
+                    <th scope="row"><code class="JavaScript">object</code></th>
+                    <td>✔</td>
+                    <th scope="row"><code class="JavaScript">{}</code></th>
+                    <td>Template variable context.</td>
+                  </tr>
+                </tr>
+                <tr>
+                  <tr>
+                    <th scope="row"><code class="JavaScript">filepath</code></th>
+                    <th scope="row"><code class="JavaScript">string</code></th>
+                    <td>✔</td>
+                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td>Filename used for caching the template.</td>
+                  </tr>
+                </tr>
+              </tbody>
+            </table>
+            <h3>Returns</h3>
+            <p><code class="JavaScript">string:</code>Rendered output.</p>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}$ wjst compile ./mytpl.html --wrap-start="var mytpl = " > mytpl.js{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}&lt;script src="mytpl.js">&lt;/script>
+&lt;script>
+  wjst.run(mytpl, {});
+  // => "rendered template..."s
+&lt;/script>{% endraw %}</code></pre>
+            </section>
+            <hr class="divider">
         </div>
       </div>
     </div>
