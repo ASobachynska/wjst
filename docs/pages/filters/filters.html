@@ -87,8 +87,8 @@
 
           <li class="nav-item"><a class="nav-link" href="/doc">Getting Started</a>
 
-          <li class="nav-item"><a class="nav-link active" href="/api">Wjst API</a>
-            <ul class="nav flex-column">
+          <li class="nav-item"><a class="nav-link" href="/api">Wjst API</a>
+            <!-- <ul class="nav flex-column">
               <li class="nav-item"><a class="nav-link" href="#idocs_object_wjstopts">Object: WjstOpts</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_object_cacheoptions">Object: CacheOptions</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_object_templateLoader">Object: TemplateLoader</a>
@@ -108,11 +108,11 @@
               <li class="nav-item"><a class="nav-link" href="#idocs_wjst_compile">wjst.compile</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_wjst_compileFile">wjst.compileFile</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_wjst_run">wjst.run</a></li>
-            </ul>
+            </ul> -->
           </li>
 
-          <li class="nav-item"><a class="nav-link" href="/filters">Filters</a>
-            <!-- <ul class="nav flex-column">
+          <li class="nav-item"><a class="nav-link active" href="/filters">Filters</a>
+            <ul class="nav flex-column">
               <li class="nav-item"><a class="nav-link" href="#idocs_addslashes">addslashes</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_capitalize">capitalize</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_date">date</a></li>
@@ -136,7 +136,7 @@
               <li class="nav-item"><a class="nav-link" href="#idocs_upper">upper</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_url_encode">url_encode</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_url_decode">url_decode</a></li>
-            </ul> -->
+            </ul>
           </li>
 
           <li class="nav-item"><a class="nav-link" href="/idocs-tags">Tags</a>
@@ -197,193 +197,51 @@
         <div class="container">
 
           <!-- Getting Started ============================ -->
-          <section id="idocs_wjst_api">
-            <h1>Wjst API</h1>
+          <section id="idocs_Filters">
+            <h1>Filters</h1>
+            <p>The rendering of variables can be modified by filters. Filters are special functions that are applied after any object token in a variable block using the pipe character, for example: <code class="JavaScript">{%raw%}{{ names|join(', ') }}</code>.</p>
+            <p>Filters can also be chained together, one after another. In this case, we have a list of names in HTML tags that we want to remove, output together, and make title-cased:</p>
+            <pre><code class="JavaScript">{%raw%}// names = ['&lt;p>paul&lt;/p>', '&lt;p>jim&lt;/p>'];
+{{ names|striptags|join(', ')|title }}
+// => Paul, Jim{%endraw%}</code></pre>
+            <p>Wjst comes pre-loaded with a set of useful filters:</p>
           </section>
+          <hr class="divider">
 
-          <!------------------ idocs object wjstopts ------------------>
-          <section id="idocs_object_wjstopts">
-            <h2>Object Type: WjstOpts</h2>
+          <!------------------ idocs_addslashes ------------------>
+          <section id="idocs_addslashes">
+            <h2>addslashes</h2>
             <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L17">lib/wjst.js#L17</a></p>
-            <p>Wjst Options Object. This object can be passed to many of the API-level Wjst methods to control various
-              aspects of the engine. All keys are optional.</p>
-            <h3>Properties</h3>
-            <table class="table table-bordered table-dark table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">autoescape</code></th>
-                  <td>boolean</td>
-                  <td>Controls whether or not variable output will automatically be escaped for safe HTML output.
-                    Defaults to <code class="JavaScript">true</code>. Functions executed in variable statements will not
-                    be auto-escaped. Your application/functions should take care of their own auto-escaping.</td>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">varControls</code></th>
-                  <td>array</td>
-                  <td>Open and close controls for variables. Defaults to <code
-                      class="JavaScript">{%raw%}['{{', '}}']{%endraw%}</code>.</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">tagControls</code></th>
-                  <td>array</td>
-                  <td>Open and close controls for tags. Defaults to <code
-                      class="JavaScript">{%raw%}['{%', '%}']{%endraw%}</code>.</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">cmtControls</code></th>
-                  <td>array</td>
-                  <td>Open and close controls for comments. Defaults to <code
-                      class="JavaScript">{%raw%}['{#', '#}']{%endraw%}</code>.</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">locals</code></th>
-                  <td>object</td>
-                  <td>Default variable context to be passed to <b>all</b> templates.</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">cache</code></th>
-                  <td>CacheOptions</td>
-                  <td>Cache control for templates. Defaults to saving in <code
-                      class="JavaScript">{%raw%}'memory'{%endraw%}</code>. Send <code
-                      class="JavaScript">{%raw%}false{%endraw%}</code> to disable. Send an object with <code
-                      class="JavaScript">{%raw%}get{%endraw%}</code> and <code
-                      class="JavaScript">{%raw%}set{%endraw%}</code> functions to customize.</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">loader</code></th>
-                  <td>TemplateLoader</td>
-                  <td>The method that Wjst will use to load templates. Defaults to <code
-                      class="JavaScript">{%raw%}wjst.loaders.fs{%endraw%}</code>.</td>
-                </tr>
-                </tr>
-              </tbody>
-            </table>
-          </section>
-
-          <!------------------ idocs object cacheoptions ------------------>
-          <hr class="divider">
-
-          <section id="idocs_object_cacheoptions">
-            <h2>Object Type: CacheOptions</h2>
-            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L34">lib/wjst.js#L34</a></p>
-            <p>Cache control for templates. Defaults to saving all templates into memory.</p>
-            <h3>Examples</h3>
-            <pre><code class="JavaScript">// Default
-wjst.setDefaults({ cache: 'memory' });</code></pre>
-            <pre><code class="JavaScript">// Disables caching in Wjst.
-wjst.setDefaults({ cache: false });</code></pre>
-            <pre><code class="JavaScript">// Custom cache storage and retrieval
-wjst.setDefaults({
-  cache: {
-  get: function (key) { ... },
-  set: function (key, val) { ... }
-  }
-});</code></pre>
-          </section>
-
-          <!------------------ idocs object templateLoader ------------------>
-          <hr class="divider">
-
-          <section id="idocs_object_templateLoader">
-            <h2>Object Type: TemplateLoader</h2>
-            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L53">lib/wjst.js#L53</a></p>
-            <p>Configure Wjst to use either the <code class="JavaScript">wjst.loaders.fs</code> or <code
-                class="JavaScript">wjst.loaders.memory</code> template loader. Or, you can write your own!</p>
-            <p>For more information, please see the Template Loaders documentation.</p>
-            <h3>Examples</h3>
-            <pre><code class="JavaScript">// Default, FileSystem loader
-wjst.setDefaults({ loader: wjst.loaders.fs() });</code></pre>
-            <pre><code class="JavaScript">// FileSystem loader allowing a base path
-// With this, you don't use relative URLs in your template references
-wjst.setDefaults({ loader: wjst.loaders.fs(__dirname + '/templates') });</code></pre>
-            <pre><code class="JavaScript">{%raw%}// Memory Loader
-wjst.setDefaults({ loader: wjst.loaders.memory({
-  layout: '{% block foo %}{% endblock %}',
-  page1: '{% extends "layout" %}{% block foo %}Tacos!{% endblock %}'
-})});{%endraw%}</code></pre>
-          </section>
-
-          <hr class="divider">
-
-          <!------------------ idocs wjst version ------------------>
-          <section id="idocs_wjst_version">
-            <h2>wjst.version</h2>
-            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L15">lib/wjst.js#L15</a></p>
-            <h3>Examples</h3>
-            <p>Wjst version number as a string.</p>
-            <pre><code class="JavaScript">if (wjst.version === "1.4.2") { ... }</code></pre></code></pre>
-          </section>
-          <hr class="divider">
-
-          <!------------------ idocs wjst setDefaults ------------------>
-          <section id="idocs_wjst_setDefaults">
-            <h2>wjst.setDefaults( options )</h2>
-            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L143">lib/wjst.js#L143</a></p>
-            <p>Set defaults for the base and all new Wjst environments.</p>
-            <h3>Parameters</h3>
-            <table class="table table-bordered table-dark table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Optional</th>
-                  <th scope="col">Default</th>
-                  <th scope="col">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">options</code></th>
-                  <th scope="row"><code class="JavaScript">WjstOpts</code></th>
-                  <td>✔</td>
-                  <th scope="row"><code class="JavaScript">{}</code></th>
-                  <td>Wjst options object.</td>
-                </tr>
-                </tr>
-              </tbody>
-            </table>
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L40">lib/wjst.js#L40</a></p>
+            <p>Backslash-escape characters that need to be escaped.</p>
             <h3>Returns</h3>
-            <p><code class="JavaScript">undefined:</code></p>
+            <p><code class="JavaScript">{%raw%}*{%endraw%}</code>Backslash-escaped string.</p>
             <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}wjst.setDefaults({ cache: false });
-// => Disables Cache{% endraw %}</code></pre>
-              <pre><code class="JavaScript">{% raw %}wjst.setDefaults({ locals: { now: function () { return new Date(); } }});
-// => sets a globally accessible method for all template
-//    contexts, allowing you to print the current date
-// => {{ now()|date('F jS, Y') }}{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{%raw%}{{ "\"quoted string\""|addslashes }}
+// => \"quoted string\"{%endraw%}</code></pre>
           </section>
           <hr class="divider">
 
-          <!------------------ idocs wjst setDefaultTZOffset ------------------>
-          <section id="idocs_wjst_setDefaultTZOffset">
-            <h2>wjst.setDefaultTZOffset( offset )</h2>
-            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L153">lib/wjst.js#L153</a></p>
-            <p>Set the default TimeZone offset for date formatting via the date filter. This is a global setting and will affect all Wjst environments, old or new.</p>
-            <h3>layout.html</h3>
-            <p>To remove whitespace, simply put a dash (-) at the beginning or end of your tag to remove the preceding
-              or following whitespace, respectively.</p>
-            <pre><code class="JavaScript">{% raw %} {% endraw %}</code></pre>
+          <!------------------ idocs_capitalize ------------------>
+          <section id="idocs_capitalize">
+            <h2>capitalize</h2>
+            <p class="small-font">Sourse: <a
+              href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L59">lib/wjst.js#L59</a></p>
+          <p>Upper-case the first letter of the input and lower-case the rest.</p>
+          <h3>Returns</h3>
+          <p><code class="JavaScript">{%raw%}*{%endraw%}</code>Returns the same type as the input.</p>
+          <h3>Examples</h3>
+          <pre><code class="JavaScript">{%raw%}{{ "i like Burritos"|capitalize }}
+// => I like burritos{%endraw%}</code></pre>
+        </section>
+        <hr class="divider">
+
+          <!------------------ idocs_date ------------------>
+          <section id="idocs_date">
+            <h2>date(format, offset, abbr)</h2>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L86">lib/wjst.js#L86</a></p>
+            <p>Format a date or Date-compatible string.</p>
             <h3>Parameters</h3>
             <table class="table table-bordered table-dark table-striped">
               <thead>
@@ -398,292 +256,36 @@ wjst.setDefaults({ loader: wjst.loaders.memory({
               <tbody>
                 <tr>
                 <tr>
-                  <th scope="row"><code class="JavaScript">offset</code></th>
+                  <th scope="row"><code class="JavaScript">indent</code></th>
                   <th scope="row"><code class="JavaScript">number</code></th>
-                  <td></td>
+                  <td>✓</td>
                   <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Offset from GMT, in minutes.</td>
+                  <td>Number of spaces to indent for pretty-formatting.</td>
                 </tr>
                 </tr>
               </tbody>
             </table>
             <h3>Returns</h3>
-            <p><code class="JavaScript">undefined:</code></p>
-          </section>
-          <hr class="divider">
-
-          <!------------------ idocs wjst invalidateCache ------------------>
-          <section id="idocs_wjst_invalidateCache">
-            <h2>wjst.Wjst( opts )</h2>
-            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L171">lib/wjst.js#L171</a></p>
-            <p>Create a new, separate Wjst compile/render environment.</p>
-            <h3>Parameters</h3>
-            <table class="table table-bordered table-dark table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Optional</th>
-                  <th scope="col">Default</th>
-                  <th scope="col">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">opts</code></th>
-                  <th scope="row"><code class="JavaScript">WjstOpts</code></th>
-                  <td>✔</td>
-                  <th scope="row"><code class="JavaScript">{}</code></th>
-                  <td>Wjst options object.</td>
-                </tr>
-                </tr>
-              </tbody>
-            </table>
-            <h3>Returns</h3>
-            <p><code class="JavaScript">object:</code>New Wjst environment.</p>
+            <p><code class="JavaScript">{%raw%}string{%endraw%}</code> A valid JSON string.</p>
             <h3>Examples</h3>
-            <p><code class="JavaScript">const wjst = require('wjst');
-const mywjst = new wjst.Wjst({varControls: ['<%=', '%>']});
-mywjst.render('Tacos are <%= tacos =>!', { locals: { tacos: 'delicious' }});
-// => Tacos are delicious!
-wjst.render('Tacos are <%= tacos =>!', { locals: { tacos: 'delicious' }});
-// => 'Tacos are <%= tacos =>!'</code></p>
-          </section>
-          <hr class="divider">
-
-          <!------------------ idocs wjst setFilter ------------------>
-          <section id="idocs_wjst_setFilter">
-            <h2>wjst.setFilter(name, method)</h2>
-            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L270">lib/wjst.js#L270</a></p>
-            <p>Add a custom filter for wjst variables.</p>
-            <h3>Parameters</h3>
-            <table class="table table-bordered table-dark table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Optional</th>
-                  <th scope="col">Default</th>
-                  <th scope="col">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">name</code></th>
-                  <th scope="row"><code class="JavaScript">string</code></th>
-                  <td></td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Name of filter, used in templates. <b>Will</b> overwrite previously defined filters, if using the same name.</td>
-                </tr>
-                </tr>
-                <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">method</code></th>
-                    <th scope="row"><code class="JavaScript">function</code></th>
-                    <td></td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
-                    <td>Function that acts against the input. See Custom Filters for more information.</td>
-                  </tr>
-                </tr>
-              </tbody>
-            </table>
-            <h3>Returns</h3>
-            <p><code class="JavaScript">undefined:</code></p>
-            <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}function replaceMs(input) { return input.replace(/m/g, 'f'); }
-wjst.setFilter('replaceMs', replaceMs);
-// => {{ "onomatopoeia"|replaceMs }}
-// => onofatopeia{% endraw %}</code></pre>
-          </section>
-          <hr class="divider">
-
-          <!------------------ idocs wjst setTag ------------------>
-          <section id="idocs_wjst_setTag">
-            <h2>wjst.setTag(name, parse, compile, ends, blockLevel)</h2>
-            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L295">lib/wjst.js#L295</a></p>
-            <p>Add a custom tag. To expose your own extensions to compiled template code, see <code class="JavaScript">wjst.setExtension.</code></p>
-            <p>For a more in-depth explanation of writing custom tags, see  <a href="../extending/#tags">Custom Tags</a>.</p>
-            <h3>Parameters</h3>
-            <table class="table table-bordered table-dark table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Optional</th>
-                  <th scope="col">Default</th>
-                  <th scope="col">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">name</code></th>
-                  <th scope="row"><code class="JavaScript">string</code></th>
-                  <td></td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Tag name.</td>
-                </tr>
-                </tr>
-                <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">parse</code></th>
-                    <th scope="row"><code class="JavaScript">function</code></th>
-                    <td></td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
-                    <td>Method for parsing tokens.</td>
-                  </tr>
-                </tr>
-                <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">compile</code></th>
-                    <th scope="row"><code class="JavaScript">function</code></th>
-                    <td></td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
-                    <td>Method for compiling renderable output.</td>
-                  </tr>
-                </tr>
-                <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">ends</code></th>
-                    <th scope="row"><code class="JavaScript">boolean</code></th>
-                    <td>✔</td>
-                    <th scope="row"><code class="JavaScript">false</code></th>
-                    <td>Whether or not this tag requires an <i>end</i> tag.</td>
-                  </tr>
-                </tr>
-                <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">parse</code></th>
-                    <th scope="row"><code class="JavaScript">function</code></th>
-                    <td>✔</td>
-                    <th scope="row"><code class="JavaScript">false</code></th>
-                    <td>If false, this tag will not be compiled outside of <code class="JavaScript">block</code> tags when extending a parent template.</td>
-                  </tr>
-                </tr>
-              </tbody>
-            </table>
-            <h3>Returns</h3>
-            <p><code class="JavaScript">undefined:</code></p>
-            <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}const tacotag = require('./tacotag');
-wjst.setTag('tacos', tacotag.parse, tacotag.compile, tacotag.ends, tacotag.blockLevel);
-// => {% tacos %}Make this be tacos.{% endtacos %}
-// => Tacos tacos tacos tacos.{% endraw %}</code></pre>
-          </section>
-          <hr class="divider">
-
-          <!------------------ idocs wjst setExtension ------------------>
-          <section id="idocs_wjst_setExtension">
-            <h2>wjst.setExtension(name, object)</h2>
-            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L326">lib/wjst.js#L326</a></p>
-            <p>Add extensions for custom tags. This allows any custom tag to access a globally available methods via a special globally available object, <code class="JavaScript">_ext</code>, in templates.</code></p>
-            <p>For a more in-depth explanation of writing custom tags, see  <a href="../extending/#tags">Custom Tags</a>.</p>
-            <h3>Parameters</h3>
-            <table class="table table-bordered table-dark table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Optional</th>
-                  <th scope="col">Default</th>
-                  <th scope="col">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">name</code></th>
-                  <th scope="row"><code class="JavaScript">string</code></th>
-                  <td></td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Tag name.</td>
-                </tr>
-                </tr>
-                <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">object</code></th>
-                    <th scope="row"><code class="JavaScript">*</code></th>
-                    <td></td>
-                    <th scope="row"><code class="JavaScript">false</code></th>
-                    <td>The method, value, or object that should be available via the given name.</td>
-                  </tr>
-                </tr>
-              </tbody>
-            </table>
-            <h3>Returns</h3>
-            <p><code class="JavaScript">undefined:</code></p>
-            <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}const tacotag = require('./tacotag');
-wjst.setTag('tacos', tacotag.parse, tacotag.compile, tacotag.ends, tacotag.blockLevel);
-// => {% tacos %}Make this be tacos.{% endtacos %}
-// => Tacos tacos tacos tacos.{% endraw %}</code></pre>
-          </section>
-          <hr class="divider">
-
-          <!------------------ idocs wjst precompile ------------------>
-          <section id="idocs_wjst_precompile">
-            <h2>wjst.precompile(source, options)</h2>
-            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#485">lib/wjst.js#L485</a></p>
-            <p>Pre-compile a source string into a cache-able template function.</p>
-            <p>When rendering a source string, a file path should be specified in the options object in order for <code class="JavaScript">{% raw %} extends{% endraw %}</code>, <code class="JavaScript">{% raw %}include{% endraw %}</code>, and <code class="JavaScript">{% raw %}import{% endraw %}</code> to work properly. Do this by adding <code class="JavaScript">{% raw %}{ filename: '/absolute/path/to/mytpl.html' }{% endraw %}</code> to the options argument.</p>
-            <h3>Parameters</h3>
-            <table class="table table-bordered table-dark table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Optional</th>
-                  <th scope="col">Default</th>
-                  <th scope="col">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">source</code></th>
-                  <th scope="row"><code class="JavaScript">string</code></th>
-                  <td></td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Wjst template source string.</td>
-                </tr>
-                </tr>
-                <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">options</code></th>
-                    <th scope="row"><code class="JavaScript">WjstOpts</code></th>
-                    <td>✔</td>
-                    <th scope="row"><code class="JavaScript">{}</code></th>
-                    <td>Wjst options object.</td>
-                  </tr>
-                </tr>
-              </tbody>
-            </table>
-            <h3>Returns</h3>
-            <p><code class="JavaScript">object:</code>Renderable function and tokens object.</p>
-            <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}wjst.precompile('{{ tacos }}');
+          <pre><code class="JavaScript">{% raw %}// val = { a: 'b' }
+{{ val|json }}
+// => {"a":"b"}{% endraw %}</code></pre>
+          <pre><code class="JavaScript">{% raw %}// val = { a: 'b' }
+{{ val|json(4) }}
 // => {
-//      tpl: function (_wjst, _locals, _filters, _utils, _fn) { ... },
-//      tokens: {
-//        name: undefined,
-//        parent: null,
-//        tokens: [...],
-//        blocks: {}
-//      }
-//    }
-              
-In order to render a pre-compiled template, you must have access to filters and utils from Wjst. &lt;var>efn&lt;/var> is simply an empty function that does nothing.{% endraw %}</code></pre>
-          </section>
+//        "a": "b"
+//    }{% endraw %}</code></pre>
+</section>
           <hr class="divider">
 
-          <!------------------ idocs wjst render ------------------>
-          <section id="idocs_wjst_render">
-            <h2>wjst.render( source , options )</h2>
-            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#523">lib/wjst.js#L523</a></p>
-            <p>Compile and render a template string for final output.</p>
-            <p>When rendering a source string, a file path should be specified in the options object in order for <code class="JavaScript">{% raw %} extends{% endraw %}</code>, <code class="JavaScript">{% raw %}include{% endraw %}</code>, and <code class="JavaScript">{% raw %}import{% endraw %}</code> to work properly. Do this by adding <code class="JavaScript">{% raw %}{ filename: '/absolute/path/to/mytpl.html' }{% endraw %}</code> to the options argument.</p>
+          <!------------------ idocs_default ------------------>
+          <section id="idocs_default">
+            <h2>wjst.version</h2>
+            <h2>date(format, offset, abbr)</h2>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L86">lib/wjst.js#L86</a></p>
+            <p>Format a date or Date-compatible string.</p>
             <h3>Parameters</h3>
             <table class="table table-bordered table-dark table-striped">
               <thead>
@@ -698,37 +300,32 @@ In order to render a pre-compiled template, you must have access to filters and 
               <tbody>
                 <tr>
                 <tr>
-                  <th scope="row"><code class="JavaScript">source</code></th>
-                  <th scope="row"><code class="JavaScript">string</code></th>
-                  <td></td>
+                  <th scope="row"><code class="JavaScript">def</code></th>
+                  <th scope="row"><code class="JavaScript">*</code></th>
+                  <td>✓</td>
                   <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Wjst template source string.</td>
+                  <td>Value to return if `input` is `undefined`, `null`, or `false`.</td>
                 </tr>
-                </tr>
-                <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">options</code></th>
-                    <th scope="row"><code class="JavaScript">WjstOpts</code></th>
-                    <td>✔</td>
-                    <th scope="row"><code class="JavaScript">{}</code></th>
-                    <td>Wjst options object.</td>
-                  </tr>
                 </tr>
               </tbody>
             </table>
             <h3>Returns</h3>
-            <p><code class="JavaScript">string:</code>Rendered output.</p>
+            <p><code class="JavaScript">{%raw%}*{%endraw%}</code>: `input` or `def` value.</p>
             <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}wjst.render('{{ tacos }}', { locals: { tacos: 'Tacos!!!!' }});
-// => Tacos!!!!{% endraw %}</code></pre>
+          <pre><code class="JavaScript">{% raw %}{{ null_value|default('Tacos') }}
+// => Tacos{% endraw %}</code></pre>
+          <pre><code class="JavaScript">{% raw %}{{ "Burritos"|default("Tacos") }}
+// => Burritos{% endraw %}</code></pre>
           </section>
           <hr class="divider">
 
-          <!------------------ idocs wjst renderFile ------------------>
-          <section id="idocs_wjst_renderFile">
-            <h2>wjst.renderFile(pathName, locals, cb)</h2>
-            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#547">lib/wjst.js#L547</a></p>
-            <p>Compile and render a template file for final output. This is most useful for libraries like Express.js.</p>
+          <!------------------ idocs_escape ------------------>
+          <section id="idocs_escape">
+            <h2>escape(type)</h2>
+            <h2>date(format, offset, abbr)</h2>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L145">lib/wjst.js#L145</a></p>
+            <p>Force escape the output of the variable. Optionally use `e` as a shortcut filter name. This filter will be applied by default if autoescape is turned on.</p>
             <h3>Parameters</h3>
             <table class="table table-bordered table-dark table-striped">
               <thead>
@@ -743,51 +340,243 @@ In order to render a pre-compiled template, you must have access to filters and 
               <tbody>
                 <tr>
                 <tr>
-                  <th scope="row"><code class="JavaScript">pathName</code></th>
+                  <th scope="row"><code class="JavaScript">type</code></th>
                   <th scope="row"><code class="JavaScript">string</code></th>
-                  <td></td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>File location.</td>
+                  <td>✓</td>
+                  <th scope="row"><code class="JavaScript">'html'</code></th>
+                  <td>If you pass the string js in as the type, output will be escaped so that it is safe for JavaScript execution.</td>
                 </tr>
-                </tr>
-                <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">locals</code></th>
-                    <th scope="row"><code class="JavaScript">object</code></th>
-                    <td>✔</td>
-                    <th scope="row"><code class="JavaScript">{}</code></th>
-                    <td>Template variable context.</td>
-                  </tr>
-                </tr>
-                <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">cb</code></th>
-                    <th scope="row"><code class="JavaScript">Function</code></th>
-                    <td>✔</td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
-                    <td>Asyncronous callback function. If not provided, compileFile will run syncronously.</td>
-                  </tr>
                 </tr>
               </tbody>
             </table>
             <h3>Returns</h3>
-            <p><code class="JavaScript">string:</code>Rendered output.</p>
+            <p><code class="JavaScript">{%raw%}string{%endraw%}</code>:Escaped string.</p>
             <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}wjst.renderFile('./template.html', {}, function (err, output) {
-  f (err) {
-    throw err;
-  }
-  console.log(output);
-});{% endraw %}</code></pre>
-            <pre><code class="JavaScript">{% raw %}wjst.renderFile('./template.html', {});
-// => output{% endraw %}</code></pre>
+          <pre><code class="JavaScript">{% raw %}{{ "<blah>"|escape }}
+// => <blah>{% endraw %}</code></pre>
+          <pre><code class="JavaScript">{% raw %}{{ "<blah>"|e("js") }}
+// => \u003Cblah\u003E{% endraw %}</code></pre>
           </section>
           <hr class="divider">
 
-          <!------------------ idocs wjst compile ------------------>
-          <section id="idocs_wjst_compile">
+          <!------------------ idocs_first ------------------>
+          <section id="idocs_first">
+            <h2>first</h2>
+            <h2>date(format, offset, abbr)</h2>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L209">lib/wjst.js#L209</a></p>
+            <p>Get the first item in an array or character in a string. All other objects will attempt to return the first value available.</p>
+            <h3>Returns</h3>
+            <p><code class="JavaScript">{%raw%}*{%endraw%}</code>:The first item of the array or first character of the string input.</p>
+            <h3>Examples</h3>
+          <pre><code class="JavaScript">{% raw %}// my_arr = ['a', 'b', 'c']
+{{ my_arr|first }}
+// => a{% endraw %}</code></pre>
+          <pre><code class="JavaScript">{% raw %}// my_val = 'Tacos'
+{{ my_val|first }}
+// T{% endraw %}</code></pre>
+          </section>
+          <hr class="divider">
+
+          <!------------------ idocs_groupBy ------------------>
+          <section id="idocs_groupBy">
+            <h2>groupBy(key)</h2>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L240">lib/wjst.js#L240</a></p>
+            <p>Group an array of objects by a common key. If an array is not provided, the input value will be returned untouched.</p>
+            <h3>Parameters</h3>
+            <table class="table table-bordered table-dark table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Optional</th>
+                  <th scope="col">Default</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">key</code></th>
+                  <th scope="row"><code class="JavaScript">string</code></th>
+                  <td></td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Key to group by.</td>
+                </tr>
+                </tr>
+              </tbody>
+            </table>
+            <h3>Returns</h3>
+            <p><code class="JavaScript">object:</code>Grouped arrays by given key.</p>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}// people = [{ age: 23, name: 'Paul' }, { age: 26, name: 'Jane' }, { age: 23, name: 'Jim' }];
+{% for agegroup in people|groupBy('age') %}
+&lt;h2>{{ loop.key }}&lt;/h2>
+&lt;ul>
+    {% for person in agegroup %}
+    &lt;li>{{ person.name }}&lt;/li>
+    {% endfor %}
+    &lt;/ul>
+{% endfor %}{% endraw %}</code></pre>
+          </section>
+          <hr class="divider">
+
+          <!------------------ idocs_join ------------------>
+          <section id="idocs_join">
+            <h2>join(glue)</h2>
+            <p class="small-font">Sourse: <a
+              href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L283">lib/wjst.js#L283</a></p>
+          <p>Join the input with a string.</p>
+          <h3>Parameters</h3>
+          <table class="table table-bordered table-dark table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Optional</th>
+                <th scope="col">Default</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              <tr>
+                <th scope="row"><code class="JavaScript">glue</code></th>
+                <th scope="row"><code class="JavaScript">string</code></th>
+                <td></td>
+                <th scope="row"><code class="JavaScript">undefined</code></th>
+                <td>String value to join items together.</td>
+              </tr>
+              </tr>
+            </tbody>
+          </table>
+          <h3>Returns</h3>
+          <p><code class="JavaScript">string</code>:</p>
+          <h3>Examples</h3>
+          <pre><code class="JavaScript">{% raw %}// my_array = ['foo', 'bar', 'baz']
+{{ my_array|join(', ') }}
+// => foo, bar, baz{% endraw %}</code></pre>
+          <pre><code class="JavaScript">{% raw %}// my_key_object = { a: 'foo', b: 'bar', c: 'baz' }
+{{ my_key_object|join(' and ') }}
+// => foo and bar and baz{% endraw %}</code></pre>
+        </section>
+          <hr class="divider">
+
+          <!------------------ idocs_json ------------------>
+          <section id="idocs_json">
+            <h2>json(indent)</h2>
+            <p class="small-font">Sourse: <a
+              href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L319">lib/wjst.js#L319</a></p>
+          <p>Return a string representation of an JavaScript object.</p>
+          <p>Backwards compatible with wjst@0.x.x using `json_encode`.</p>
+          <h3>Parameters</h3>
+          <table class="table table-bordered table-dark table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Optional</th>
+                <th scope="col">Default</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              <tr>
+                <th scope="row"><code class="JavaScript">indent</code></th>
+                <th scope="row"><code class="JavaScript">number</code></th>
+                <td>✓</td>
+                <th scope="row"><code class="JavaScript">undefined</code></th>
+                <td>Number of spaces to indent for pretty-formatting.</td>
+              </tr>
+              </tr>
+            </tbody>
+          </table>
+          <h3>Returns</h3>
+          <p><code class="JavaScript">string</code>:A valid JSON string.</p>
+          <h3>Examples</h3>
+          <pre><code class="JavaScript">{% raw %}// val = { a: 'b' }
+{{ val|json }}
+// => {"a":"b"}{% endraw %}</code></pre>
+          <pre><code class="JavaScript">{% raw %}// val = { a: 'b' }
+{{ val|json(4) }}
+// => {
+//        "a": "b"
+//    }{% endraw %}</code></pre>
+        </section>
+          <hr class="divider">
+
+          <!------------------ idocs_last ------------------>
+          <section id="idocs_last">
+            <h2>last</h2>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L340">lib/wjst.js#L340</a></p>
+            <p>Get the last item in an array or character in a string. All other objects will attempt to return the last value available.</p>
+            <h3>Returns</h3>
+            <p><code class="JavaScript">*</code>The last item of the array or last character of the string.input.</p>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}// my_arr = ['a', 'b', 'c']
+{{ my_arr|last }}
+// => c{% endraw %}</code></pre>
+              <pre><code class="JavaScript">{% raw %}// my_val = 'Tacos'
+{{ my_val|last }}
+// s{% endraw %}</code></pre>
+          </section>
+          <hr class="divider">
+
+          <!------------------ idocs_length ------------------>
+          <section id="idocs_length">
+            <h2>length</h2>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L374">lib/wjst.js#L374</a></p>
+            <p>Get the number of items in an array, string, or object.</p>
+            <h3>Returns</h3>
+            <p><code class="JavaScript">*</code>:The length of the input</p>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}// my_arr = ['a', 'b', 'c']
+{{ my_arr|length }}
+// => 3{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}// my_str = 'Tacos'
+{{ my_str|length }}
+// => 5{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}// my_obj = {a: 5, b: 20}
+{{ my_obj|length }}
+// => 2{% endraw %}</code></pre>
+          </section>
+          <hr class="divider">
+
+          <!------------------ idocs_lower ------------------>
+          <section id="idocs_lower">
+            <h2>lower</h2>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L400">lib/wjst.js#L400</a></p>
+            <p>Return the input in all lowercase letters.</p>
+            <h3>Returns</h3>
+            <p><code class="JavaScript">*</code>:Returns the same type as the input.</p>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}{{ "FOOBAR"|lower }}
+// => foobar{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}// myObj = { a: 'FOO', b: 'BAR' }
+              {{ myObj|lower|join('') }}
+              // => foobar{% endraw %}</code></pre>
+          </section>
+          <hr class="divider">
+
+          <!------------------ idocs_raw ------------------>
+          <section id="idocs_raw">
+            <h2>raw</h2>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L412">lib/wjst.js#L412</a></p>
+            <p>Deprecated in favor of safe.</p>
+          </section>
+          <hr class="divider">
+
+          <!------------------ idocs_replace ------------------>
+          <section id="idocs_replace">
             <h2>wjst.compile(source, options)</h2>
-            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L592">lib/wjst.js#L592</a></p>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L592">lib/wjst.js#L592</a></p>
             <p>Compile string source into a renderable template function.</p>
             <h3>Parameters</h3>
             <table class="table table-bordered table-dark table-striped">
@@ -811,18 +600,19 @@ In order to render a pre-compiled template, you must have access to filters and 
                 </tr>
                 </tr>
                 <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">options</code></th>
-                    <th scope="row"><code class="JavaScript">WjstOpts</code></th>
-                    <td>✔</td>
-                    <th scope="row"><code class="JavaScript">{}</code></th>
-                    <td>Wjst options object.</td>
-                  </tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">options</code></th>
+                  <th scope="row"><code class="JavaScript">WjstOpts</code></th>
+                  <td>✔</td>
+                  <th scope="row"><code class="JavaScript">{}</code></th>
+                  <td>Wjst options object.</td>
+                </tr>
                 </tr>
               </tbody>
             </table>
             <h3>Returns</h3>
-            <p><code class="JavaScript">function:</code>Renderable function with keys for parent, blocks, and tokens.</p>
+            <p><code class="JavaScript">function:</code>Renderable function with keys for parent, blocks, and tokens.
+            </p>
             <h3>Examples</h3>
             <pre><code class="JavaScript">{% raw %}const tpl = wjst.compile('{{ tacos }}');
 // => {
@@ -838,10 +628,11 @@ When compiling a source string, a file path should be specified in the options o
           </section>
           <hr class="divider">
 
-          <!------------------ idocs wjst compileFile ------------------>
-          <section id="idocs_wjst_compileFile">
+          <!------------------ idocs_reverse ------------------>
+          <section id="idocs_reverse">
             <h2>wjst.compileFile(pathname, options, cb)</h2>
-            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L653">lib/wjst.js#L653</a></p>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L653">lib/wjst.js#L653</a></p>
             <p>Compile a source file into a renderable template function.</p>
             <h3>Parameters</h3>
             <table class="table table-bordered table-dark table-striped">
@@ -865,47 +656,42 @@ When compiling a source string, a file path should be specified in the options o
                 </tr>
                 </tr>
                 <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">options</code></th>
-                    <th scope="row"><code class="JavaScript">WjstOpts</code></th>
-                    <td>✔</td>
-                    <th scope="row"><code class="JavaScript">{}</code></th>
-                    <td>Wjst options object.</td>
-                  </tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">options</code></th>
+                  <th scope="row"><code class="JavaScript">WjstOpts</code></th>
+                  <td>✔</td>
+                  <th scope="row"><code class="JavaScript">{}</code></th>
+                  <td>Wjst options object.</td>
+                </tr>
                 </tr>
                 <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">cb</code></th>
-                    <th scope="row"><code class="JavaScript">Function</code></th>
-                    <td>✔</td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
-                    <td>Asyncronous callback function. If not provided, compileFile will run syncronously.</td>
-                  </tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">cb</code></th>
+                  <th scope="row"><code class="JavaScript">Function</code></th>
+                  <td>✔</td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Asyncronous callback function. If not provided, compileFile will run syncronously.</td>
+                </tr>
                 </tr>
               </tbody>
             </table>
             <h3>Returns</h3>
-            <p><code class="JavaScript">function:</code>Renderable function with keys for parent, blocks, and tokens.</p>
+            <p><code class="JavaScript">function:</code>Renderable function with keys for parent, blocks, and tokens.
+            </p>
             <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}const tpl = wjst.compileFile('./mytpl.html');
-// => {
-//      [Function: compiled]
-//      parent: null,
-//      tokens: [{ compile: [Function] }],
-//      blocks: {}
-//    }
-              tpl({ tacos: 'Tacos!!!!' });
-// => Tacos!!!!{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
             <pre><code class="JavaScript">{% raw %}wjst.compileFile('/myfile.txt', { varControls: ['&lt;%=', '=%>'], tagControls: ['&lt;%', '%>']});
 // => will compile 'myfile.txt' using the var and tag controls as specified.{% endraw %}</code></pre>
           </section>
           <hr class="divider">
 
-          <!------------------ idocs wjst run ------------------>
-          <section id="idocs_wjst_run">
+          <!------------------ idocs_safe ------------------>
+          <section id="idocs_safe">
             <h2>wjst.run(tpl, locals, filepath)</h2>
-            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L715">lib/wjst.js#L715</a></p>
-            <p>Run a pre-compiled template function. This is most useful in the browser when you've pre-compiled your templates with the Wjst command-line tool.</p>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L715">lib/wjst.js#L715</a></p>
+            <p>Run a pre-compiled template function. This is most useful in the browser when you've pre-compiled your
+              templates with the Wjst command-line tool.</p>
             <h3>Parameters</h3>
             <table class="table table-bordered table-dark table-striped">
               <thead>
@@ -928,22 +714,22 @@ When compiling a source string, a file path should be specified in the options o
                 </tr>
                 </tr>
                 <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">locals</code></th>
-                    <th scope="row"><code class="JavaScript">object</code></th>
-                    <td>✔</td>
-                    <th scope="row"><code class="JavaScript">{}</code></th>
-                    <td>Template variable context.</td>
-                  </tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">locals</code></th>
+                  <th scope="row"><code class="JavaScript">object</code></th>
+                  <td>✔</td>
+                  <th scope="row"><code class="JavaScript">{}</code></th>
+                  <td>Template variable context.</td>
+                </tr>
                 </tr>
                 <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">filepath</code></th>
-                    <th scope="row"><code class="JavaScript">string</code></th>
-                    <td>✔</td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
-                    <td>Filename used for caching the template.</td>
-                  </tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">filepath</code></th>
+                  <th scope="row"><code class="JavaScript">string</code></th>
+                  <td>✔</td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Filename used for caching the template.</td>
+                </tr>
                 </tr>
               </tbody>
             </table>
@@ -956,8 +742,400 @@ When compiling a source string, a file path should be specified in the options o
   wjst.run(mytpl, {});
   // => "rendered template..."s
 &lt;/script>{% endraw %}</code></pre>
-            </section>
-            <hr class="divider">
+          </section>
+          <hr class="divider">
+
+          <!------------------ idocs_sort ------------------>
+          <section id="idocs_sort">
+            <h2>wjst.run(tpl, locals, filepath)</h2>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L715">lib/wjst.js#L715</a></p>
+            <p>Run a pre-compiled template function. This is most useful in the browser when you've pre-compiled your
+              templates with the Wjst command-line tool.</p>
+            <h3>Parameters</h3>
+            <table class="table table-bordered table-dark table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Optional</th>
+                  <th scope="col">Default</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">tpl</code></th>
+                  <th scope="row"><code class="JavaScript">function</code></th>
+                  <td></td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Pre-compiled Wjst template function. Use the Wjst CLI to compile your templates.</td>
+                </tr>
+                </tr>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">locals</code></th>
+                  <th scope="row"><code class="JavaScript">object</code></th>
+                  <td>✔</td>
+                  <th scope="row"><code class="JavaScript">{}</code></th>
+                  <td>Template variable context.</td>
+                </tr>
+                </tr>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">filepath</code></th>
+                  <th scope="row"><code class="JavaScript">string</code></th>
+                  <td>✔</td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Filename used for caching the template.</td>
+                </tr>
+                </tr>
+              </tbody>
+            </table>
+            <h3>Returns</h3>
+            <p><code class="JavaScript">string:</code>Rendered output.</p>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
+          </section>
+          <hr class="divider">
+
+<!------------------ idocs_striptags ------------------>
+          <section id="idocs_striptags">
+            <h2>wjst.run(tpl, locals, filepath)</h2>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L715">lib/wjst.js#L715</a></p>
+            <p>Run a pre-compiled template function. This is most useful in the browser when you've pre-compiled your
+              templates with the Wjst command-line tool.</p>
+            <h3>Parameters</h3>
+            <table class="table table-bordered table-dark table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Optional</th>
+                  <th scope="col">Default</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">tpl</code></th>
+                  <th scope="row"><code class="JavaScript">function</code></th>
+                  <td></td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Pre-compiled Wjst template function. Use the Wjst CLI to compile your templates.</td>
+                </tr>
+                </tr>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">locals</code></th>
+                  <th scope="row"><code class="JavaScript">object</code></th>
+                  <td>✔</td>
+                  <th scope="row"><code class="JavaScript">{}</code></th>
+                  <td>Template variable context.</td>
+                </tr>
+                </tr>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">filepath</code></th>
+                  <th scope="row"><code class="JavaScript">string</code></th>
+                  <td>✔</td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Filename used for caching the template.</td>
+                </tr>
+                </tr>
+              </tbody>
+            </table>
+            <h3>Returns</h3>
+            <p><code class="JavaScript">string:</code>Rendered output.</p>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
+          </section>
+          <hr class="divider">
+
+<!------------------ idocs_title ------------------>
+          <section id="idocs_title">
+            <h2>wjst.run(tpl, locals, filepath)</h2>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L715">lib/wjst.js#L715</a></p>
+            <p>Run a pre-compiled template function. This is most useful in the browser when you've pre-compiled your
+              templates with the Wjst command-line tool.</p>
+            <h3>Parameters</h3>
+            <table class="table table-bordered table-dark table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Optional</th>
+                  <th scope="col">Default</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">tpl</code></th>
+                  <th scope="row"><code class="JavaScript">function</code></th>
+                  <td></td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Pre-compiled Wjst template function. Use the Wjst CLI to compile your templates.</td>
+                </tr>
+                </tr>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">locals</code></th>
+                  <th scope="row"><code class="JavaScript">object</code></th>
+                  <td>✔</td>
+                  <th scope="row"><code class="JavaScript">{}</code></th>
+                  <td>Template variable context.</td>
+                </tr>
+                </tr>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">filepath</code></th>
+                  <th scope="row"><code class="JavaScript">string</code></th>
+                  <td>✔</td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Filename used for caching the template.</td>
+                </tr>
+                </tr>
+              </tbody>
+            </table>
+            <h3>Returns</h3>
+            <p><code class="JavaScript">string:</code>Rendered output.</p>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
+          </section>
+          <hr class="divider">
+
+<!------------------ idocs_uniq ------------------>
+          <section id="idocs_uniq">
+            <h2>wjst.run(tpl, locals, filepath)</h2>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L715">lib/wjst.js#L715</a></p>
+            <p>Run a pre-compiled template function. This is most useful in the browser when you've pre-compiled your
+              templates with the Wjst command-line tool.</p>
+            <h3>Parameters</h3>
+            <table class="table table-bordered table-dark table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Optional</th>
+                  <th scope="col">Default</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">tpl</code></th>
+                  <th scope="row"><code class="JavaScript">function</code></th>
+                  <td></td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Pre-compiled Wjst template function. Use the Wjst CLI to compile your templates.</td>
+                </tr>
+                </tr>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">locals</code></th>
+                  <th scope="row"><code class="JavaScript">object</code></th>
+                  <td>✔</td>
+                  <th scope="row"><code class="JavaScript">{}</code></th>
+                  <td>Template variable context.</td>
+                </tr>
+                </tr>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">filepath</code></th>
+                  <th scope="row"><code class="JavaScript">string</code></th>
+                  <td>✔</td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Filename used for caching the template.</td>
+                </tr>
+                </tr>
+              </tbody>
+            </table>
+            <h3>Returns</h3>
+            <p><code class="JavaScript">string:</code>Rendered output.</p>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
+          </section>
+          <hr class="divider">
+
+<!------------------ idocs_upper ------------------>
+          <section id="idocs_upper">
+            <h2>wjst.run(tpl, locals, filepath)</h2>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L715">lib/wjst.js#L715</a></p>
+            <p>Run a pre-compiled template function. This is most useful in the browser when you've pre-compiled your
+              templates with the Wjst command-line tool.</p>
+            <h3>Parameters</h3>
+            <table class="table table-bordered table-dark table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Optional</th>
+                  <th scope="col">Default</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">tpl</code></th>
+                  <th scope="row"><code class="JavaScript">function</code></th>
+                  <td></td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Pre-compiled Wjst template function. Use the Wjst CLI to compile your templates.</td>
+                </tr>
+                </tr>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">locals</code></th>
+                  <th scope="row"><code class="JavaScript">object</code></th>
+                  <td>✔</td>
+                  <th scope="row"><code class="JavaScript">{}</code></th>
+                  <td>Template variable context.</td>
+                </tr>
+                </tr>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">filepath</code></th>
+                  <th scope="row"><code class="JavaScript">string</code></th>
+                  <td>✔</td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Filename used for caching the template.</td>
+                </tr>
+                </tr>
+              </tbody>
+            </table>
+            <h3>Returns</h3>
+            <p><code class="JavaScript">string:</code>Rendered output.</p>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
+          </section>
+          <hr class="divider">
+
+<!------------------ idocs_url_encode ------------------>
+          <section id="idocs_safe">
+            <h2>wjst.run(tpl, locals, filepath)</h2>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L715">lib/wjst.js#L715</a></p>
+            <p>Run a pre-compiled template function. This is most useful in the browser when you've pre-compiled your
+              templates with the Wjst command-line tool.</p>
+            <h3>Parameters</h3>
+            <table class="table table-bordered table-dark table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Optional</th>
+                  <th scope="col">Default</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">tpl</code></th>
+                  <th scope="row"><code class="JavaScript">function</code></th>
+                  <td></td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Pre-compiled Wjst template function. Use the Wjst CLI to compile your templates.</td>
+                </tr>
+                </tr>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">locals</code></th>
+                  <th scope="row"><code class="JavaScript">object</code></th>
+                  <td>✔</td>
+                  <th scope="row"><code class="JavaScript">{}</code></th>
+                  <td>Template variable context.</td>
+                </tr>
+                </tr>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">filepath</code></th>
+                  <th scope="row"><code class="JavaScript">string</code></th>
+                  <td>✔</td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Filename used for caching the template.</td>
+                </tr>
+                </tr>
+              </tbody>
+            </table>
+            <h3>Returns</h3>
+            <p><code class="JavaScript">string:</code>Rendered output.</p>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
+          </section>
+          <hr class="divider">
+
+<!------------------ idocs_url_decode------------------>
+          <section id="idocs_safe">
+            <h2>wjst.run(tpl, locals, filepath)</h2>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L715">lib/wjst.js#L715</a></p>
+            <p>Run a pre-compiled template function. This is most useful in the browser when you've pre-compiled your
+              templates with the Wjst command-line tool.</p>
+            <h3>Parameters</h3>
+            <table class="table table-bordered table-dark table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Optional</th>
+                  <th scope="col">Default</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">tpl</code></th>
+                  <th scope="row"><code class="JavaScript">function</code></th>
+                  <td></td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Pre-compiled Wjst template function. Use the Wjst CLI to compile your templates.</td>
+                </tr>
+                </tr>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">locals</code></th>
+                  <th scope="row"><code class="JavaScript">object</code></th>
+                  <td>✔</td>
+                  <th scope="row"><code class="JavaScript">{}</code></th>
+                  <td>Template variable context.</td>
+                </tr>
+                </tr>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">filepath</code></th>
+                  <th scope="row"><code class="JavaScript">string</code></th>
+                  <td>✔</td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Filename used for caching the template.</td>
+                </tr>
+                </tr>
+              </tbody>
+            </table>
+            <h3>Returns</h3>
+            <p><code class="JavaScript">string:</code>Rendered output.</p>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
+          </section>
+          <hr class="divider">
         </div>
       </div>
     </div>
