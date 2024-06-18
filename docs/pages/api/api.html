@@ -356,7 +356,7 @@ wjst.setDefaults({ loader: wjst.loaders.memory({
                 <tr>
                   <th scope="row"><code class="JavaScript">options</code></th>
                   <th scope="row"><code class="JavaScript">WjstOpts</code></th>
-                  <td>✔</td>
+                  <td>✓</td>
                   <th scope="row"><code class="JavaScript">{}</code></th>
                   <td>Wjst options object.</td>
                 </tr>
@@ -364,7 +364,7 @@ wjst.setDefaults({ loader: wjst.loaders.memory({
               </tbody>
             </table>
             <h3>Returns</h3>
-            <p><code class="JavaScript">undefined:</code></p>
+            <p><code class="JavaScript">undefined</code>:</p>
             <h3>Examples</h3>
             <pre><code class="JavaScript">{% raw %}wjst.setDefaults({ cache: false });
 // => Disables Cache{% endraw %}</code></pre>
@@ -408,7 +408,7 @@ wjst.setDefaults({ loader: wjst.loaders.memory({
               </tbody>
             </table>
             <h3>Returns</h3>
-            <p><code class="JavaScript">undefined:</code></p>
+            <p><code class="JavaScript">undefined</code>:</p>
           </section>
           <hr class="divider">
 
@@ -433,7 +433,7 @@ wjst.setDefaults({ loader: wjst.loaders.memory({
                 <tr>
                   <th scope="row"><code class="JavaScript">opts</code></th>
                   <th scope="row"><code class="JavaScript">WjstOpts</code></th>
-                  <td>✔</td>
+                  <td>✓</td>
                   <th scope="row"><code class="JavaScript">{}</code></th>
                   <td>Wjst options object.</td>
                 </tr>
@@ -441,7 +441,7 @@ wjst.setDefaults({ loader: wjst.loaders.memory({
               </tbody>
             </table>
             <h3>Returns</h3>
-            <p><code class="JavaScript">object:</code>New Wjst environment.</p>
+            <p><code class="JavaScript">object</code>:New Wjst environment.</p>
             <h3>Examples</h3>
             <p><code class="JavaScript">const wjst = require('wjst');
 const mywjst = new wjst.Wjst({varControls: ['<%=', '%>']});
@@ -490,7 +490,7 @@ wjst.render('Tacos are <%= tacos =>!', { locals: { tacos: 'delicious' }});
               </tbody>
             </table>
             <h3>Returns</h3>
-            <p><code class="JavaScript">undefined:</code></p>
+            <p><code class="JavaScript">undefined</code>:</p>
             <h3>Examples</h3>
             <pre><code class="JavaScript">{% raw %}function replaceMs(input) { return input.replace(/m/g, 'f'); }
 wjst.setFilter('replaceMs', replaceMs);
@@ -548,7 +548,7 @@ wjst.setFilter('replaceMs', replaceMs);
                   <tr>
                     <th scope="row"><code class="JavaScript">ends</code></th>
                     <th scope="row"><code class="JavaScript">boolean</code></th>
-                    <td>✔</td>
+                    <td>✓</td>
                     <th scope="row"><code class="JavaScript">false</code></th>
                     <td>Whether or not this tag requires an <i>end</i> tag.</td>
                   </tr>
@@ -557,7 +557,7 @@ wjst.setFilter('replaceMs', replaceMs);
                   <tr>
                     <th scope="row"><code class="JavaScript">parse</code></th>
                     <th scope="row"><code class="JavaScript">function</code></th>
-                    <td>✔</td>
+                    <td>✓</td>
                     <th scope="row"><code class="JavaScript">false</code></th>
                     <td>If false, this tag will not be compiled outside of <code class="JavaScript">block</code> tags when extending a parent template.</td>
                   </tr>
@@ -565,7 +565,7 @@ wjst.setFilter('replaceMs', replaceMs);
               </tbody>
             </table>
             <h3>Returns</h3>
-            <p><code class="JavaScript">undefined:</code></p>
+            <p><code class="JavaScript">undefined</code>:</p>
             <h3>Examples</h3>
             <pre><code class="JavaScript">{% raw %}const tacotag = require('./tacotag');
 wjst.setTag('tacos', tacotag.parse, tacotag.compile, tacotag.ends, tacotag.blockLevel);
@@ -613,7 +613,7 @@ wjst.setTag('tacos', tacotag.parse, tacotag.compile, tacotag.ends, tacotag.block
               </tbody>
             </table>
             <h3>Returns</h3>
-            <p><code class="JavaScript">undefined:</code></p>
+            <p><code class="JavaScript">undefined</code>:</p>
             <h3>Examples</h3>
             <pre><code class="JavaScript">{% raw %}const tacotag = require('./tacotag');
 wjst.setTag('tacos', tacotag.parse, tacotag.compile, tacotag.ends, tacotag.blockLevel);
@@ -653,7 +653,7 @@ wjst.setTag('tacos', tacotag.parse, tacotag.compile, tacotag.ends, tacotag.block
                   <tr>
                     <th scope="row"><code class="JavaScript">options</code></th>
                     <th scope="row"><code class="JavaScript">WjstOpts</code></th>
-                    <td>✔</td>
+                    <td>✓</td>
                     <th scope="row"><code class="JavaScript">{}</code></th>
                     <td>Wjst options object.</td>
                   </tr>
@@ -661,7 +661,7 @@ wjst.setTag('tacos', tacotag.parse, tacotag.compile, tacotag.ends, tacotag.block
               </tbody>
             </table>
             <h3>Returns</h3>
-            <p><code class="JavaScript">object:</code>Renderable function and tokens object.</p>
+            <p><code class="JavaScript">object</code>:Renderable function and tokens object.</p>
             <h3>Examples</h3>
             <pre><code class="JavaScript">{% raw %}wjst.precompile('{{ tacos }}');
 // => {
@@ -709,7 +709,7 @@ In order to render a pre-compiled template, you must have access to filters and 
                   <tr>
                     <th scope="row"><code class="JavaScript">options</code></th>
                     <th scope="row"><code class="JavaScript">WjstOpts</code></th>
-                    <td>✔</td>
+                    <td>✓</td>
                     <th scope="row"><code class="JavaScript">{}</code></th>
                     <td>Wjst options object.</td>
                   </tr>
@@ -717,7 +717,7 @@ In order to render a pre-compiled template, you must have access to filters and 
               </tbody>
             </table>
             <h3>Returns</h3>
-            <p><code class="JavaScript">string:</code>Rendered output.</p>
+            <p><code class="JavaScript">string</code>:Rendered output.</p>
             <h3>Examples</h3>
             <pre><code class="JavaScript">{% raw %}wjst.render('{{ tacos }}', { locals: { tacos: 'Tacos!!!!' }});
 // => Tacos!!!!{% endraw %}</code></pre>
@@ -754,7 +754,7 @@ In order to render a pre-compiled template, you must have access to filters and 
                   <tr>
                     <th scope="row"><code class="JavaScript">locals</code></th>
                     <th scope="row"><code class="JavaScript">object</code></th>
-                    <td>✔</td>
+                    <td>✓</td>
                     <th scope="row"><code class="JavaScript">{}</code></th>
                     <td>Template variable context.</td>
                   </tr>
@@ -763,7 +763,7 @@ In order to render a pre-compiled template, you must have access to filters and 
                   <tr>
                     <th scope="row"><code class="JavaScript">cb</code></th>
                     <th scope="row"><code class="JavaScript">Function</code></th>
-                    <td>✔</td>
+                    <td>✓</td>
                     <th scope="row"><code class="JavaScript">undefined</code></th>
                     <td>Asyncronous callback function. If not provided, compileFile will run syncronously.</td>
                   </tr>
@@ -771,7 +771,7 @@ In order to render a pre-compiled template, you must have access to filters and 
               </tbody>
             </table>
             <h3>Returns</h3>
-            <p><code class="JavaScript">string:</code>Rendered output.</p>
+            <p><code class="JavaScript">string</code>:Rendered output.</p>
             <h3>Examples</h3>
             <pre><code class="JavaScript">{% raw %}wjst.renderFile('./template.html', {}, function (err, output) {
   f (err) {
@@ -814,7 +814,7 @@ In order to render a pre-compiled template, you must have access to filters and 
                   <tr>
                     <th scope="row"><code class="JavaScript">options</code></th>
                     <th scope="row"><code class="JavaScript">WjstOpts</code></th>
-                    <td>✔</td>
+                    <td>✓</td>
                     <th scope="row"><code class="JavaScript">{}</code></th>
                     <td>Wjst options object.</td>
                   </tr>
@@ -822,7 +822,7 @@ In order to render a pre-compiled template, you must have access to filters and 
               </tbody>
             </table>
             <h3>Returns</h3>
-            <p><code class="JavaScript">function:</code>Renderable function with keys for parent, blocks, and tokens.</p>
+            <p><code class="JavaScript">function</code>:Renderable function with keys for parent, blocks, and tokens.</p>
             <h3>Examples</h3>
             <pre><code class="JavaScript">{% raw %}const tpl = wjst.compile('{{ tacos }}');
 // => {
@@ -868,7 +868,7 @@ When compiling a source string, a file path should be specified in the options o
                   <tr>
                     <th scope="row"><code class="JavaScript">options</code></th>
                     <th scope="row"><code class="JavaScript">WjstOpts</code></th>
-                    <td>✔</td>
+                    <td>✓</td>
                     <th scope="row"><code class="JavaScript">{}</code></th>
                     <td>Wjst options object.</td>
                   </tr>
@@ -877,7 +877,7 @@ When compiling a source string, a file path should be specified in the options o
                   <tr>
                     <th scope="row"><code class="JavaScript">cb</code></th>
                     <th scope="row"><code class="JavaScript">Function</code></th>
-                    <td>✔</td>
+                    <td>✓</td>
                     <th scope="row"><code class="JavaScript">undefined</code></th>
                     <td>Asyncronous callback function. If not provided, compileFile will run syncronously.</td>
                   </tr>
@@ -885,7 +885,7 @@ When compiling a source string, a file path should be specified in the options o
               </tbody>
             </table>
             <h3>Returns</h3>
-            <p><code class="JavaScript">function:</code>Renderable function with keys for parent, blocks, and tokens.</p>
+            <p><code class="JavaScript">function</code>:Renderable function with keys for parent, blocks, and tokens.</p>
             <h3>Examples</h3>
             <pre><code class="JavaScript">{% raw %}const tpl = wjst.compileFile('./mytpl.html');
 // => {
@@ -931,7 +931,7 @@ When compiling a source string, a file path should be specified in the options o
                   <tr>
                     <th scope="row"><code class="JavaScript">locals</code></th>
                     <th scope="row"><code class="JavaScript">object</code></th>
-                    <td>✔</td>
+                    <td>✓</td>
                     <th scope="row"><code class="JavaScript">{}</code></th>
                     <td>Template variable context.</td>
                   </tr>
@@ -940,7 +940,7 @@ When compiling a source string, a file path should be specified in the options o
                   <tr>
                     <th scope="row"><code class="JavaScript">filepath</code></th>
                     <th scope="row"><code class="JavaScript">string</code></th>
-                    <td>✔</td>
+                    <td>✓</td>
                     <th scope="row"><code class="JavaScript">undefined</code></th>
                     <td>Filename used for caching the template.</td>
                   </tr>
@@ -948,7 +948,7 @@ When compiling a source string, a file path should be specified in the options o
               </tbody>
             </table>
             <h3>Returns</h3>
-            <p><code class="JavaScript">string:</code>Rendered output.</p>
+            <p><code class="JavaScript">string</code>:Rendered output.</p>
             <h3>Examples</h3>
             <pre><code class="JavaScript">{% raw %}$ wjst compile ./mytpl.html --wrap-start="var mytpl = " > mytpl.js{% endraw %}</code></pre>
             <pre><code class="JavaScript">{% raw %}&lt;script src="mytpl.js">&lt;/script>
