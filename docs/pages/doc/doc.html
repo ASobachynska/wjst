@@ -208,9 +208,9 @@
         <div class="container">
 
           <!-- Getting Started ============================ -->
-          <!-- <section id="idocs_start"> -->
+         <section id="idocs_start">
             <h1>Getting Started</h1>
-          <!-- </section> -->
+          </section>
 
           <!-- Installation ============================ -->
           <section id="idocs_installation">
@@ -286,30 +286,26 @@ wjst.render('{{ mystuff() }}', { locals: locals });
           <p>Wjst includes some basic operational blocks, called Tags, for helping you control output on a larger scale than variables. 
             Tags are written using curly-percent syntax: .</p>
             
-            <pre><code class="JavaScript">{% raw %}
-              {% if foo %}bar{% endif %}
-              // Create a list of people, only if there are items in the people array
-              {% for person in people %}
-              {% if loop.first %}&lt;ol&gt;{% endif %}
-              &lt;li&gt;{{ person.name }}&lt;/li&gt;
-              {% if loop.last %}&lt;/ol&gt;{% endif %}
-              {% endfor %}
-              {% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}{% if foo %}bar{% endif %}
+// Create a list of people, only if there are items in the people array
+{% for person in people %}
+{% if loop.first %}&lt;ol&gt;{% endif %}
+&lt;li&gt;{{ person.name }}&lt;/li&gt;
+{% if loop.last %}&lt;/ol&gt;{% endif %}
+{% endfor %}{% endraw %}</code></pre>
               
-
             <p><code class="JavaScript">end</code> tags may also have any set of extra context within them, and will just be ignore. 
              This is useful for scoping and understanding which block you are closing and where.</p>
 
-<pre><code class="JavaScript">{% raw %}
-  {% block tacos %}
-    //...
-  {% endblock tacos %}
-  {% block burritos %}
-    {% if foo %}
-      // ...
-    {% endif the above will render if foo == true %}
-  {% endblock burritos %}
-  {% endraw %}</code></pre></code></pre>
+            <pre><code class="JavaScript">{% raw %}{% block tacos %}
+  //...
+{% endblock tacos %}
+{% block burritos %}
+  {% if foo %}
+    // ...
+  {% endif the above will render if foo == true %}
+{% endblock burritos %}
+{% endraw %}</code></pre></code></pre>
 
               <p>View the Tags documentation for a full list of tags and usage instructions.</p>
               <hr class="divider">
@@ -406,7 +402,6 @@ res.render('index', { /* template locals context */ });
 app.listen(8000);
 console.log('Application Started on http://localhost:8000/');{% endraw %}</code></pre>
           </section>
-          <hr class="divider">
 
         </div>
       </div>

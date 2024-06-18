@@ -21,6 +21,8 @@
   <link rel="stylesheet" type="text/css" href="/wjst/assets/vendor/highlight.js/styles/github.css" />
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" type="text/css" href="/wjst/assets/css/stylesheet.css" />
+
+  <link rel="stylesheet" type="text/css" href="/wjst/assets/sass/bootstrap/_reboot.scss" />
 </head>
 
 <body data-spy="scroll" data-target=".idocs-navigation" data-offset="125">
@@ -209,6 +211,7 @@
             <p>Wjst Options Object. This object can be passed to many of the API-level Wjst methods to control various
               aspects of the engine. All keys are optional.</p>
             <h3>Properties</h3>
+            <div class="table-responsive">
             <table class="table table-bordered table-dark table-striped">
               <thead>
                 <tr>
@@ -278,6 +281,7 @@
                 </tr>
               </tbody>
             </table>
+          </div>
           </section>
 
           <!------------------ idocs object cacheoptions ------------------>
@@ -337,10 +341,11 @@ wjst.setDefaults({ loader: wjst.loaders.memory({
 
           <!------------------ idocs wjst setDefaults ------------------>
           <section id="idocs_wjst_setDefaults">
-            <h2>wjst.setDefaults( options )</h2>
+            <h2>wjst.setDefaults (options)</h2>
             <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L143">lib/wjst.js#L143</a></p>
             <p>Set defaults for the base and all new Wjst environments.</p>
             <h3>Parameters</h3>
+            <div class="table-responsive">
             <table class="table table-bordered table-dark table-striped">
               <thead>
                 <tr>
@@ -363,6 +368,7 @@ wjst.setDefaults({ loader: wjst.loaders.memory({
                 </tr>
               </tbody>
             </table>
+          </div>
             <h3>Returns</h3>
             <p><code class="JavaScript">undefined</code>:</p>
             <h3>Examples</h3>
@@ -377,14 +383,11 @@ wjst.setDefaults({ loader: wjst.loaders.memory({
 
           <!------------------ idocs wjst setDefaultTZOffset ------------------>
           <section id="idocs_wjst_setDefaultTZOffset">
-            <h2>wjst.setDefaultTZOffset( offset )</h2>
+            <h2>wjst.setDefaultTZOffset (offset)</h2>
             <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L153">lib/wjst.js#L153</a></p>
             <p>Set the default TimeZone offset for date formatting via the date filter. This is a global setting and will affect all Wjst environments, old or new.</p>
-            <h3>layout.html</h3>
-            <p>To remove whitespace, simply put a dash (-) at the beginning or end of your tag to remove the preceding
-              or following whitespace, respectively.</p>
-            <pre><code class="JavaScript">{% raw %} {% endraw %}</code></pre>
             <h3>Parameters</h3>
+            <div class="table-responsive">
             <table class="table table-bordered table-dark table-striped">
               <thead>
                 <tr>
@@ -407,6 +410,7 @@ wjst.setDefaults({ loader: wjst.loaders.memory({
                 </tr>
               </tbody>
             </table>
+          </div>
             <h3>Returns</h3>
             <p><code class="JavaScript">undefined</code>:</p>
           </section>
@@ -414,10 +418,11 @@ wjst.setDefaults({ loader: wjst.loaders.memory({
 
           <!------------------ idocs wjst invalidateCache ------------------>
           <section id="idocs_wjst_invalidateCache">
-            <h2>wjst.Wjst( opts )</h2>
+            <h2>wjst.Wjst (opts)</h2>
             <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L171">lib/wjst.js#L171</a></p>
             <p>Create a new, separate Wjst compile/render environment.</p>
             <h3>Parameters</h3>
+            <div class="table-responsive">
             <table class="table table-bordered table-dark table-striped">
               <thead>
                 <tr>
@@ -440,24 +445,26 @@ wjst.setDefaults({ loader: wjst.loaders.memory({
                 </tr>
               </tbody>
             </table>
+          </div>
             <h3>Returns</h3>
             <p><code class="JavaScript">object</code>:New Wjst environment.</p>
             <h3>Examples</h3>
-            <p><code class="JavaScript">const wjst = require('wjst');
+            <pre><code class="JavaScript">const wjst = require('wjst');
 const mywjst = new wjst.Wjst({varControls: ['<%=', '%>']});
 mywjst.render('Tacos are <%= tacos =>!', { locals: { tacos: 'delicious' }});
 // => Tacos are delicious!
 wjst.render('Tacos are <%= tacos =>!', { locals: { tacos: 'delicious' }});
-// => 'Tacos are <%= tacos =>!'</code></p>
+// => 'Tacos are <%= tacos =>!'</code></pre>
           </section>
           <hr class="divider">
 
           <!------------------ idocs wjst setFilter ------------------>
           <section id="idocs_wjst_setFilter">
-            <h2>wjst.setFilter(name, method)</h2>
+            <h2>wjst.setFilter (name, method)</h2>
             <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L270">lib/wjst.js#L270</a></p>
             <p>Add a custom filter for wjst variables.</p>
             <h3>Parameters</h3>
+            <div class="table-responsive">
             <table class="table table-bordered table-dark table-striped">
               <thead>
                 <tr>
@@ -489,6 +496,7 @@ wjst.render('Tacos are <%= tacos =>!', { locals: { tacos: 'delicious' }});
                 </tr>
               </tbody>
             </table>
+          </div>
             <h3>Returns</h3>
             <p><code class="JavaScript">undefined</code>:</p>
             <h3>Examples</h3>
@@ -501,11 +509,12 @@ wjst.setFilter('replaceMs', replaceMs);
 
           <!------------------ idocs wjst setTag ------------------>
           <section id="idocs_wjst_setTag">
-            <h2>wjst.setTag(name, parse, compile, ends, blockLevel)</h2>
+            <h2>wjst.setTag (name, parse, compile, ends, blockLevel)</h2>
             <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L295">lib/wjst.js#L295</a></p>
             <p>Add a custom tag. To expose your own extensions to compiled template code, see <code class="JavaScript">wjst.setExtension.</code></p>
             <p>For a more in-depth explanation of writing custom tags, see  <a href="../extending/#tags">Custom Tags</a>.</p>
             <h3>Parameters</h3>
+            <div class="table-responsive">
             <table class="table table-bordered table-dark table-striped">
               <thead>
                 <tr>
@@ -564,6 +573,7 @@ wjst.setFilter('replaceMs', replaceMs);
                 </tr>
               </tbody>
             </table>
+          </div>
             <h3>Returns</h3>
             <p><code class="JavaScript">undefined</code>:</p>
             <h3>Examples</h3>
@@ -576,11 +586,12 @@ wjst.setTag('tacos', tacotag.parse, tacotag.compile, tacotag.ends, tacotag.block
 
           <!------------------ idocs wjst setExtension ------------------>
           <section id="idocs_wjst_setExtension">
-            <h2>wjst.setExtension(name, object)</h2>
+            <h2>wjst.setExtension (name, object)</h2>
             <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L326">lib/wjst.js#L326</a></p>
             <p>Add extensions for custom tags. This allows any custom tag to access a globally available methods via a special globally available object, <code class="JavaScript">_ext</code>, in templates.</code></p>
             <p>For a more in-depth explanation of writing custom tags, see  <a href="../extending/#tags">Custom Tags</a>.</p>
             <h3>Parameters</h3>
+            <div class="table-responsive">
             <table class="table table-bordered table-dark table-striped">
               <thead>
                 <tr>
@@ -612,6 +623,7 @@ wjst.setTag('tacos', tacotag.parse, tacotag.compile, tacotag.ends, tacotag.block
                 </tr>
               </tbody>
             </table>
+          </div>
             <h3>Returns</h3>
             <p><code class="JavaScript">undefined</code>:</p>
             <h3>Examples</h3>
@@ -624,11 +636,12 @@ wjst.setTag('tacos', tacotag.parse, tacotag.compile, tacotag.ends, tacotag.block
 
           <!------------------ idocs wjst precompile ------------------>
           <section id="idocs_wjst_precompile">
-            <h2>wjst.precompile(source, options)</h2>
+            <h2>wjst.precompile (source, options)</h2>
             <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#485">lib/wjst.js#L485</a></p>
             <p>Pre-compile a source string into a cache-able template function.</p>
             <p>When rendering a source string, a file path should be specified in the options object in order for <code class="JavaScript">{% raw %} extends{% endraw %}</code>, <code class="JavaScript">{% raw %}include{% endraw %}</code>, and <code class="JavaScript">{% raw %}import{% endraw %}</code> to work properly. Do this by adding <code class="JavaScript">{% raw %}{ filename: '/absolute/path/to/mytpl.html' }{% endraw %}</code> to the options argument.</p>
             <h3>Parameters</h3>
+            <div class="table-responsive">
             <table class="table table-bordered table-dark table-striped">
               <thead>
                 <tr>
@@ -660,6 +673,7 @@ wjst.setTag('tacos', tacotag.parse, tacotag.compile, tacotag.ends, tacotag.block
                 </tr>
               </tbody>
             </table>
+          </div>
             <h3>Returns</h3>
             <p><code class="JavaScript">object</code>:Renderable function and tokens object.</p>
             <h3>Examples</h3>
@@ -680,11 +694,12 @@ In order to render a pre-compiled template, you must have access to filters and 
 
           <!------------------ idocs wjst render ------------------>
           <section id="idocs_wjst_render">
-            <h2>wjst.render( source , options )</h2>
+            <h2>wjst.render (source, options)</h2>
             <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#523">lib/wjst.js#L523</a></p>
             <p>Compile and render a template string for final output.</p>
             <p>When rendering a source string, a file path should be specified in the options object in order for <code class="JavaScript">{% raw %} extends{% endraw %}</code>, <code class="JavaScript">{% raw %}include{% endraw %}</code>, and <code class="JavaScript">{% raw %}import{% endraw %}</code> to work properly. Do this by adding <code class="JavaScript">{% raw %}{ filename: '/absolute/path/to/mytpl.html' }{% endraw %}</code> to the options argument.</p>
             <h3>Parameters</h3>
+            <div class="table-responsive">
             <table class="table table-bordered table-dark table-striped">
               <thead>
                 <tr>
@@ -716,6 +731,7 @@ In order to render a pre-compiled template, you must have access to filters and 
                 </tr>
               </tbody>
             </table>
+          </div>
             <h3>Returns</h3>
             <p><code class="JavaScript">string</code>:Rendered output.</p>
             <h3>Examples</h3>
@@ -726,10 +742,11 @@ In order to render a pre-compiled template, you must have access to filters and 
 
           <!------------------ idocs wjst renderFile ------------------>
           <section id="idocs_wjst_renderFile">
-            <h2>wjst.renderFile(pathName, locals, cb)</h2>
+            <h2>wjst.renderFile (pathName, locals, cb)</h2>
             <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#547">lib/wjst.js#L547</a></p>
             <p>Compile and render a template file for final output. This is most useful for libraries like Express.js.</p>
             <h3>Parameters</h3>
+            <div class="table-responsive">
             <table class="table table-bordered table-dark table-striped">
               <thead>
                 <tr>
@@ -770,6 +787,7 @@ In order to render a pre-compiled template, you must have access to filters and 
                 </tr>
               </tbody>
             </table>
+          </div>
             <h3>Returns</h3>
             <p><code class="JavaScript">string</code>:Rendered output.</p>
             <h3>Examples</h3>
@@ -786,10 +804,11 @@ In order to render a pre-compiled template, you must have access to filters and 
 
           <!------------------ idocs wjst compile ------------------>
           <section id="idocs_wjst_compile">
-            <h2>wjst.compile(source, options)</h2>
+            <h2>wjst.compile (source, options)</h2>
             <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L592">lib/wjst.js#L592</a></p>
             <p>Compile string source into a renderable template function.</p>
             <h3>Parameters</h3>
+            <div class="table-responsive">
             <table class="table table-bordered table-dark table-striped">
               <thead>
                 <tr>
@@ -821,6 +840,7 @@ In order to render a pre-compiled template, you must have access to filters and 
                 </tr>
               </tbody>
             </table>
+          </div>
             <h3>Returns</h3>
             <p><code class="JavaScript">function</code>:Renderable function with keys for parent, blocks, and tokens.</p>
             <h3>Examples</h3>
@@ -840,10 +860,11 @@ When compiling a source string, a file path should be specified in the options o
 
           <!------------------ idocs wjst compileFile ------------------>
           <section id="idocs_wjst_compileFile">
-            <h2>wjst.compileFile(pathname, options, cb)</h2>
+            <h2>wjst.compileFile (pathname, options, cb)</h2>
             <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L653">lib/wjst.js#L653</a></p>
             <p>Compile a source file into a renderable template function.</p>
             <h3>Parameters</h3>
+            <div class="table-responsive">
             <table class="table table-bordered table-dark table-striped">
               <thead>
                 <tr>
@@ -884,6 +905,7 @@ When compiling a source string, a file path should be specified in the options o
                 </tr>
               </tbody>
             </table>
+          </div>
             <h3>Returns</h3>
             <p><code class="JavaScript">function</code>:Renderable function with keys for parent, blocks, and tokens.</p>
             <h3>Examples</h3>
@@ -903,10 +925,11 @@ When compiling a source string, a file path should be specified in the options o
 
           <!------------------ idocs wjst run ------------------>
           <section id="idocs_wjst_run">
-            <h2>wjst.run(tpl, locals, filepath)</h2>
+            <h2>wjst.run (tpl, locals, filepath)</h2>
             <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L715">lib/wjst.js#L715</a></p>
             <p>Run a pre-compiled template function. This is most useful in the browser when you've pre-compiled your templates with the Wjst command-line tool.</p>
             <h3>Parameters</h3>
+            <div class="table-responsive">
             <table class="table table-bordered table-dark table-striped">
               <thead>
                 <tr>
@@ -947,6 +970,7 @@ When compiling a source string, a file path should be specified in the options o
                 </tr>
               </tbody>
             </table>
+          </div>
             <h3>Returns</h3>
             <p><code class="JavaScript">string</code>:Rendered output.</p>
             <h3>Examples</h3>
@@ -957,7 +981,6 @@ When compiling a source string, a file path should be specified in the options o
   // => "rendered template..."s
 &lt;/script>{% endraw %}</code></pre>
             </section>
-            <hr class="divider">
         </div>
       </div>
     </div>

@@ -201,8 +201,11 @@
           <!-- Getting Started ============================ -->
           <section id="idocs_Filters">
             <h1>Filters</h1>
-            <p>The rendering of variables can be modified by filters. Filters are special functions that are applied after any object token in a variable block using the pipe character, for example: <code class="JavaScript">{%raw%}{{ names|join(', ') }}</code>.</p>
-            <p>Filters can also be chained together, one after another. In this case, we have a list of names in HTML tags that we want to remove, output together, and make title-cased:</p>
+            <p>The rendering of variables can be modified by filters. Filters are special functions that are applied
+              after any object token in a variable block using the pipe character, for example: <code
+                class="JavaScript">{%raw%}{{ names|join(', ') }}</code>.</p>
+            <p>Filters can also be chained together, one after another. In this case, we have a list of names in HTML
+              tags that we want to remove, output together, and make title-cased:</p>
             <pre><code class="JavaScript">{%raw%}// names = ['&lt;p>paul&lt;/p>', '&lt;p>jim&lt;/p>'];
 {{ names|striptags|join(', ')|title }}
 // => Paul, Jim{%endraw%}</code></pre>
@@ -228,15 +231,15 @@
           <section id="idocs_capitalize">
             <h2>capitalize</h2>
             <p class="small-font">Sourse: <a
-              href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L59">lib/wjst.js#L59</a></p>
-          <p>Upper-case the first letter of the input and lower-case the rest.</p>
-          <h3>Returns</h3>
-          <p><code class="JavaScript">{%raw%}*{%endraw%}</code>Returns the same type as the input.</p>
-          <h3>Examples</h3>
-          <pre><code class="JavaScript">{%raw%}{{ "i like Burritos"|capitalize }}
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L59">lib/wjst.js#L59</a></p>
+            <p>Upper-case the first letter of the input and lower-case the rest.</p>
+            <h3>Returns</h3>
+            <p><code class="JavaScript">{%raw%}*{%endraw%}</code>Returns the same type as the input.</p>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">{%raw%}{{ "i like Burritos"|capitalize }}
 // => I like burritos{%endraw%}</code></pre>
-        </section>
-        <hr class="divider">
+          </section>
+          <hr class="divider">
 
           <!------------------ idocs_date ------------------>
           <section id="idocs_date">
@@ -245,38 +248,40 @@
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L86">lib/wjst.js#L86</a></p>
             <p>Format a date or Date-compatible string.</p>
             <h3>Parameters</h3>
-            <table class="table table-bordered table-dark table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Optional</th>
-                  <th scope="col">Default</th>
-                  <th scope="col">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th><code class="JavaScript">indent</code></th>
-                  <td><code class="JavaScript">number</code></td>
-                  <td>✓</td>
-                  <td><code class="JavaScript">undefined</code></td>
-                  <td>Number of spaces to indent for pretty-formatting.</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="table-responsive">
+              <table class="table table-bordered table-dark table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Optional</th>
+                    <th scope="col">Default</th>
+                    <th scope="col">Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td scope="row"><code class="JavaScript">indent</code></th>
+                    <th scope="row"><code class="JavaScript">number</code></th>
+                    <td>✓</td>
+                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td>Number of spaces to indent for pretty-formatting.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             <h3>Returns</h3>
             <p><code class="JavaScript">{%raw%}string{%endraw%}</code> A valid JSON string.</p>
             <h3>Examples</h3>
-          <pre><code class="JavaScript">{% raw %}// val = { a: 'b' }
+            <pre><code class="JavaScript">{% raw %}// val = { a: 'b' }
 {{ val|json }}
 // => {"a":"b"}{% endraw %}</code></pre>
-          <pre><code class="JavaScript">{% raw %}// val = { a: 'b' }
+            <pre><code class="JavaScript">{% raw %}// val = { a: 'b' }
 {{ val|json(4) }}
 // => {
 //        "a": "b"
 //    }{% endraw %}</code></pre>
-</section>
+          </section>
           <hr class="divider">
 
           <!------------------ idocs_default ------------------>
@@ -287,6 +292,7 @@
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L86">lib/wjst.js#L86</a></p>
             <p>Format a date or Date-compatible string.</p>
             <h3>Parameters</h3>
+            <div class="table-responsive">
             <table class="table table-bordered table-dark table-striped">
               <thead>
                 <tr>
@@ -309,12 +315,13 @@
                 </tr>
               </tbody>
             </table>
+          </div>
             <h3>Returns</h3>
             <p><code class="JavaScript">{%raw%}*{%endraw%}</code>: `input` or `def` value.</p>
             <h3>Examples</h3>
-          <pre><code class="JavaScript">{% raw %}{{ null_value|default('Tacos') }}
+            <pre><code class="JavaScript">{% raw %}{{ null_value|default('Tacos') }}
 // => Tacos{% endraw %}</code></pre>
-          <pre><code class="JavaScript">{% raw %}{{ "Burritos"|default("Tacos") }}
+            <pre><code class="JavaScript">{% raw %}{{ "Burritos"|default("Tacos") }}
 // => Burritos{% endraw %}</code></pre>
           </section>
           <hr class="divider">
@@ -325,8 +332,10 @@
             <h2>date(format, offset, abbr)</h2>
             <p class="small-font">Sourse: <a
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L145">lib/wjst.js#L145</a></p>
-            <p>Force escape the output of the variable. Optionally use `e` as a shortcut filter name. This filter will be applied by default if autoescape is turned on.</p>
+            <p>Force escape the output of the variable. Optionally use `e` as a shortcut filter name. This filter will
+              be applied by default if autoescape is turned on.</p>
             <h3>Parameters</h3>
+            <div class="table-responsive">
             <table class="table table-bordered table-dark table-striped">
               <thead>
                 <tr>
@@ -344,17 +353,19 @@
                   <th scope="row"><code class="JavaScript">string</code></th>
                   <td>✓</td>
                   <th scope="row"><code class="JavaScript">'html'</code></th>
-                  <td>If you pass the string js in as the type, output will be escaped so that it is safe for JavaScript execution.</td>
+                  <td>If you pass the string js in as the type, output will be escaped so that it is safe for JavaScript
+                    execution.</td>
                 </tr>
                 </tr>
               </tbody>
             </table>
+            </div>
             <h3>Returns</h3>
             <p><code class="JavaScript">{%raw%}string{%endraw%}</code>:Escaped string.</p>
             <h3>Examples</h3>
-          <pre><code class="JavaScript">{% raw %}{{ "<blah>"|escape }}
+            <pre><code class="JavaScript">{% raw %}{{ "<blah>"|escape }}
 // => <blah>{% endraw %}</code></pre>
-          <pre><code class="JavaScript">{% raw %}{{ "<blah>"|e("js") }}
+            <pre><code class="JavaScript">{% raw %}{{ "<blah>"|e("js") }}
 // => \u003Cblah\u003E{% endraw %}</code></pre>
           </section>
           <hr class="divider">
@@ -365,14 +376,16 @@
             <h2>date(format, offset, abbr)</h2>
             <p class="small-font">Sourse: <a
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L209">lib/wjst.js#L209</a></p>
-            <p>Get the first item in an array or character in a string. All other objects will attempt to return the first value available.</p>
+            <p>Get the first item in an array or character in a string. All other objects will attempt to return the
+              first value available.</p>
             <h3>Returns</h3>
-            <p><code class="JavaScript">{%raw%}*{%endraw%}</code>:The first item of the array or first character of the string input.</p>
+            <p><code class="JavaScript">{%raw%}*{%endraw%}</code>:The first item of the array or first character of the
+              string input.</p>
             <h3>Examples</h3>
-          <pre><code class="JavaScript">{% raw %}// my_arr = ['a', 'b', 'c']
+            <pre><code class="JavaScript">{% raw %}// my_arr = ['a', 'b', 'c']
 {{ my_arr|first }}
 // => a{% endraw %}</code></pre>
-          <pre><code class="JavaScript">{% raw %}// my_val = 'Tacos'
+            <pre><code class="JavaScript">{% raw %}// my_val = 'Tacos'
 {{ my_val|first }}
 // T{% endraw %}</code></pre>
           </section>
@@ -383,8 +396,10 @@
             <h2>groupBy(key)</h2>
             <p class="small-font">Sourse: <a
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L240">lib/wjst.js#L240</a></p>
-            <p>Group an array of objects by a common key. If an array is not provided, the input value will be returned untouched.</p>
+            <p>Group an array of objects by a common key. If an array is not provided, the input value will be returned
+              untouched.</p>
             <h3>Parameters</h3>
+            <div class="table-responsive">
             <table class="table table-bordered table-dark table-striped">
               <thead>
                 <tr>
@@ -407,6 +422,7 @@
                 </tr>
               </tbody>
             </table>
+          </div>
             <h3>Returns</h3>
             <p><code class="JavaScript">object:</code>Grouped arrays by given key.</p>
             <h3>Examples</h3>
@@ -426,85 +442,89 @@
           <section id="idocs_join">
             <h2>join(glue)</h2>
             <p class="small-font">Sourse: <a
-              href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L283">lib/wjst.js#L283</a></p>
-          <p>Join the input with a string.</p>
-          <h3>Parameters</h3>
-          <table class="table table-bordered table-dark table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Type</th>
-                <th scope="col">Optional</th>
-                <th scope="col">Default</th>
-                <th scope="col">Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-              <tr>
-                <th scope="row"><code class="JavaScript">glue</code></th>
-                <th scope="row"><code class="JavaScript">string</code></th>
-                <td></td>
-                <th scope="row"><code class="JavaScript">undefined</code></th>
-                <td>String value to join items together.</td>
-              </tr>
-              </tr>
-            </tbody>
-          </table>
-          <h3>Returns</h3>
-          <p><code class="JavaScript">string</code>:</p>
-          <h3>Examples</h3>
-          <pre><code class="JavaScript">{% raw %}// my_array = ['foo', 'bar', 'baz']
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L283">lib/wjst.js#L283</a></p>
+            <p>Join the input with a string.</p>
+            <h3>Parameters</h3>
+            <div class="table-responsive">
+            <table class="table table-bordered table-dark table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Optional</th>
+                  <th scope="col">Default</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">glue</code></th>
+                  <th scope="row"><code class="JavaScript">string</code></th>
+                  <td></td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>String value to join items together.</td>
+                </tr>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+            <h3>Returns</h3>
+            <p><code class="JavaScript">string</code>:</p>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}// my_array = ['foo', 'bar', 'baz']
 {{ my_array|join(', ') }}
 // => foo, bar, baz{% endraw %}</code></pre>
-          <pre><code class="JavaScript">{% raw %}// my_key_object = { a: 'foo', b: 'bar', c: 'baz' }
+            <pre><code class="JavaScript">{% raw %}// my_key_object = { a: 'foo', b: 'bar', c: 'baz' }
 {{ my_key_object|join(' and ') }}
 // => foo and bar and baz{% endraw %}</code></pre>
-        </section>
+          </section>
           <hr class="divider">
 
           <!------------------ idocs_json ------------------>
           <section id="idocs_json">
             <h2>json(indent)</h2>
             <p class="small-font">Sourse: <a
-              href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L319">lib/wjst.js#L319</a></p>
-          <p>Return a string representation of an JavaScript object.</p>
-          <p>Backwards compatible with wjst@0.x.x using `json_encode`.</p>
-          <h3>Parameters</h3>
-          <table class="table table-bordered table-dark table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Type</th>
-                <th scope="col">Optional</th>
-                <th scope="col">Default</th>
-                <th scope="col">Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-              <tr>
-                <th scope="row"><code class="JavaScript">indent</code></th>
-                <th scope="row"><code class="JavaScript">number</code></th>
-                <td>✓</td>
-                <th scope="row"><code class="JavaScript">undefined</code></th>
-                <td>Number of spaces to indent for pretty-formatting.</td>
-              </tr>
-              </tr>
-            </tbody>
-          </table>
-          <h3>Returns</h3>
-          <p><code class="JavaScript">string</code>:A valid JSON string.</p>
-          <h3>Examples</h3>
-          <pre><code class="JavaScript">{% raw %}// val = { a: 'b' }
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L319">lib/wjst.js#L319</a></p>
+            <p>Return a string representation of an JavaScript object.</p>
+            <p>Backwards compatible with wjst@0.x.x using `json_encode`.</p>
+            <h3>Parameters</h3>
+            <div class="table-responsive">
+            <table class="table table-bordered table-dark table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Optional</th>
+                  <th scope="col">Default</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">indent</code></th>
+                  <th scope="row"><code class="JavaScript">number</code></th>
+                  <td>✓</td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Number of spaces to indent for pretty-formatting.</td>
+                </tr>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+            <h3>Returns</h3>
+            <p><code class="JavaScript">string</code>:A valid JSON string.</p>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}// val = { a: 'b' }
 {{ val|json }}
 // => {"a":"b"}{% endraw %}</code></pre>
-          <pre><code class="JavaScript">{% raw %}// val = { a: 'b' }
+            <pre><code class="JavaScript">{% raw %}// val = { a: 'b' }
 {{ val|json(4) }}
 // => {
 //        "a": "b"
 //    }{% endraw %}</code></pre>
-        </section>
+          </section>
           <hr class="divider">
 
           <!------------------ idocs_last ------------------>
@@ -512,14 +532,15 @@
             <h2>last</h2>
             <p class="small-font">Sourse: <a
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L340">lib/wjst.js#L340</a></p>
-            <p>Get the last item in an array or character in a string. All other objects will attempt to return the last value available.</p>
+            <p>Get the last item in an array or character in a string. All other objects will attempt to return the last
+              value available.</p>
             <h3>Returns</h3>
             <p><code class="JavaScript">*</code>The last item of the array or last character of the string.input.</p>
             <h3>Examples</h3>
             <pre><code class="JavaScript">{% raw %}// my_arr = ['a', 'b', 'c']
 {{ my_arr|last }}
 // => c{% endraw %}</code></pre>
-              <pre><code class="JavaScript">{% raw %}// my_val = 'Tacos'
+            <pre><code class="JavaScript">{% raw %}// my_val = 'Tacos'
 {{ my_val|last }}
 // s{% endraw %}</code></pre>
           </section>
@@ -577,8 +598,10 @@
             <h2>replace(search, replacement, flags)</h2>
             <p class="small-font">Sourse: <a
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L441">lib/wjst.js#L441</a></p>
-            <p>Returns a new string with the matched search pattern replaced by the given replacement string. Uses JavaScript's built-in String.replace() method.</p>
+            <p>Returns a new string with the matched search pattern replaced by the given replacement string. Uses
+              JavaScript's built-in String.replace() method.</p>
             <h3>Parameters</h3>
+            <div class="table-responsive">
             <table class="table table-bordered table-dark table-striped">
               <thead>
                 <tr>
@@ -600,25 +623,27 @@
                 </tr>
                 </tr>
                 <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">replacement</code></th>
-                    <th scope="row"><code class="JavaScript">string</code></th>
-                    <td></td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
-                    <td>String to replace matched pattern.</td>
-                  </tr>
-                  </tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">replacement</code></th>
+                  <th scope="row"><code class="JavaScript">string</code></th>
+                  <td></td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>String to replace matched pattern.</td>
+                </tr>
+                </tr>
                 <tr>
                 <tr>
                   <th scope="row"><code class="JavaScript">flags</code></th>
                   <th scope="row"><code class="JavaScript">string</code></th>
                   <td>✓</td>
                   <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Regular Expression flags. 'g': global match, 'i': ignore case, 'm': match over multiple lines.</td>
+                  <td>Regular Expression flags. 'g': global match, 'i': ignore case, 'm': match over multiple lines.
+                  </td>
                 </tr>
                 </tr>
               </tbody>
             </table>
+          </div>
             <h3>Returns</h3>
             <p><code class="JavaScript">string</code>:Replaced string.</p>
             <h3>Examples</h3>
@@ -641,7 +666,8 @@
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L457">lib/wjst.js#L457</a></p>
             <p>Reverse sort the input. This is an alias for <code class="JavaScript">{{ input|sort(true) }}.</code></p>
             <h3>Returns</h3>
-            <p><code class="JavaScript">array</code>:Reversed array. The original input object is returned if it was not an array.</p>
+            <p><code class="JavaScript">array</code>:Reversed array. The original input object is returned if it was not
+              an array.</p>
             <h3>Examples</h3>
             <pre><code class="JavaScript">{% raw %}// val = [1, 2, 3];
 {{ val|reverse }}
@@ -654,9 +680,11 @@
             <h2>safe</h2>
             <p class="small-font">Sourse: <a
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L472">lib/wjst.js#L472</a></p>
-            <p>Forces the input to not be auto-escaped. Use this only on content that you know is safe to be rendered on your page.</p>
+            <p>Forces the input to not be auto-escaped. Use this only on content that you know is safe to be rendered on
+              your page.</p>
             <h3>Returns</h3>
-            <p><code class="JavaScript">*</code>:The input exactly how it was given, regardless of autoescaping status.</p>
+            <p><code class="JavaScript">*</code>:The input exactly how it was given, regardless of autoescaping status.
+            </p>
             <h3>Examples</h3>
             <pre><code class="JavaScript">{% raw %}// my_var = "<p>Stuff</p>";
 {{ my_var|safe }}
@@ -673,6 +701,7 @@
             <p>If given an object, will return the keys as a sorted array.</p>
             <p>If given a string, each character will be sorted individually.</p>
             <h3>Parameters</h3>
+            <div class="table-responsive">
             <table class="table table-bordered table-dark table-striped">
               <thead>
                 <tr>
@@ -695,6 +724,7 @@
                 </tr>
               </tbody>
             </table>
+          </div>
             <h3>Returns</h3>
             <p><code class="JavaScript">*</code>:Sorted array;</p>
             <h3>Examples</h3>
@@ -710,14 +740,15 @@
           </section>
           <hr class="divider">
 
-<!------------------ idocs_striptags ------------------>
+          <!------------------ idocs_striptags ------------------>
           <section id="idocs_striptags">
             <h2>striptags</h2>
             <p class="small-font">Sourse: <a
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L539">lib/wjst.js#L539</a></p>
             <p>Strip HTML tags.</p>
             <h3>Returns</h3>
-            <p><code class="JavaScript">*</code>:Returns the same object as the input, but with all string values stripped of tags.</p>
+            <p><code class="JavaScript">*</code>:Returns the same object as the input, but with all string values
+              stripped of tags.</p>
             <h3>Examples</h3>
             <pre><code class="JavaScript">{% raw %}// stuff = '<p>foobar</p>';
 {{ stuff|striptags }}
@@ -725,14 +756,15 @@
           </section>
           <hr class="divider">
 
-<!------------------ idocs_title ------------------>
+          <!------------------ idocs_title ------------------>
           <section id="idocs_title">
             <h2>title</h2>
             <p class="small-font">Sourse: <a
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L564">lib/wjst.js#564</a></p>
             <p>Capitalizes every word given and lower-cases all other letters.</p>
             <h3>Returns</h3>
-            <p><code class="JavaScript">*</code>:Returns the same object as the input, but with all words in strings title-cased.</p>
+            <p><code class="JavaScript">*</code>:Returns the same object as the input, but with all words in strings
+              title-cased.</p>
             <h3>Examples</h3>
             <pre><code class="JavaScript">{% raw %}// my_str = 'this is soMe text';
 {{ my_str|title }}
@@ -743,14 +775,15 @@
           </section>
           <hr class="divider">
 
-<!------------------ idocs_uniq ------------------>
+          <!------------------ idocs_uniq ------------------>
           <section id="idocs_uniq">
             <h2>uniq</h2>
             <p class="small-font">Sourse: <a
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L586">lib/wjst.js#L586</a></p>
             <p>Remove all duplicate items from an array.</p>
             <h3>Returns</h3>
-            <p><code class="JavaScript">array</code>:Array with unique items. If input was not an array, the original item is returned untouched.</p>
+            <p><code class="JavaScript">array</code>:Array with unique items. If input was not an array, the original
+              item is returned untouched.</p>
             <h3>Examples</h3>
             <pre><code class="JavaScript">{% raw %}// my_arr = [1, 2, 3, 4, 4, 3, 2, 1];
 {{ my_arr|uniq|join(',') }}
@@ -758,12 +791,13 @@
           </section>
           <hr class="divider">
 
-<!------------------ idocs_upper ------------------>
+          <!------------------ idocs_upper ------------------>
           <section id="idocs_upper">
             <h2>upper</h2>
             <p class="small-font">Sourse: <a
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L618">lib/wjst.js#L618</a></p>
-            <p>Convert the input to all uppercase letters. If an object or array is provided, all values will be uppercased.</p>
+            <p>Convert the input to all uppercase letters. If an object or array is provided, all values will be
+              uppercased.</p>
             <h3>Returns</h3>
             <p><code class="JavaScript">*</code>:Returns the same type as the input, with all strings upper-cased.</p>
             <h3>Examples</h3>
@@ -776,8 +810,8 @@
           </section>
           <hr class="divider">
 
-<!------------------ idocs_url_encode ------------------>
-          <section id="idocs_safe">
+          <!------------------ idocs_url_encode ------------------>
+          <section id="idocs_url_encode">
             <h2>url_encode</h2>
             <p class="small-font">Sourse: <a
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L638">lib/wjst.js#L638</a></p>
@@ -791,8 +825,8 @@
           </section>
           <hr class="divider">
 
-<!------------------ idocs_url_decode------------------>
-          <section id="idocs_safe">
+          <!------------------ idocs_url_decode------------------>
+          <section id="idocs_url_decode">
             <h2>url_decode</h2>
             <p class="small-font">Sourse: <a
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L657">lib/wjst.js#L657</a></p>
