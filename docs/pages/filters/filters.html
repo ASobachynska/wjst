@@ -574,10 +574,10 @@
 
           <!------------------ idocs_replace ------------------>
           <section id="idocs_replace">
-            <h2>wjst.compile(source, options)</h2>
+            <h2>replace(search, replacement, flags)</h2>
             <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L592">lib/wjst.js#L592</a></p>
-            <p>Compile string source into a renderable template function.</p>
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L441">lib/wjst.js#L441</a></p>
+            <p>Returns a new string with the matched search pattern replaced by the given replacement string. Uses JavaScript's built-in String.replace() method.</p>
             <h3>Parameters</h3>
             <table class="table table-bordered table-dark table-striped">
               <thead>
@@ -592,166 +592,86 @@
               <tbody>
                 <tr>
                 <tr>
-                  <th scope="row"><code class="JavaScript">source</code></th>
+                  <th scope="row"><code class="JavaScript">search</code></th>
                   <th scope="row"><code class="JavaScript">string</code></th>
                   <td></td>
                   <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Wjst template source string.</td>
+                  <td>String or pattern to replace from the input.</td>
                 </tr>
                 </tr>
                 <tr>
+                  <tr>
+                    <th scope="row"><code class="JavaScript">replacement</code></th>
+                    <th scope="row"><code class="JavaScript">string</code></th>
+                    <td></td>
+                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td>String to replace matched pattern.</td>
+                  </tr>
+                  </tr>
                 <tr>
-                  <th scope="row"><code class="JavaScript">options</code></th>
-                  <th scope="row"><code class="JavaScript">WjstOpts</code></th>
-                  <td>✔</td>
-                  <th scope="row"><code class="JavaScript">{}</code></th>
-                  <td>Wjst options object.</td>
+                <tr>
+                  <th scope="row"><code class="JavaScript">flags</code></th>
+                  <th scope="row"><code class="JavaScript">string</code></th>
+                  <td>✓</td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Regular Expression flags. 'g': global match, 'i': ignore case, 'm': match over multiple lines.</td>
                 </tr>
                 </tr>
               </tbody>
             </table>
             <h3>Returns</h3>
-            <p><code class="JavaScript">function:</code>Renderable function with keys for parent, blocks, and tokens.
-            </p>
+            <p><code class="JavaScript">string</code>:Replaced string.</p>
             <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}const tpl = wjst.compile('{{ tacos }}');
-// => {
-//      [Function: compiled]
-//      parent: null,
-//      tokens: [{ compile: [Function] }],
-//      blocks: {}
-//    }
-tpl({ tacos: 'Tacos!!!!' });
-// => Tacos!!!!
-         
-When compiling a source string, a file path should be specified in the options object in order for &lt;var>extends&lt;/var>, &lt;var>include&lt;/var>, and &lt;var>import&lt;/var> to work properly. Do this by adding &lt;code class="JavaScript">{ filename: '/absolute/path/to/mytpl.html' }&lt;/code> to the options argument.{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}// my_var = 'foobar';
+{{ my_var|replace('o', 'e', 'g') }}
+// => feebar{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}// my_var = "farfegnugen";
+{{ my_var|replace('^f', 'p') }}
+// => parfegnugen{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}// my_var = 'a1b2c3';
+{{ my_var|replace('\w', '0', 'g') }}
+// => 010203{% endraw %}</code></pre>
           </section>
           <hr class="divider">
 
           <!------------------ idocs_reverse ------------------>
           <section id="idocs_reverse">
-            <h2>wjst.compileFile(pathname, options, cb)</h2>
+            <h2>reverse</h2>
             <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L653">lib/wjst.js#L653</a></p>
-            <p>Compile a source file into a renderable template function.</p>
-            <h3>Parameters</h3>
-            <table class="table table-bordered table-dark table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Optional</th>
-                  <th scope="col">Default</th>
-                  <th scope="col">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">pathname</code></th>
-                  <th scope="row"><code class="JavaScript">string</code></th>
-                  <td></td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>File location.</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">options</code></th>
-                  <th scope="row"><code class="JavaScript">WjstOpts</code></th>
-                  <td>✔</td>
-                  <th scope="row"><code class="JavaScript">{}</code></th>
-                  <td>Wjst options object.</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">cb</code></th>
-                  <th scope="row"><code class="JavaScript">Function</code></th>
-                  <td>✔</td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Asyncronous callback function. If not provided, compileFile will run syncronously.</td>
-                </tr>
-                </tr>
-              </tbody>
-            </table>
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L457">lib/wjst.js#L457</a></p>
+            <p>Reverse sort the input. This is an alias for <code class="JavaScript">{{ input|sort(true) }}.</code></p>
             <h3>Returns</h3>
-            <p><code class="JavaScript">function:</code>Renderable function with keys for parent, blocks, and tokens.
-            </p>
+            <p><code class="JavaScript">array</code>:Reversed array. The original input object is returned if it was not an array.</p>
             <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
-            <pre><code class="JavaScript">{% raw %}wjst.compileFile('/myfile.txt', { varControls: ['&lt;%=', '=%>'], tagControls: ['&lt;%', '%>']});
-// => will compile 'myfile.txt' using the var and tag controls as specified.{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}// val = [1, 2, 3];
+{{ val|reverse }}
+// => 3,2,1{% endraw %}</code></pre>
           </section>
           <hr class="divider">
 
           <!------------------ idocs_safe ------------------>
           <section id="idocs_safe">
-            <h2>wjst.run(tpl, locals, filepath)</h2>
+            <h2>safe</h2>
             <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L715">lib/wjst.js#L715</a></p>
-            <p>Run a pre-compiled template function. This is most useful in the browser when you've pre-compiled your
-              templates with the Wjst command-line tool.</p>
-            <h3>Parameters</h3>
-            <table class="table table-bordered table-dark table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Optional</th>
-                  <th scope="col">Default</th>
-                  <th scope="col">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">tpl</code></th>
-                  <th scope="row"><code class="JavaScript">function</code></th>
-                  <td></td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Pre-compiled Wjst template function. Use the Wjst CLI to compile your templates.</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">locals</code></th>
-                  <th scope="row"><code class="JavaScript">object</code></th>
-                  <td>✔</td>
-                  <th scope="row"><code class="JavaScript">{}</code></th>
-                  <td>Template variable context.</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">filepath</code></th>
-                  <th scope="row"><code class="JavaScript">string</code></th>
-                  <td>✔</td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Filename used for caching the template.</td>
-                </tr>
-                </tr>
-              </tbody>
-            </table>
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L472">lib/wjst.js#L472</a></p>
+            <p>Forces the input to not be auto-escaped. Use this only on content that you know is safe to be rendered on your page.</p>
             <h3>Returns</h3>
-            <p><code class="JavaScript">string:</code>Rendered output.</p>
+            <p><code class="JavaScript">*</code>:The input exactly how it was given, regardless of autoescaping status.</p>
             <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}$ wjst compile ./mytpl.html --wrap-start="var mytpl = " > mytpl.js{% endraw %}</code></pre>
-            <pre><code class="JavaScript">{% raw %}&lt;script src="mytpl.js">&lt;/script>
-&lt;script>
-  wjst.run(mytpl, {});
-  // => "rendered template..."s
-&lt;/script>{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}// my_var = "<p>Stuff</p>";
+{{ my_var|safe }}
+// => <p>Stuff</p>{% endraw %}</code></pre>
           </section>
           <hr class="divider">
 
           <!------------------ idocs_sort ------------------>
           <section id="idocs_sort">
-            <h2>wjst.run(tpl, locals, filepath)</h2>
+            <h2>sort(reverse)</h2>
             <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L715">lib/wjst.js#L715</a></p>
-            <p>Run a pre-compiled template function. This is most useful in the browser when you've pre-compiled your
-              templates with the Wjst command-line tool.</p>
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L502">lib/wjst.js#L502</a></p>
+            <p>Sort the input in an ascending direction.</p>
+            <p>If given an object, will return the keys as a sorted array.</p>
+            <p>If given a string, each character will be sorted individually.</p>
             <h3>Parameters</h3>
             <table class="table table-bordered table-dark table-striped">
               <thead>
@@ -766,374 +686,123 @@ When compiling a source string, a file path should be specified in the options o
               <tbody>
                 <tr>
                 <tr>
-                  <th scope="row"><code class="JavaScript">tpl</code></th>
-                  <th scope="row"><code class="JavaScript">function</code></th>
-                  <td></td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Pre-compiled Wjst template function. Use the Wjst CLI to compile your templates.</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">locals</code></th>
-                  <th scope="row"><code class="JavaScript">object</code></th>
-                  <td>✔</td>
-                  <th scope="row"><code class="JavaScript">{}</code></th>
-                  <td>Template variable context.</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">filepath</code></th>
-                  <th scope="row"><code class="JavaScript">string</code></th>
-                  <td>✔</td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Filename used for caching the template.</td>
+                  <th scope="row"><code class="JavaScript">reverse</code></th>
+                  <th scope="row"><code class="JavaScript">boolean</code></th>
+                  <td>✓</td>
+                  <th scope="row"><code class="JavaScript">false</code></th>
+                  <td>Output is given reverse-sorted if true.</td>
                 </tr>
                 </tr>
               </tbody>
             </table>
             <h3>Returns</h3>
-            <p><code class="JavaScript">string:</code>Rendered output.</p>
+            <p><code class="JavaScript">*</code>:Sorted array;</p>
             <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
-            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}// val = [2, 6, 4];
+{{ val|sort }}
+// => 2,4,6{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}// val = 'zaq';
+{{ val|sort }}
+// => aqz{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}// val = { bar: 1, foo: 2 }
+{{ val|sort(true) }}
+// => foo,bar{% endraw %}</code></pre>
           </section>
           <hr class="divider">
 
 <!------------------ idocs_striptags ------------------>
           <section id="idocs_striptags">
-            <h2>wjst.run(tpl, locals, filepath)</h2>
+            <h2>striptags</h2>
             <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L715">lib/wjst.js#L715</a></p>
-            <p>Run a pre-compiled template function. This is most useful in the browser when you've pre-compiled your
-              templates with the Wjst command-line tool.</p>
-            <h3>Parameters</h3>
-            <table class="table table-bordered table-dark table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Optional</th>
-                  <th scope="col">Default</th>
-                  <th scope="col">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">tpl</code></th>
-                  <th scope="row"><code class="JavaScript">function</code></th>
-                  <td></td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Pre-compiled Wjst template function. Use the Wjst CLI to compile your templates.</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">locals</code></th>
-                  <th scope="row"><code class="JavaScript">object</code></th>
-                  <td>✔</td>
-                  <th scope="row"><code class="JavaScript">{}</code></th>
-                  <td>Template variable context.</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">filepath</code></th>
-                  <th scope="row"><code class="JavaScript">string</code></th>
-                  <td>✔</td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Filename used for caching the template.</td>
-                </tr>
-                </tr>
-              </tbody>
-            </table>
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L539">lib/wjst.js#L539</a></p>
+            <p>Strip HTML tags.</p>
             <h3>Returns</h3>
-            <p><code class="JavaScript">string:</code>Rendered output.</p>
+            <p><code class="JavaScript">*</code>:Returns the same object as the input, but with all string values stripped of tags.</p>
             <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
-            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}// stuff = '<p>foobar</p>';
+{{ stuff|striptags }}
+// => foobar{% endraw %}</code></pre>
           </section>
           <hr class="divider">
 
 <!------------------ idocs_title ------------------>
           <section id="idocs_title">
-            <h2>wjst.run(tpl, locals, filepath)</h2>
+            <h2>title</h2>
             <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L715">lib/wjst.js#L715</a></p>
-            <p>Run a pre-compiled template function. This is most useful in the browser when you've pre-compiled your
-              templates with the Wjst command-line tool.</p>
-            <h3>Parameters</h3>
-            <table class="table table-bordered table-dark table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Optional</th>
-                  <th scope="col">Default</th>
-                  <th scope="col">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">tpl</code></th>
-                  <th scope="row"><code class="JavaScript">function</code></th>
-                  <td></td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Pre-compiled Wjst template function. Use the Wjst CLI to compile your templates.</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">locals</code></th>
-                  <th scope="row"><code class="JavaScript">object</code></th>
-                  <td>✔</td>
-                  <th scope="row"><code class="JavaScript">{}</code></th>
-                  <td>Template variable context.</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">filepath</code></th>
-                  <th scope="row"><code class="JavaScript">string</code></th>
-                  <td>✔</td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Filename used for caching the template.</td>
-                </tr>
-                </tr>
-              </tbody>
-            </table>
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L564">lib/wjst.js#564</a></p>
+            <p>Capitalizes every word given and lower-cases all other letters.</p>
             <h3>Returns</h3>
-            <p><code class="JavaScript">string:</code>Rendered output.</p>
+            <p><code class="JavaScript">*</code>:Returns the same object as the input, but with all words in strings title-cased.</p>
             <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
-            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}// my_str = 'this is soMe text';
+{{ my_str|title }}
+// => This Is Some Text{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}// my_arr = ['hi', 'this', 'is', 'an', 'array'];
+{{ my_arr|title|join(' ') }}
+// => Hi This Is An Array{% endraw %}</code></pre>
           </section>
           <hr class="divider">
 
 <!------------------ idocs_uniq ------------------>
           <section id="idocs_uniq">
-            <h2>wjst.run(tpl, locals, filepath)</h2>
+            <h2>uniq</h2>
             <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L715">lib/wjst.js#L715</a></p>
-            <p>Run a pre-compiled template function. This is most useful in the browser when you've pre-compiled your
-              templates with the Wjst command-line tool.</p>
-            <h3>Parameters</h3>
-            <table class="table table-bordered table-dark table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Optional</th>
-                  <th scope="col">Default</th>
-                  <th scope="col">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">tpl</code></th>
-                  <th scope="row"><code class="JavaScript">function</code></th>
-                  <td></td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Pre-compiled Wjst template function. Use the Wjst CLI to compile your templates.</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">locals</code></th>
-                  <th scope="row"><code class="JavaScript">object</code></th>
-                  <td>✔</td>
-                  <th scope="row"><code class="JavaScript">{}</code></th>
-                  <td>Template variable context.</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">filepath</code></th>
-                  <th scope="row"><code class="JavaScript">string</code></th>
-                  <td>✔</td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Filename used for caching the template.</td>
-                </tr>
-                </tr>
-              </tbody>
-            </table>
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L586">lib/wjst.js#L586</a></p>
+            <p>Remove all duplicate items from an array.</p>
             <h3>Returns</h3>
-            <p><code class="JavaScript">string:</code>Rendered output.</p>
+            <p><code class="JavaScript">array</code>:Array with unique items. If input was not an array, the original item is returned untouched.</p>
             <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
-            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}// my_arr = [1, 2, 3, 4, 4, 3, 2, 1];
+{{ my_arr|uniq|join(',') }}
+// => 1,2,3,4{% endraw %}</code></pre>
           </section>
           <hr class="divider">
 
 <!------------------ idocs_upper ------------------>
           <section id="idocs_upper">
-            <h2>wjst.run(tpl, locals, filepath)</h2>
+            <h2>upper</h2>
             <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L715">lib/wjst.js#L715</a></p>
-            <p>Run a pre-compiled template function. This is most useful in the browser when you've pre-compiled your
-              templates with the Wjst command-line tool.</p>
-            <h3>Parameters</h3>
-            <table class="table table-bordered table-dark table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Optional</th>
-                  <th scope="col">Default</th>
-                  <th scope="col">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">tpl</code></th>
-                  <th scope="row"><code class="JavaScript">function</code></th>
-                  <td></td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Pre-compiled Wjst template function. Use the Wjst CLI to compile your templates.</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">locals</code></th>
-                  <th scope="row"><code class="JavaScript">object</code></th>
-                  <td>✔</td>
-                  <th scope="row"><code class="JavaScript">{}</code></th>
-                  <td>Template variable context.</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">filepath</code></th>
-                  <th scope="row"><code class="JavaScript">string</code></th>
-                  <td>✔</td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Filename used for caching the template.</td>
-                </tr>
-                </tr>
-              </tbody>
-            </table>
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L618">lib/wjst.js#L618</a></p>
+            <p>Convert the input to all uppercase letters. If an object or array is provided, all values will be uppercased.</p>
             <h3>Returns</h3>
-            <p><code class="JavaScript">string:</code>Rendered output.</p>
+            <p><code class="JavaScript">*</code>:Returns the same type as the input, with all strings upper-cased.</p>
             <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
-            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}// my_str = 'tacos';
+{{ my_str|upper }}
+// => TACOS{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}// my_arr = ['tacos', 'burritos'];
+{{ my_arr|upper|join(' & ') }}
+// => TACOS & BURRITOS{% endraw %}</code></pre>
           </section>
           <hr class="divider">
 
 <!------------------ idocs_url_encode ------------------>
           <section id="idocs_safe">
-            <h2>wjst.run(tpl, locals, filepath)</h2>
+            <h2>url_encode</h2>
             <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L715">lib/wjst.js#L715</a></p>
-            <p>Run a pre-compiled template function. This is most useful in the browser when you've pre-compiled your
-              templates with the Wjst command-line tool.</p>
-            <h3>Parameters</h3>
-            <table class="table table-bordered table-dark table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Optional</th>
-                  <th scope="col">Default</th>
-                  <th scope="col">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">tpl</code></th>
-                  <th scope="row"><code class="JavaScript">function</code></th>
-                  <td></td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Pre-compiled Wjst template function. Use the Wjst CLI to compile your templates.</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">locals</code></th>
-                  <th scope="row"><code class="JavaScript">object</code></th>
-                  <td>✔</td>
-                  <th scope="row"><code class="JavaScript">{}</code></th>
-                  <td>Template variable context.</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">filepath</code></th>
-                  <th scope="row"><code class="JavaScript">string</code></th>
-                  <td>✔</td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Filename used for caching the template.</td>
-                </tr>
-                </tr>
-              </tbody>
-            </table>
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L638">lib/wjst.js#L638</a></p>
+            <p>URL-encode a string. If an object or array is passed, all values will be URL-encoded.</p>
             <h3>Returns</h3>
-            <p><code class="JavaScript">string:</code>Rendered output.</p>
+            <p><code class="JavaScript">*</code>:URL-encoded string.</p>
             <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
-            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}// my_str = 'param=1&anotherParam=2';
+{{ my_str|url_encode }}
+// => param%3D1%26anotherParam%3D2{% endraw %}</code></pre>
           </section>
           <hr class="divider">
 
 <!------------------ idocs_url_decode------------------>
           <section id="idocs_safe">
-            <h2>wjst.run(tpl, locals, filepath)</h2>
+            <h2>url_decode</h2>
             <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L715">lib/wjst.js#L715</a></p>
-            <p>Run a pre-compiled template function. This is most useful in the browser when you've pre-compiled your
-              templates with the Wjst command-line tool.</p>
-            <h3>Parameters</h3>
-            <table class="table table-bordered table-dark table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Optional</th>
-                  <th scope="col">Default</th>
-                  <th scope="col">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">tpl</code></th>
-                  <th scope="row"><code class="JavaScript">function</code></th>
-                  <td></td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Pre-compiled Wjst template function. Use the Wjst CLI to compile your templates.</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">locals</code></th>
-                  <th scope="row"><code class="JavaScript">object</code></th>
-                  <td>✔</td>
-                  <th scope="row"><code class="JavaScript">{}</code></th>
-                  <td>Template variable context.</td>
-                </tr>
-                </tr>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">filepath</code></th>
-                  <th scope="row"><code class="JavaScript">string</code></th>
-                  <td>✔</td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Filename used for caching the template.</td>
-                </tr>
-                </tr>
-              </tbody>
-            </table>
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L657">lib/wjst.js#L657</a></p>
+            <p>URL-decode a string. If an object or array is passed, all values will be URL-decoded.</p>
             <h3>Returns</h3>
-            <p><code class="JavaScript">string:</code>Rendered output.</p>
+            <p><code class="JavaScript">*</code>:URL-decoded string.</p>
             <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
-            <pre><code class="JavaScript">{% raw %}{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}// my_str = 'param%3D1%26anotherParam%3D2';
+{{ my_str|url_decode }}
+// => param=1&anotherParam=2{% endraw %}</code></pre>
           </section>
           <hr class="divider">
         </div>
