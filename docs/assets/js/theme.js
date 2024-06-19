@@ -87,22 +87,22 @@ $('.navbar-toggler').on('click', function() {
 //    Side Navigation
 // -------------------------- */
 
-// $('#sidebarCollapse').on('click', function () {
-// 	$('#sidebarCollapse span:nth-child(3)').toggleClass('w-50');
-// 	$('.idocs-navigation-new').toggleClass('active');
-// });
+$('#sidebarCollapse').on('click', function () {
+	$('#sidebarCollapse span:nth-child(3)').toggleClass('w-50');
+	$('.idocs-navigation-new').toggleClass('active');
+});
 
 
 // /*------------------------
 //    Sections Scroll
 // -------------------------- */
 
-// $('.smooth-scroll,.idocs-navigation a').on('click', function() {
-// 	event.preventDefault();
-//     var sectionTo = $(this).attr('href');
-// 	$('html, body').stop().animate({
-//       scrollTop: $(sectionTo).offset().top - 120}, 1000, 'easeInOutExpo');
-// });
+$('.smooth-scroll,.idocs-navigation a').on('click', function() {
+	event.preventDefault();
+    var sectionTo = $(this).attr('href');
+	$('html, body').stop().animate({
+      scrollTop: $(sectionTo).offset().top - 120}, 1000, 'easeInOutExpo');
+});
 /*------------------------
    Side Navigation
 -------------------------- */
@@ -116,8 +116,8 @@ $('#sidebarCollapse').on('click', function () {
 /*------------------------
    Sections Scroll
 -------------------------- */
-
-$('.idocs-navigation-new .nav-link').on('click', function(event) {
+// Використовуємо делегування подій для кліків на посилання в навігації
+$(document).on('click', '.idocs-navigation .nav-link', function(event) {
     event.preventDefault();
 
     var target = $(this).attr('href');

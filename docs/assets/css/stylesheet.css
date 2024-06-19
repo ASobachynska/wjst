@@ -748,7 +748,9 @@ hr {
   border-color: #0366d6;
 }
 
-
+.idocs-navigation-new .nav-link.active {
+  color: blue; /* Змінює колір активного підрозділу на синій */
+}
 /*=== 3.1 Бічна нав-newігація NEW NEW NEW===*/
 .idocs-navigation-new {
   position: fixed;
