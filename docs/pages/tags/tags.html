@@ -538,7 +538,7 @@
 {% if x || y %}{% endif %}
 {% if x || (y && z) %}{% endif %}{% endraw %}</code></pre>
             <pre><code class="JavaScript">{% raw %}{% if x [operator] y %}
-  Operators: ==, !=, <, <=, >, >=, ===, !==
+  Operators: ==, !=, &lt;, &lt;=, &gt;, &gt;=, ===, !==
 {% endif %}{% endraw %}</code></pre>
             <pre><code class="JavaScript">{% raw %}{% if x == 'five' %}
   The operands can be also be string or number literals
@@ -554,11 +554,11 @@
 
           <!------------------ idocs_import ------------------>
           <section id="idocs_import">
-            <h2>json(indent)</h2>
+            <h2>import</h2>
             <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L319">lib/wjst.js#L319</a></p>
-            <p>Return a string representation of an JavaScript object.</p>
-            <p>Backwards compatible with wjst@0.x.x using `json_encode`.</p>
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/tags/import.js">lib/tags/import.js</a></p>
+            <p>Allows you to import macros from another file directly into your current context.</p>
+            <p>The import tag is specifically designed for importing macros into your template with a specific context scope. This is very useful for keeping your macros from overriding template context that is being injected by your server-side page generation.</p>
             <h3>Parameters</h3>
             <div class="table-responsive">
             <table class="table table-bordered table-dark table-striped">
@@ -574,103 +574,201 @@
               <tbody>
                 <tr>
                 <tr>
-                  <th scope="row"><code class="JavaScript">indent</code></th>
-                  <th scope="row"><code class="JavaScript">number</code></th>
-                  <td>✓</td>
+                  <th scope="row"><code class="JavaScript">file</code></th>
+                  <th scope="row"><code class="JavaScript">string or var</code></th>
+                  <td></td>
                   <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Number of spaces to indent for pretty-formatting.</td>
+                  <td>Relative path from the current template file to the file to import macros from.</td>
                 </tr>
                 </tr>
+                <tr>
+                  <tr>
+                    <th scope="row"><code class="JavaScript">as</code></th>
+                    <th scope="row"><code class="JavaScript">literal</code></th>
+                    <td></td>
+                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td>Literally, "as".</td>
+                  </tr>
+                </tr>
+                  <tr>
+                    <tr>
+                      <th scope="row"><code class="JavaScript">file</code></th>
+                      <th scope="row"><code class="JavaScript">literal</code></th>
+                      <td></td>
+                      <th scope="row"><code class="JavaScript">undefined</code></th>
+                      <td>Local-accessible object name to assign the macros to.</td>
+                    </tr>
+                  </tr>
               </tbody>
             </table>
           </div>
-            <h3>Returns</h3>
-            <p><code class="JavaScript">string</code>:A valid JSON string.</p>
-            <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}// val = { a: 'b' }
-{{ val|json }}
-// => {"a":"b"}{% endraw %}</code></pre>
-            <pre><code class="JavaScript">{% raw %}// val = { a: 'b' }
-{{ val|json(4) }}
-// => {
-//        "a": "b"
-//    }{% endraw %}</code></pre>
+           <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}{% import './formmacros.html' as form %}
+{{ form.input("text", "name") }}
+// => &lt;input type="text" name="name">{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}{% import "../shared/tags.html" as tags %}
+{{ tags.stylesheet('global') }}
+// => &lt;link rel="stylesheet" href="/global.css">{% endraw %}</code></pre>
           </section>
           <hr class="divider">
 
           <!------------------ idocs_include ------------------>
           <section id="idocs_include">
-            <h2>last</h2>
+            <h2>include</h2>
             <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L340">lib/wjst.js#L340</a></p>
-            <p>Get the last item in an array or character in a string. All other objects will attempt to return the last
-              value available.</p>
-            <h3>Returns</h3>
-            <p><code class="JavaScript">*</code>The last item of the array or last character of the string.input.</p>
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/tags/include.js">lib/tags/include.js</a></p>
+            <p>Includes a template partial in place. The template is rendered within the current locals variable context.</p>
+            <h3>Parameters</h3>
+            <div class="table-responsive">
+            <table class="table table-bordered table-dark table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Optional</th>
+                  <th scope="col">Default</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">file</code></th>
+                  <th scope="row"><code class="JavaScript">string or var</code></th>
+                  <td></td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>The path, relative to the template root, to render into the current context.</td>
+                </tr>
+                </tr>
+                <tr>
+                  <tr>
+                    <th scope="row"><code class="JavaScript">with</code></th>
+                    <th scope="row"><code class="JavaScript">literal</code></th>
+                    <td>✓</td>
+                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td>Literally, "with".</td>
+                  </tr>
+                </tr>
+                  <tr>
+                    <tr>
+                      <th scope="row"><code class="JavaScript">context</code></th>
+                      <th scope="row"><code class="JavaScript">object</code></th>
+                      <td>✓</td>
+                      <th scope="row"><code class="JavaScript">undefined</code></th>
+                      <td>Local variable key-value object context to provide to the included file.</td>
+                    </tr>
+                  </tr>
+                  <tr>
+                    <tr>
+                      <th scope="row"><code class="JavaScript">only</code></th>
+                      <th scope="row"><code class="JavaScript">literal</code></th>
+                      <td>✓</td>
+                      <th scope="row"><code class="JavaScript">undefined</code></th>
+                      <td>Restricts to only passing the with context as local variables–the included template will not be aware of any other local variables in the parent template. For best performance, usage of this option is recommended if possible.</td>
+                    </tr>
+                  </tr>
+                  <tr>
+                    <tr>
+                      <th scope="row"><code class="JavaScript">ignore missing</code></th>
+                      <th scope="row"><code class="JavaScript">literal</code></th>
+                      <td>✓</td>
+                      <th scope="row"><code class="JavaScript">undefined</code></th>
+                      <td>Will output empty string if not found instead of throwing an error.</td>
+                    </tr>
+                  </tr>
+              </tbody>
+            </table>
             <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}// my_arr = ['a', 'b', 'c']
-{{ my_arr|last }}
-// => c{% endraw %}</code></pre>
-            <pre><code class="JavaScript">{% raw %}// my_val = 'Tacos'
-{{ my_val|last }}
-// s{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}// food = 'burritos';
+// drink = 'lemonade';
+{% include "./partial.html" %}
+// => I like burritos and lemonade.{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}// my_obj = { food: 'tacos', drink: 'horchata' };
+{% include "./partial.html" with my_obj only %}
+// => I like tacos and horchata.{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}{% include "/this/file/does/not/exist" ignore missing %}
+// => (Nothing! empty string){% endraw %}</code></pre>
           </section>
           <hr class="divider">
 
           <!------------------ idocs_macro ------------------>
           <section id="idocs_macro">
-            <h2>length</h2>
+            <h2>macro</h2>
             <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L374">lib/wjst.js#L374</a></p>
-            <p>Get the number of items in an array, string, or object.</p>
-            <h3>Returns</h3>
-            <p><code class="JavaScript">*</code>:The length of the input</p>
-            <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}// my_arr = ['a', 'b', 'c']
-{{ my_arr|length }}
-// => 3{% endraw %}</code></pre>
-            <pre><code class="JavaScript">{% raw %}// my_str = 'Tacos'
-{{ my_str|length }}
-// => 5{% endraw %}</code></pre>
-            <pre><code class="JavaScript">{% raw %}// my_obj = {a: 5, b: 20}
-{{ my_obj|length }}
-// => 2{% endraw %}</code></pre>
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/tags/macro.js">lib/tags/macro.js</a></p>
+            <p>Create custom, reusable snippets within your templates.</p>
+            <p>Can be imported from one template to another using the <code class="JavaScript">{% raw %}{% import ... %}{% endraw %}</code> tag.</p>
+            <h3>Parameters</h3>
+            <div class="table-responsive">
+            <table class="table table-bordered table-dark table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Optional</th>
+                  <th scope="col">Default</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">arguments</code></th>
+                  <th scope="row"><code class="JavaScript">arguments</code></th>
+                  <td></td>
+                  <th scope="row"><code class="JavaScript">	undefined</code></th>
+                  <td>User-defined arguments.</td>
+                </tr>
+                </tr>
+              </tbody>
+            </table>
+           <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}{% macro input(type, name, id, label, value, error) %}
+ &lt;label for="{{ name }}"&gt;{{ label }}&lt;/label&gt;
+  &lt;input type="{{ type }}" name="{{ name }}" id="{{ id }}" value="{{ value }}"{% if error %} class="error"{% endif %}&gt;
+{% endmacro %}
+            
+{{ input("text", "fname", "fname", "First Name", fname.value, fname.errors) }}
+// => &lt;label for="fname">First Name&lt;/label&gt;
+//    &lt;input type="text" name="fname" id="fname" value=""&gt;{% endraw %}</code></pre>
           </section>
           <hr class="divider">
 
           <!------------------ idocs_parent ------------------>
           <section id="idocs_parent">
-            <h2>lower</h2>
+            <h2>parent</h2>
             <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L400">lib/wjst.js#L400</a></p>
-            <p>Return the input in all lowercase letters.</p>
-            <h3>Returns</h3>
-            <p><code class="JavaScript">*</code>:Returns the same type as the input.</p>
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/tags/parent.js">lib/tags/parent.js</a></p>
+            <p>Inject the content from the parent template's block of the same name into the current block.</p>
+            <p>See Template Inheritance for more information.</p>
             <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}{{ "FOOBAR"|lower }}
-// => foobar{% endraw %}</code></pre>
-            <pre><code class="JavaScript">{% raw %}// myObj = { a: 'FOO', b: 'BAR' }
-              {{ myObj|lower|join('') }}
-              // => foobar{% endraw %}</code></pre>
-          </section>
+            <pre><code class="JavaScript">{% raw %}{% extends "./foo.html" %}
+{% block content %}
+  My content.
+  {% parent %}
+{% endblock %}{% endraw %}</code></pre>
+           </section>
           <hr class="divider">
 
           <!------------------ idocs_raw_tag ------------------>
           <section id="idocs_raw_tag">
             <h2>raw</h2>
             <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L412">lib/wjst.js#L412</a></p>
-            <p>Deprecated in favor of safe.</p>
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/tags/raw.js">lib/tags/raw.js</a></p>
+            <p>Forces the content to not be auto-escaped. All wjst instructions will be ignored and the content will be rendered exactly as it was given.</p>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}// foobar = '&lt;p&gt;'
+&#123;% raw %&#125;{{ foobar }}&#123;% endraw %&#125;
+// => {{ foobar }}{% endraw %}</code></pre>
           </section>
           <hr class="divider">
 
           <!------------------ idocs_set ------------------>
           <section id="idocs_set">
-            <h2>replace(search, replacement, flags)</h2>
+            <h2>set</h2>
             <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L441">lib/wjst.js#L441</a></p>
-            <p>Returns a new string with the matched search pattern replaced by the given replacement string. Uses
-              JavaScript's built-in String.replace() method.</p>
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/tags/set.js">lib/tags/set.js</a></p>
+            <p>Set a variable for re-use in the current context. This will over-write any value already set to the context for the given <code class="JavaScript">varname</code>.</p>
             <h3>Parameters</h3>
             <div class="table-responsive">
             <table class="table table-bordered table-dark table-striped">
@@ -686,30 +784,29 @@
               <tbody>
                 <tr>
                 <tr>
-                  <th scope="row"><code class="JavaScript">search</code></th>
-                  <th scope="row"><code class="JavaScript">string</code></th>
+                  <th scope="row"><code class="JavaScript">varname</code></th>
+                  <th scope="row"><code class="JavaScript">literal</code></th>
                   <td></td>
                   <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>String or pattern to replace from the input.</td>
+                  <td>The variable name to assign the value to.</td>
                 </tr>
                 </tr>
                 <tr>
                 <tr>
-                  <th scope="row"><code class="JavaScript">replacement</code></th>
-                  <th scope="row"><code class="JavaScript">string</code></th>
+                  <th scope="row"><code class="JavaScript">assignement</code></th>
+                  <th scope="row"><code class="JavaScript">literal</code></th>
                   <td></td>
                   <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>String to replace matched pattern.</td>
+                  <td>Any valid JavaScript assignement. <code class="JavaScript">=, +=, *=, /=, -=</code></td>
                 </tr>
                 </tr>
                 <tr>
                 <tr>
-                  <th scope="row"><code class="JavaScript">flags</code></th>
-                  <th scope="row"><code class="JavaScript">string</code></th>
+                  <th scope="row"><code class="JavaScript">value</code></th>
+                  <th scope="row"><code class="JavaScript">*</code></th>
                   <td>✓</td>
                   <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Regular Expression flags. 'g': global match, 'i': ignore case, 'm': match over multiple lines.
-                  </td>
+                  <td>Valid variable output.</td>
                 </tr>
                 </tr>
               </tbody>
@@ -718,31 +815,38 @@
             <h3>Returns</h3>
             <p><code class="JavaScript">string</code>:Replaced string.</p>
             <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}// my_var = 'foobar';
-{{ my_var|replace('o', 'e', 'g') }}
-// => feebar{% endraw %}</code></pre>
-            <pre><code class="JavaScript">{% raw %}// my_var = "farfegnugen";
-{{ my_var|replace('^f', 'p') }}
-// => parfegnugen{% endraw %}</code></pre>
-            <pre><code class="JavaScript">{% raw %}// my_var = 'a1b2c3';
-{{ my_var|replace('\w', '0', 'g') }}
-// => 010203{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}{% set foo = "anything!" %}
+{{ foo }}
+// => anything!{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}// index = 2;
+{% set bar = 1 %}
+{% set bar += index|default(3) %}
+// => 3{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}// foods = {};
+// food = &apos;chili&apos;;
+{% set foods[food] = "con queso" %}
+{{ foods.chili }}
+// => con queso{% endraw %}</code></pre>
+              <pre><code class="JavaScript">{% raw %}// foods = { chili: &apos;chili con queso&apos; }
+{% set foods.chili = "guatamalan insanity pepper" %}
+{{ foods.chili }}
+// => guatamalan insanity pepper{% endraw %}</code></pre>
           </section>
           <hr class="divider">
 
           <!------------------ idocs_spaceless ------------------>
           <section id="idocs_spaceless">
-            <h2>reverse</h2>
+            <h2>spaceless</h2>
             <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L457">lib/wjst.js#L457</a></p>
-            <p>Reverse sort the input. This is an alias for <code class="JavaScript">{{ input|sort(true) }}.</code></p>
-            <h3>Returns</h3>
-            <p><code class="JavaScript">array</code>:Reversed array. The original input object is returned if it was not
-              an array.</p>
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/tags/spaceless.js"> lib/tags/spaceless.js</a></p>
+            <p>Attempts to remove whitespace between HTML tags. Use at your own risk.</code></p>
             <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}// val = [1, 2, 3];
-{{ val|reverse }}
-// => 3,2,1{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}{% spaceless %}
+  {% for num in foo %}
+  &lt;li&gt;{{ loop.index }}&lt;/li&gt;
+  {% endfor %}
+{% endspaceless %}
+// => &lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;&lt;li&gt;3&lt;/li&gt;{% endraw %}</code></pre>
           </section>
           <hr class="divider">
         </div>
