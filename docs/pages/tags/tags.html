@@ -21,6 +21,8 @@
   <link rel="stylesheet" type="text/css" href="/wjst/assets/vendor/highlight.js/styles/github.css" />
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" type="text/css" href="/wjst/assets/css/stylesheet.css" />
+
+  <link rel="stylesheet" type="text/css" href="/wjst/assets/sass/bootstrap/_reboot.scss" />
 </head>
 
 <body data-spy="scroll" data-target=".idocs-navigation" data-offset="125">
@@ -111,8 +113,8 @@
             </ul> -->
           </li>
 
-          <li class="nav-item"><a class="nav-link active" href="/filters">Filters</a>
-            <ul class="nav flex-column">
+          <li class="nav-item"><a class="nav-link" href="/filters">Filters</a>
+            <!-- <ul class="nav flex-column">
               <li class="nav-item"><a class="nav-link" href="#idocs_addslashes">addslashes</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_capitalize">capitalize</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_date">date</a></li>
@@ -136,11 +138,11 @@
               <li class="nav-item"><a class="nav-link" href="#idocs_upper">upper</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_url_encode">url_encode</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_url_decode">url_decode</a></li>
-            </ul>
+            </ul> -->
           </li>
 
-          <li class="nav-item"><a class="nav-link" href="/idocs-tags">Tags</a>
-            <!-- <ul class="nav flex-column">
+          <li class="nav-item"><a class="nav-link active" href="/tags">Tags</a>
+            <ul class="nav flex-column">
               <li class="nav-item"><a class="nav-link" href="#idocs_autoescape">autoescape</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_block">block</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_else">else</a></li>
@@ -156,7 +158,7 @@
               <li class="nav-item"><a class="nav-link" href="#idocs_raw_tag">raw</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_set">set</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_spaceless">spaceless</a></li>
-            </ul> -->
+            </ul>
           </li>
 
           <li class="nav-item"><a class="nav-link" href="/idocs-template-loaders">Template Loaders</a>
@@ -197,52 +199,368 @@
         <div class="container">
 
           <!-- Getting Started ============================ -->
-          <section id="idocs_Filters">
-            <h1>Filters</h1>
-            <p>The rendering of variables can be modified by filters. Filters are special functions that are applied after any object token in a variable block using the pipe character, for example: <code class="JavaScript">{%raw%}{{ names|join(', ') }}</code>.</p>
-            <p>Filters can also be chained together, one after another. In this case, we have a list of names in HTML tags that we want to remove, output together, and make title-cased:</p>
-            <pre><code class="JavaScript">{%raw%}// names = ['&lt;p>paul&lt;/p>', '&lt;p>jim&lt;/p>'];
-{{ names|striptags|join(', ')|title }}
-// => Paul, Jim{%endraw%}</code></pre>
-            <p>Wjst comes pre-loaded with a set of useful filters:</p>
+          <section id="idocs_Tags">
+            <h1>Tags</h1>
           </section>
-          <hr class="divider">
 
-          <!------------------ idocs_addslashes ------------------>
-          <section id="idocs_addslashes">
-            <h2>addslashes</h2>
+          <!------------------ idocs_autoescape ------------------>
+          <section id="idocs_autoescape">
+            <h2>autoescape</h2>
             <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L40">lib/wjst.js#L40</a></p>
-            <p>Backslash-escape characters that need to be escaped.</p>
-            <h3>Returns</h3>
-            <p><code class="JavaScript">{%raw%}*{%endraw%}</code>Backslash-escaped string.</p>
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/tags/autoescape.js">lib/tags/autoescape.js</a></p>
+            <p>Control auto-escaping of variable output from within your templates.</p>
+            <h3>Parameters</h3>
+            <div class="table-responsive">
+              <table class="table table-bordered table-dark table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Optional</th>
+                    <th scope="col">Default</th>
+                    <th scope="col">Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td scope="row"><code class="JavaScript">control</code></th>
+                    <th scope="row"><code class="JavaScript">boolean or string</code></th>
+                    <td></td>
+                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td>One of `true`, `false`, `"js"` or `"html"`.</td>
+                  </tr>
+                </tbody>
+              </table>
             <h3>Examples</h3>
-            <pre><code class="JavaScript">{%raw%}{{ "\"quoted string\""|addslashes }}
-// => \"quoted string\"{%endraw%}</code></pre>
+            <pre><code class="JavaScript">{%raw%}// myvar = '<foo>';
+{% autoescape true %}{{ myvar }}{% endautoescape %}
+// => <foo>
+{% autoescape false %}{{ myvar }}{% endautoescape %}
+// => <foo>{%endraw%}</code></pre>
           </section>
           <hr class="divider">
 
-          <!------------------ idocs_capitalize ------------------>
-          <section id="idocs_capitalize">
-            <h2>capitalize</h2>
+          <!------------------ idocs_block ------------------>
+          <section id="idocs_block">
+            <h2>block</h2>
             <p class="small-font">Sourse: <a
-              href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L59">lib/wjst.js#L59</a></p>
-          <p>Upper-case the first letter of the input and lower-case the rest.</p>
-          <h3>Returns</h3>
-          <p><code class="JavaScript">{%raw%}*{%endraw%}</code>Returns the same type as the input.</p>
-          <h3>Examples</h3>
-          <pre><code class="JavaScript">{%raw%}{{ "i like Burritos"|capitalize }}
-// => I like burritos{%endraw%}</code></pre>
-        </section>
-        <hr class="divider">
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/tags/block.js"> lib/tags/block.js</a></p>
+            <p>Defines a block in a template that can be overridden by a template extending this one and/or will override the current template's parent template block of the same name.</p>
+            <p>See <a href="#inheritance">Template Inheritance</a> for more information.</p>
+            <h3>Parameters</h3>
+            <div class="table-responsive">
+              <table class="table table-bordered table-dark table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Optional</th>
+                    <th scope="col">Default</th>
+                    <th scope="col">Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td scope="row"><code class="JavaScript">name</code></th>
+                    <th scope="row"><code class="JavaScript">literal</code></th>
+                    <td></td>
+                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td>Name of the block for use in parent and extended templates.</td>
+                  </tr>
+                </tbody>
+              </table>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">{%raw%}{% block body %}...{% endblock %}{%endraw%}</code></pre>
+          </section>
+          <hr class="divider">
 
-          <!------------------ idocs_date ------------------>
-          <section id="idocs_date">
+          <!------------------ idocs_else ------------------>
+          <section id="idocs_else">
+            <h2>else</h2>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/tags/else.js"> lib/tags/else.js</a></p>
+            <p>Used within an <code class="JavaScript">{%raw%}{% if %}{%endraw%}</code> tag, the code block following this tag up until <code class="JavaScript">{%raw%}{% endif %}{%endraw%}</code> will be rendered if the if statement returns false.</p>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}{% if false %}
+  statement1
+{% else %}
+  statement2
+{% endif %}
+// => statement2{% endraw %}</code></pre>
+          </section>
+          <hr class="divider">
+
+          <!------------------ idocs_elif ------------------>
+          <section id="idocs_elif">
+            <h2>elif</h2>
             <h2>date(format, offset, abbr)</h2>
             <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L86">lib/wjst.js#L86</a></p>
-            <p>Format a date or Date-compatible string.</p>
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/tags/elseif.js">lib/tags/elseif.js</a></p>
+            <p>Like <code class="JavaScript">{%raw%}{% else %}{%endraw%}</code>, except this tag can take more conditional statements.</p>
             <h3>Parameters</h3>
+            <div class="table-responsive">
+            <table class="table table-bordered table-dark table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Optional</th>
+                  <th scope="col">Default</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">conditional</code></th>
+                  <th scope="row"><code class="JavaScript">mixed</code></th>
+                  <td></td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Conditional statement that returns a truthy or falsy value.</td>
+                </tr>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}{% if false %}
+  Tacos
+{% elseif true %}
+  Burritos
+{% else %}
+  Churros
+{% endif %}
+// => Burritos{% endraw %}</code></pre>
+            </section>
+          <hr class="divider">
+
+          <!------------------ idocs_extends ------------------>
+          <section id="idocs_extends">
+            <h2>extends</h2>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/tags/extends.js">lib/tags/extends.js</a></p>
+            <p>Makes the current template extend a parent template. This tag must be the first item in your template.</p>
+            <p>See <a href="#inheritance">Template Inheritance</a> for more information.</p>
+            <h3>Parameters</h3>
+            <div class="table-responsive">
+            <table class="table table-bordered table-dark table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Optional</th>
+                  <th scope="col">Default</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">parentFile</code></th>
+                  <th scope="row"><code class="JavaScript">string</code></th>
+                  <td></td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Relative path to the file that this template extends.</td>
+                </tr>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+           <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}{% extends "./layout.html" %}{% endraw %}</code></pre>
+            </section>
+          <hr class="divider">
+
+          <!------------------ idocs_filter ------------------>
+          <section id="idocs_filter">
+            <h2>filter</h2>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/tags/filter.js">lib/tags/filter.js</a></p>
+            <p>Apply a filter to an entire block of template.</p>
+            <h3>Parameters</h3>
+            <div class="table-responsive">
+            <table class="table table-bordered table-dark table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Optional</th>
+                  <th scope="col">Default</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">filter</code></th>
+                  <th scope="row"><code class="JavaScript">function</code></th>
+                  <td></td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>The filter that should be applied to the contents of the tag.</td>
+                </tr>
+                </tr>
+              </tbody>
+            </table>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}{% filter uppercase %}oh hi, {{ name }}{% endfilter %}
+// => OH HI, PAUL{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}{% filter replace(".", "!", "g") %}Hi. My name is Paul.{% endfilter %}
+// => Hi! My name is Paul!{% endraw %}</code></pre>
+          </section>
+          <hr class="divider">
+
+          <!------------------ idocs_for ------------------>
+          <section id="idocs_for">
+            <h2>for</h2>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/tags/for.js">lib/tags/for.js</a></p>
+            <p>Loop over objects and arrays.</p>
+            <h3>Parameters</h3>
+            <div class="table-responsive">
+            <table class="table table-bordered table-dark table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Optional</th>
+                  <th scope="col">Default</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">key</code></th>
+                  <th scope="row"><code class="JavaScript">literal</code></th>
+                  <td>✓</td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>A shortcut to the index of the array or current key accessor.</td>
+                </tr>
+                </tr>
+                <tr>
+                  <tr>
+                    <th scope="row"><code class="JavaScript">variable</code></th>
+                    <th scope="row"><code class="JavaScript">literal</code></th>
+                    <td></td>
+                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td>The current value will be assigned to this variable name temporarily. The variable will be reset upon ending the for tag.</td>
+                  </tr>
+                </tr>
+                <tr>
+                  <tr>
+                    <th scope="row"><code class="JavaScript">in</code></th>
+                    <th scope="row"><code class="JavaScript">literal</code></th>
+                    <td></td>
+                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td>Literally, "in". This token is required.</td>
+                  </tr>
+                </tr>
+                <tr>
+                  <tr>
+                    <th scope="row"><code class="JavaScript">object</code></th>
+                    <th scope="row"><code class="JavaScript">object</code></th>
+                    <td></td>
+                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td>An enumerable object that will be iterated over.</td>
+                  </tr>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+            <h3>Returns</h3>
+            <p><code class="JavaScript">loop.index</code>:The current iteration of the loop (1-indexed)</p>
+            <p><code class="JavaScript">loop.index0</code>:The current iteration of the loop (0-indexed)</p>
+            <p><code class="JavaScript">loop.revindex</code>:The number of iterations from the end of the loop (1-indexed)</p>
+            <p><code class="JavaScript">loop.revindex0</code>:The number of iterations from the end of the loop (0-indexed)</p>
+            <p><code class="JavaScript">loop.key</code>:If the iterator is an object, this will be the key of the current item, otherwise it will be the same as the loop.index.</p>
+            <p><code class="JavaScript">loop.first</code>:True if the current object is the first in the object or array.</p>
+            <p><code class="JavaScript">loop.last</code>:True if the current object is the last in the object or array.</p>
+            <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}/// obj = { one: 'hi', two: 'bye' };
+{% for x in obj %}
+  {% if loop.first %}&lt;ul>{% endif %}
+    &lt;li>{{ loop.index }} - {{ loop.key }}: {{ x }}&lt;/li>
+  {% if loop.last %}&lt;/ul>{% endif %}
+{% endfor %}
+// => &lt;ul>
+//    &lt;li>1 - one: hi&lt;/li>
+//    &lt;li>2 - two: bye&lt;/li>
+//    &lt;/ul>{% endraw %}</code></pre>
+              <pre><code class="JavaScript">{% raw %}// arr = [1, 2, 3]
+// Reverse the array, shortcut the key/index to `key`
+{% for key, val in arr|reverse %}
+{{ key }} -- {{ val }}
+{% endfor %}
+// => 0 -- 3
+//    1 -- 2
+//    2 -- 1{% endraw %}</code></pre>
+          </section>
+          <hr class="divider">
+
+          <!------------------ idocs_if ------------------>
+          <section id="idocs_if">
+            <h2>if</h2>
+            <p class="small-font">Sourse: <a href="https://github.com/WebArtWork/wjst/blob/master/lib/tags/if.js">lib/tags/if.js</a></p>
+            <p>Used to create conditional statements in templates. Accepts most JavaScript valid comparisons.</p>
+            <p>Can be used in conjunction with <code class="JavaScript">{%raw%}{% elseif ... %}{%endraw%}</code> and <code class="JavaScript">{%raw%}{% else %}{%endraw%}</code> tags.</p>
+            <h3>Parameters</h3>
+            <div class="table-responsive">
+            <table class="table table-bordered table-dark table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Optional</th>
+                  <th scope="col">Default</th>
+                  <th scope="col">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">conditional</code></th>
+                  <th scope="row"><code class="JavaScript">mixed</code></th>
+                  <td></td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>Conditional statement that returns a truthy or falsy value.</td>
+                </tr>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+           <h3>Examples</h3>
+            <pre><code class="JavaScript">{% raw %}{% if x %}{% endif %}
+{% if !x %}{% endif %}
+{% if not x %}{% endif %}{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}{% if x and y %}{% endif %}
+{% if x && y %}{% endif %}
+{% if x or y %}{% endif %}
+{% if x || y %}{% endif %}
+{% if x || (y && z) %}{% endif %}{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}{% if x [operator] y %}
+  Operators: ==, !=, <, <=, >, >=, ===, !==
+{% endif %}{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}{% if x == 'five' %}
+  The operands can be also be string or number literals
+{% endif %}{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}{% if x|lower === 'tacos' %}
+  You can use filters on any operand in the statement.
+{% endif %}{% endraw %}</code></pre>
+            <pre><code class="JavaScript">{% raw %}{% if x in y %}
+  If x is a value that is present in y, this will return true.
+{% endif %}{% endraw %}</code></pre>
+          </section>
+          <hr class="divider">
+
+          <!------------------ idocs_import ------------------>
+          <section id="idocs_import">
+            <h2>json(indent)</h2>
+            <p class="small-font">Sourse: <a
+                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L319">lib/wjst.js#L319</a></p>
+            <p>Return a string representation of an JavaScript object.</p>
+            <p>Backwards compatible with wjst@0.x.x using `json_encode`.</p>
+            <h3>Parameters</h3>
+            <div class="table-responsive">
             <table class="table table-bordered table-dark table-striped">
               <thead>
                 <tr>
@@ -265,268 +583,42 @@
                 </tr>
               </tbody>
             </table>
+          </div>
             <h3>Returns</h3>
-            <p><code class="JavaScript">{%raw%}string{%endraw%}</code> A valid JSON string.</p>
+            <p><code class="JavaScript">string</code>:A valid JSON string.</p>
             <h3>Examples</h3>
-          <pre><code class="JavaScript">{% raw %}// val = { a: 'b' }
+            <pre><code class="JavaScript">{% raw %}// val = { a: 'b' }
 {{ val|json }}
 // => {"a":"b"}{% endraw %}</code></pre>
-          <pre><code class="JavaScript">{% raw %}// val = { a: 'b' }
+            <pre><code class="JavaScript">{% raw %}// val = { a: 'b' }
 {{ val|json(4) }}
 // => {
 //        "a": "b"
 //    }{% endraw %}</code></pre>
-</section>
-          <hr class="divider">
-
-          <!------------------ idocs_default ------------------>
-          <section id="idocs_default">
-            <h2>wjst.version</h2>
-            <h2>date(format, offset, abbr)</h2>
-            <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L86">lib/wjst.js#L86</a></p>
-            <p>Format a date or Date-compatible string.</p>
-            <h3>Parameters</h3>
-            <table class="table table-bordered table-dark table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Optional</th>
-                  <th scope="col">Default</th>
-                  <th scope="col">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">def</code></th>
-                  <th scope="row"><code class="JavaScript">*</code></th>
-                  <td>✓</td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Value to return if `input` is `undefined`, `null`, or `false`.</td>
-                </tr>
-                </tr>
-              </tbody>
-            </table>
-            <h3>Returns</h3>
-            <p><code class="JavaScript">{%raw%}*{%endraw%}</code>: `input` or `def` value.</p>
-            <h3>Examples</h3>
-          <pre><code class="JavaScript">{% raw %}{{ null_value|default('Tacos') }}
-// => Tacos{% endraw %}</code></pre>
-          <pre><code class="JavaScript">{% raw %}{{ "Burritos"|default("Tacos") }}
-// => Burritos{% endraw %}</code></pre>
           </section>
           <hr class="divider">
 
-          <!------------------ idocs_escape ------------------>
-          <section id="idocs_escape">
-            <h2>escape(type)</h2>
-            <h2>date(format, offset, abbr)</h2>
-            <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L145">lib/wjst.js#L145</a></p>
-            <p>Force escape the output of the variable. Optionally use `e` as a shortcut filter name. This filter will be applied by default if autoescape is turned on.</p>
-            <h3>Parameters</h3>
-            <table class="table table-bordered table-dark table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Optional</th>
-                  <th scope="col">Default</th>
-                  <th scope="col">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">type</code></th>
-                  <th scope="row"><code class="JavaScript">string</code></th>
-                  <td>✓</td>
-                  <th scope="row"><code class="JavaScript">'html'</code></th>
-                  <td>If you pass the string js in as the type, output will be escaped so that it is safe for JavaScript execution.</td>
-                </tr>
-                </tr>
-              </tbody>
-            </table>
-            <h3>Returns</h3>
-            <p><code class="JavaScript">{%raw%}string{%endraw%}</code>:Escaped string.</p>
-            <h3>Examples</h3>
-          <pre><code class="JavaScript">{% raw %}{{ "<blah>"|escape }}
-// => <blah>{% endraw %}</code></pre>
-          <pre><code class="JavaScript">{% raw %}{{ "<blah>"|e("js") }}
-// => \u003Cblah\u003E{% endraw %}</code></pre>
-          </section>
-          <hr class="divider">
-
-          <!------------------ idocs_first ------------------>
-          <section id="idocs_first">
-            <h2>first</h2>
-            <h2>date(format, offset, abbr)</h2>
-            <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L209">lib/wjst.js#L209</a></p>
-            <p>Get the first item in an array or character in a string. All other objects will attempt to return the first value available.</p>
-            <h3>Returns</h3>
-            <p><code class="JavaScript">{%raw%}*{%endraw%}</code>:The first item of the array or first character of the string input.</p>
-            <h3>Examples</h3>
-          <pre><code class="JavaScript">{% raw %}// my_arr = ['a', 'b', 'c']
-{{ my_arr|first }}
-// => a{% endraw %}</code></pre>
-          <pre><code class="JavaScript">{% raw %}// my_val = 'Tacos'
-{{ my_val|first }}
-// T{% endraw %}</code></pre>
-          </section>
-          <hr class="divider">
-
-          <!------------------ idocs_groupBy ------------------>
-          <section id="idocs_groupBy">
-            <h2>groupBy(key)</h2>
-            <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L240">lib/wjst.js#L240</a></p>
-            <p>Group an array of objects by a common key. If an array is not provided, the input value will be returned untouched.</p>
-            <h3>Parameters</h3>
-            <table class="table table-bordered table-dark table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Optional</th>
-                  <th scope="col">Default</th>
-                  <th scope="col">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">key</code></th>
-                  <th scope="row"><code class="JavaScript">string</code></th>
-                  <td></td>
-                  <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Key to group by.</td>
-                </tr>
-                </tr>
-              </tbody>
-            </table>
-            <h3>Returns</h3>
-            <p><code class="JavaScript">object:</code>Grouped arrays by given key.</p>
-            <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}// people = [{ age: 23, name: 'Paul' }, { age: 26, name: 'Jane' }, { age: 23, name: 'Jim' }];
-{% for agegroup in people|groupBy('age') %}
-&lt;h2>{{ loop.key }}&lt;/h2>
-&lt;ul>
-    {% for person in agegroup %}
-    &lt;li>{{ person.name }}&lt;/li>
-    {% endfor %}
-    &lt;/ul>
-{% endfor %}{% endraw %}</code></pre>
-          </section>
-          <hr class="divider">
-
-          <!------------------ idocs_join ------------------>
-          <section id="idocs_join">
-            <h2>join(glue)</h2>
-            <p class="small-font">Sourse: <a
-              href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L283">lib/wjst.js#L283</a></p>
-          <p>Join the input with a string.</p>
-          <h3>Parameters</h3>
-          <table class="table table-bordered table-dark table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Type</th>
-                <th scope="col">Optional</th>
-                <th scope="col">Default</th>
-                <th scope="col">Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-              <tr>
-                <th scope="row"><code class="JavaScript">glue</code></th>
-                <th scope="row"><code class="JavaScript">string</code></th>
-                <td></td>
-                <th scope="row"><code class="JavaScript">undefined</code></th>
-                <td>String value to join items together.</td>
-              </tr>
-              </tr>
-            </tbody>
-          </table>
-          <h3>Returns</h3>
-          <p><code class="JavaScript">string</code>:</p>
-          <h3>Examples</h3>
-          <pre><code class="JavaScript">{% raw %}// my_array = ['foo', 'bar', 'baz']
-{{ my_array|join(', ') }}
-// => foo, bar, baz{% endraw %}</code></pre>
-          <pre><code class="JavaScript">{% raw %}// my_key_object = { a: 'foo', b: 'bar', c: 'baz' }
-{{ my_key_object|join(' and ') }}
-// => foo and bar and baz{% endraw %}</code></pre>
-        </section>
-          <hr class="divider">
-
-          <!------------------ idocs_json ------------------>
-          <section id="idocs_json">
-            <h2>json(indent)</h2>
-            <p class="small-font">Sourse: <a
-              href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L319">lib/wjst.js#L319</a></p>
-          <p>Return a string representation of an JavaScript object.</p>
-          <p>Backwards compatible with wjst@0.x.x using `json_encode`.</p>
-          <h3>Parameters</h3>
-          <table class="table table-bordered table-dark table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Type</th>
-                <th scope="col">Optional</th>
-                <th scope="col">Default</th>
-                <th scope="col">Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-              <tr>
-                <th scope="row"><code class="JavaScript">indent</code></th>
-                <th scope="row"><code class="JavaScript">number</code></th>
-                <td>✓</td>
-                <th scope="row"><code class="JavaScript">undefined</code></th>
-                <td>Number of spaces to indent for pretty-formatting.</td>
-              </tr>
-              </tr>
-            </tbody>
-          </table>
-          <h3>Returns</h3>
-          <p><code class="JavaScript">string</code>:A valid JSON string.</p>
-          <h3>Examples</h3>
-          <pre><code class="JavaScript">{% raw %}// val = { a: 'b' }
-{{ val|json }}
-// => {"a":"b"}{% endraw %}</code></pre>
-          <pre><code class="JavaScript">{% raw %}// val = { a: 'b' }
-{{ val|json(4) }}
-// => {
-//        "a": "b"
-//    }{% endraw %}</code></pre>
-        </section>
-          <hr class="divider">
-
-          <!------------------ idocs_last ------------------>
-          <section id="idocs_last">
+          <!------------------ idocs_include ------------------>
+          <section id="idocs_include">
             <h2>last</h2>
             <p class="small-font">Sourse: <a
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L340">lib/wjst.js#L340</a></p>
-            <p>Get the last item in an array or character in a string. All other objects will attempt to return the last value available.</p>
+            <p>Get the last item in an array or character in a string. All other objects will attempt to return the last
+              value available.</p>
             <h3>Returns</h3>
             <p><code class="JavaScript">*</code>The last item of the array or last character of the string.input.</p>
             <h3>Examples</h3>
             <pre><code class="JavaScript">{% raw %}// my_arr = ['a', 'b', 'c']
 {{ my_arr|last }}
 // => c{% endraw %}</code></pre>
-              <pre><code class="JavaScript">{% raw %}// my_val = 'Tacos'
+            <pre><code class="JavaScript">{% raw %}// my_val = 'Tacos'
 {{ my_val|last }}
 // s{% endraw %}</code></pre>
           </section>
           <hr class="divider">
 
-          <!------------------ idocs_length ------------------>
-          <section id="idocs_length">
+          <!------------------ idocs_macro ------------------>
+          <section id="idocs_macro">
             <h2>length</h2>
             <p class="small-font">Sourse: <a
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L374">lib/wjst.js#L374</a></p>
@@ -546,8 +638,8 @@
           </section>
           <hr class="divider">
 
-          <!------------------ idocs_lower ------------------>
-          <section id="idocs_lower">
+          <!------------------ idocs_parent ------------------>
+          <section id="idocs_parent">
             <h2>lower</h2>
             <p class="small-font">Sourse: <a
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L400">lib/wjst.js#L400</a></p>
@@ -563,8 +655,8 @@
           </section>
           <hr class="divider">
 
-          <!------------------ idocs_raw ------------------>
-          <section id="idocs_raw">
+          <!------------------ idocs_raw_tag ------------------>
+          <section id="idocs_raw_tag">
             <h2>raw</h2>
             <p class="small-font">Sourse: <a
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L412">lib/wjst.js#L412</a></p>
@@ -572,13 +664,15 @@
           </section>
           <hr class="divider">
 
-          <!------------------ idocs_replace ------------------>
-          <section id="idocs_replace">
+          <!------------------ idocs_set ------------------>
+          <section id="idocs_set">
             <h2>replace(search, replacement, flags)</h2>
             <p class="small-font">Sourse: <a
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L441">lib/wjst.js#L441</a></p>
-            <p>Returns a new string with the matched search pattern replaced by the given replacement string. Uses JavaScript's built-in String.replace() method.</p>
+            <p>Returns a new string with the matched search pattern replaced by the given replacement string. Uses
+              JavaScript's built-in String.replace() method.</p>
             <h3>Parameters</h3>
+            <div class="table-responsive">
             <table class="table table-bordered table-dark table-striped">
               <thead>
                 <tr>
@@ -600,25 +694,27 @@
                 </tr>
                 </tr>
                 <tr>
-                  <tr>
-                    <th scope="row"><code class="JavaScript">replacement</code></th>
-                    <th scope="row"><code class="JavaScript">string</code></th>
-                    <td></td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
-                    <td>String to replace matched pattern.</td>
-                  </tr>
-                  </tr>
+                <tr>
+                  <th scope="row"><code class="JavaScript">replacement</code></th>
+                  <th scope="row"><code class="JavaScript">string</code></th>
+                  <td></td>
+                  <th scope="row"><code class="JavaScript">undefined</code></th>
+                  <td>String to replace matched pattern.</td>
+                </tr>
+                </tr>
                 <tr>
                 <tr>
                   <th scope="row"><code class="JavaScript">flags</code></th>
                   <th scope="row"><code class="JavaScript">string</code></th>
                   <td>✓</td>
                   <th scope="row"><code class="JavaScript">undefined</code></th>
-                  <td>Regular Expression flags. 'g': global match, 'i': ignore case, 'm': match over multiple lines.</td>
+                  <td>Regular Expression flags. 'g': global match, 'i': ignore case, 'm': match over multiple lines.
+                  </td>
                 </tr>
                 </tr>
               </tbody>
             </table>
+          </div>
             <h3>Returns</h3>
             <p><code class="JavaScript">string</code>:Replaced string.</p>
             <h3>Examples</h3>
@@ -634,175 +730,19 @@
           </section>
           <hr class="divider">
 
-          <!------------------ idocs_reverse ------------------>
-          <section id="idocs_reverse">
+          <!------------------ idocs_spaceless ------------------>
+          <section id="idocs_spaceless">
             <h2>reverse</h2>
             <p class="small-font">Sourse: <a
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L457">lib/wjst.js#L457</a></p>
             <p>Reverse sort the input. This is an alias for <code class="JavaScript">{{ input|sort(true) }}.</code></p>
             <h3>Returns</h3>
-            <p><code class="JavaScript">array</code>:Reversed array. The original input object is returned if it was not an array.</p>
+            <p><code class="JavaScript">array</code>:Reversed array. The original input object is returned if it was not
+              an array.</p>
             <h3>Examples</h3>
             <pre><code class="JavaScript">{% raw %}// val = [1, 2, 3];
 {{ val|reverse }}
 // => 3,2,1{% endraw %}</code></pre>
-          </section>
-          <hr class="divider">
-
-          <!------------------ idocs_safe ------------------>
-          <section id="idocs_safe">
-            <h2>safe</h2>
-            <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L472">lib/wjst.js#L472</a></p>
-            <p>Forces the input to not be auto-escaped. Use this only on content that you know is safe to be rendered on your page.</p>
-            <h3>Returns</h3>
-            <p><code class="JavaScript">*</code>:The input exactly how it was given, regardless of autoescaping status.</p>
-            <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}// my_var = "<p>Stuff</p>";
-{{ my_var|safe }}
-// => <p>Stuff</p>{% endraw %}</code></pre>
-          </section>
-          <hr class="divider">
-
-          <!------------------ idocs_sort ------------------>
-          <section id="idocs_sort">
-            <h2>sort(reverse)</h2>
-            <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L502">lib/wjst.js#L502</a></p>
-            <p>Sort the input in an ascending direction.</p>
-            <p>If given an object, will return the keys as a sorted array.</p>
-            <p>If given a string, each character will be sorted individually.</p>
-            <h3>Parameters</h3>
-            <table class="table table-bordered table-dark table-striped">
-              <thead>
-                <tr>
-                  <th scope="col">Name</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Optional</th>
-                  <th scope="col">Default</th>
-                  <th scope="col">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                <tr>
-                  <th scope="row"><code class="JavaScript">reverse</code></th>
-                  <th scope="row"><code class="JavaScript">boolean</code></th>
-                  <td>✓</td>
-                  <th scope="row"><code class="JavaScript">false</code></th>
-                  <td>Output is given reverse-sorted if true.</td>
-                </tr>
-                </tr>
-              </tbody>
-            </table>
-            <h3>Returns</h3>
-            <p><code class="JavaScript">*</code>:Sorted array;</p>
-            <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}// val = [2, 6, 4];
-{{ val|sort }}
-// => 2,4,6{% endraw %}</code></pre>
-            <pre><code class="JavaScript">{% raw %}// val = 'zaq';
-{{ val|sort }}
-// => aqz{% endraw %}</code></pre>
-            <pre><code class="JavaScript">{% raw %}// val = { bar: 1, foo: 2 }
-{{ val|sort(true) }}
-// => foo,bar{% endraw %}</code></pre>
-          </section>
-          <hr class="divider">
-
-<!------------------ idocs_striptags ------------------>
-          <section id="idocs_striptags">
-            <h2>striptags</h2>
-            <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L539">lib/wjst.js#L539</a></p>
-            <p>Strip HTML tags.</p>
-            <h3>Returns</h3>
-            <p><code class="JavaScript">*</code>:Returns the same object as the input, but with all string values stripped of tags.</p>
-            <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}// stuff = '<p>foobar</p>';
-{{ stuff|striptags }}
-// => foobar{% endraw %}</code></pre>
-          </section>
-          <hr class="divider">
-
-<!------------------ idocs_title ------------------>
-          <section id="idocs_title">
-            <h2>title</h2>
-            <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L564">lib/wjst.js#564</a></p>
-            <p>Capitalizes every word given and lower-cases all other letters.</p>
-            <h3>Returns</h3>
-            <p><code class="JavaScript">*</code>:Returns the same object as the input, but with all words in strings title-cased.</p>
-            <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}// my_str = 'this is soMe text';
-{{ my_str|title }}
-// => This Is Some Text{% endraw %}</code></pre>
-            <pre><code class="JavaScript">{% raw %}// my_arr = ['hi', 'this', 'is', 'an', 'array'];
-{{ my_arr|title|join(' ') }}
-// => Hi This Is An Array{% endraw %}</code></pre>
-          </section>
-          <hr class="divider">
-
-<!------------------ idocs_uniq ------------------>
-          <section id="idocs_uniq">
-            <h2>uniq</h2>
-            <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L586">lib/wjst.js#L586</a></p>
-            <p>Remove all duplicate items from an array.</p>
-            <h3>Returns</h3>
-            <p><code class="JavaScript">array</code>:Array with unique items. If input was not an array, the original item is returned untouched.</p>
-            <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}// my_arr = [1, 2, 3, 4, 4, 3, 2, 1];
-{{ my_arr|uniq|join(',') }}
-// => 1,2,3,4{% endraw %}</code></pre>
-          </section>
-          <hr class="divider">
-
-<!------------------ idocs_upper ------------------>
-          <section id="idocs_upper">
-            <h2>upper</h2>
-            <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L618">lib/wjst.js#L618</a></p>
-            <p>Convert the input to all uppercase letters. If an object or array is provided, all values will be uppercased.</p>
-            <h3>Returns</h3>
-            <p><code class="JavaScript">*</code>:Returns the same type as the input, with all strings upper-cased.</p>
-            <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}// my_str = 'tacos';
-{{ my_str|upper }}
-// => TACOS{% endraw %}</code></pre>
-            <pre><code class="JavaScript">{% raw %}// my_arr = ['tacos', 'burritos'];
-{{ my_arr|upper|join(' & ') }}
-// => TACOS & BURRITOS{% endraw %}</code></pre>
-          </section>
-          <hr class="divider">
-
-<!------------------ idocs_url_encode ------------------>
-          <section id="idocs_safe">
-            <h2>url_encode</h2>
-            <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L638">lib/wjst.js#L638</a></p>
-            <p>URL-encode a string. If an object or array is passed, all values will be URL-encoded.</p>
-            <h3>Returns</h3>
-            <p><code class="JavaScript">*</code>:URL-encoded string.</p>
-            <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}// my_str = 'param=1&anotherParam=2';
-{{ my_str|url_encode }}
-// => param%3D1%26anotherParam%3D2{% endraw %}</code></pre>
-          </section>
-          <hr class="divider">
-
-<!------------------ idocs_url_decode------------------>
-          <section id="idocs_safe">
-            <h2>url_decode</h2>
-            <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/filters.js#L657">lib/wjst.js#L657</a></p>
-            <p>URL-decode a string. If an object or array is passed, all values will be URL-decoded.</p>
-            <h3>Returns</h3>
-            <p><code class="JavaScript">*</code>:URL-decoded string.</p>
-            <h3>Examples</h3>
-            <pre><code class="JavaScript">{% raw %}// my_str = 'param%3D1%26anotherParam%3D2';
-{{ my_str|url_decode }}
-// => param=1&anotherParam=2{% endraw %}</code></pre>
           </section>
           <hr class="divider">
         </div>
