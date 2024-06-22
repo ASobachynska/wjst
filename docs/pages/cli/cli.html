@@ -161,21 +161,21 @@
             </ul> -->
           </li>
 
-          <li class="nav-item"><a class="nav-link active" href="#idocs-template-loaders">Template Loaders</a>
-            <ul class="nav flex-column">
+          <li class="nav-item"><a class="nav-link active" href="/loaders">Template Loaders</a>
+            <!-- <ul class="nav flex-column">
               <li class="nav-item"><a class="nav-link" href="#idocs_builtin">Built-Ins</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_custom_loaders">Custom Loaders</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_resolve">⤷ resolve</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_load">⤷ load</a></li>
-            </ul>
+            </ul> -->
           </li>
 
-          <li class="nav-item"><a class="nav-link" href="/cli">Command-Line</a>
-            <!-- <ul class="nav flex-column">
-              <li class="nav-item"><a class="nav-link" href="#idocs_installation_2">Installation</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#idocs-command-line">Command-Line</a>
+            <ul class="nav flex-column">
+              <li class="nav-item"><a class="nav-link" href="#idocs_installation_cli">Installation</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_usage">Usage</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_examples">Examples</a></li>
-            </ul> -->
+            </ul>
           </li>
 
           <li class="nav-item"><a class="nav-link" href="/idocs-browser-usage">Browser Usage</a></li>
@@ -199,102 +199,41 @@
         <div class="container">
 
           <!-- Getting Started ============================ -->
-          <section id="idocs-template-loaders">
+          <section id="idocs-command-line">
             <h1>Template Loaders</h1>
           </section>
 
-          <!------------------ idocs_builtin ------------------>
-          <section id="idocs_builtin">
-            <h2>Built-In Loaders</h2>
-            <h3>wjst.loaders.fs(basepath, encoding)</h3>
-            <p class="small-font">Sourse: <a
-                href="https://github.com/WebArtWork/wjst/blob/master/lib/loaders/filesystem.js">lib/loaders/filesystem.js</a>
-            </p>
-            <p>Loads templates from the file system.</p>
-            <h4>Arguments</h4>
-            <div class="table-responsive">
-              <table class="table table-bordered table-dark table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Optional</th>
-                    <th scope="col">Default</th>
-                    <th scope="col">Description</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td scope="row"><code class="JavaScript">basepath</code></th>
-                    <th scope="row"><code class="JavaScript">string</code></th>
-                    <td>✓</td>
-                    <th scope="row"><code class="JavaScript">''</code></th>
-                    <td>Path to the templates as string. Assigning this value allows you to use semi-absolute paths to
-                      templates instead of relative paths.</td>
-                  </tr>
-                  <tr>
-                    <td scope="row"><code class="JavaScript">encoding</code></th>
-                    <th scope="row"><code class="JavaScript">string</code></th>
-                    <td>✓</td>
-                    <th scope="row"><code class="JavaScript">'utf8'</code></th>
-                    <td>Template encoding.</td>
-                  </tr>
-                </tbody>
-              </table>
-              <pre><code class="JavaScript">{%raw%}wjst.setDefaults({ loader: wjst.loaders.fs() });{%endraw%}</code></pre>
-              <pre><code class="JavaScript">{%raw%}// Load Templates from a specific directory (does not require using relative paths in your templates)
-wjst.setDefaults({ loader: wjst.loaders.fs(__dirname + '/templates' )});{%endraw%}</code></pre>
-
-              <h3>wjst.loaders.memory(mapping, basepath)</h3>
-              <p class="small-font">Sourse: <a
-                  href="https://github.com/WebArtWork/wjst/blob/master/lib/loaders/memory.js">lib/loaders/memory.js</a></p>
-              <p>Loads templates from a provided object mapping.</p>
-              <h4>Arguments</h4>
-              <div class="table-responsive">
-                <table class="table table-bordered table-dark table-striped">
-                  <thead>
-                    <tr>
-                      <th scope="col">Name</th>
-                      <th scope="col">Type</th>
-                      <th scope="col">Optional</th>
-                      <th scope="col">Default</th>
-                      <th scope="col">Description</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td scope="row"><code class="JavaScript">mapping</code></th>
-                      <th scope="row"><code class="JavaScript">object</code></th>
-                      <td></td>
-                      <th scope="row"></th>
-                      <td>Hash object with template paths as keys and template sources as values.</td>
-                    </tr>
-                    <tr>
-                      <td scope="row"><code class="JavaScript">basepath</code></th>
-                      <th scope="row"><code class="JavaScript">string</code></th>
-                      <td>✓</td>
-                      <th scope="row"></th>
-                      <td>Path to the templates as string. Assigning this value allows you to use semi-absolute paths to templates instead of relative paths.</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <pre><code class="JavaScript">{%raw%}const templates = {
-  "layout": "{% block content %}{% endblock %}",
-  "home.html": "{% extends 'layout.html' %}{% block content %}...{% endblock %}"
-  };
-wjst.setDefaults({ loader: wjst.loaders.memory(templates) });{%endraw%}</code></pre>
+          <!------------------ idocs_installation_cli ------------------>
+          <section id="idocs_installation_cli">
+            <h2>Installation</h2>
+            <p class="lead">Via NPM:</p>
+              <pre><code class="JavaScript">{%raw%}$ npm install wjst --global{%endraw%}</code></pre>
           </section>
           <hr class="divider">
 
-          <!------------------ idocs_custom_loaders ------------------>
-          <section id="idocs_custom_loaders">
-            <h2>Custom Loaders</h2>
-            <p>Wjst is able to accept custom template loaders written by you, so that your templates can come from your favorite storage medium without needing to be part of the core library.</p>
-            <p>A template loader consists of two methods: <code class="JavaScript">resolve</code> and <code class="JavaScript">load</code>. Each method is used internally by Wjst to find and load the source of the template before attempting to parse and compile it.</p>
+          <!------------------ idocs_usage ------------------>
+          <section id="idocs_usage">
+            <h2>Usage</h2>
+            <pre><code class="JavaScript">{%raw%}$ wjst compile [file...] [options]
+$ wjst render [file...] [options]
+$ wjst run [file...] [options]{%endraw%}</code></pre>
+            <h3>Options</h3>
+            <pre><code class="JavaScript">{%raw%}-v, --version  Show the Wjst version number.
+-o, --output   Output location. [default: "stdout"]
+-h, --help     Show this help screen.
+-j, --json     Variable context as a JSON file.
+-c, --context  Variable context as a CommonJS-style file. Used only if option `j` is not provided.
+-m, --minify   Minify compiled functions with uglify-js
+--filters      Custom filters as a CommonJS-style file
+--tags         Custom tags as a CommonJS-style file
+--options      Customize Wjst's Options from a CommonJS-style file
+--wrap-start   Template wrapper beginning for "compile". [default: "var tpl = "]
+--wrap-end     Template wrapper end for "compile". [default: ";"]
+--method-name  Method name to set template to and run from. [default: "tpl"]{%endraw%}</code></pre>
           </section>
 
-          <!------------------ idocs_resolve ------------------>
-          <section id="idocs_resolve">
+          <!------------------ idocs_examples ------------------>
+          <section id="idocs_examples">
             <h3>⤷ resolve(to, from)</h3>
             <p>Resolves to to an absolute path or unique identifier. This is used for building correct, normalized, and absolute paths to a given template.</p>
             <p>Used within an <code class="JavaScript">{%raw%}{% if %}{%endraw%}</code> tag, the code block following
@@ -323,57 +262,6 @@ wjst.setDefaults({ loader: wjst.loaders.memory(templates) });{%endraw%}</code></
                     </tr>
                   </tbody>
                 </table>
-          </section>
-
-          <!------------------ idocs_load ------------------>
-          <section id="idocs_load">
-            <h3>⤷ load(identifier, cb)</h3>
-            <p>Loads a single template. Given a unique <code class="JavaScript">identifier</code> found by the <code class="JavaScript">resolve</code> method this should return the given template.</p>
-            <p>Like <code class="JavaScript">{%raw%}{% else %}{%endraw%}</code>, except this tag can take more
-              conditional statements.</p>
-              <h4>Arguments</h4>
-              <div class="table-responsive">
-                <table class="table table-bordered table-dark table-striped">
-                  <thead>
-                    <tr>
-                      <th scope="col">Name</th>
-                      <th scope="col">Type</th>
-                      <th scope="col">Description</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td scope="row"><code class="JavaScript">identifier</code></th>
-                      <th scope="row"><code class="JavaScript">string</code></th>
-                      <td>Unique identifier of a template (possibly an absolute path).</td>
-                    </tr>
-                    <tr>
-                      <td scope="row"><code class="JavaScript">cb</code></th>
-                      <th scope="row"><code class="JavaScript">function</code></th>
-                      <td>Asynchronous callback function. If not provided, this method should run synchronously.</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <h4>Examples</h4>
-                <pre><code class="JavaScript">{%raw%}// A theoretical memcached loader
-const path = require('path'),
-  Memcached = require('memcached');
-function memcachedLoader(locations, options) {
-  const memcached = new Memcached(locations, options);
-  return {
-    resolve: function (to, from) {
-      return path.resolve(from, to);
-    },
-    load: function (identifier, cb) {
-      memcached.get(identifier, function (err, data) {
-        // if (!data) { load from filesystem; }
-        cb(err, data);
-      });
-    }
-  };
-};
-// Tell wjst about the loader:
-wjst.setDefaults({ loader: memcachedLoader(['192.168.0.2']) });{%endraw%}</code></pre> 
           </section>
           <hr class="divider">
         </div>

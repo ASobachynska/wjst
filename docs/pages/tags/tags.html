@@ -170,7 +170,7 @@
             </ul> -->
           </li>
 
-          <li class="nav-item"><a class="nav-link" href="/idocs-command-line">Command-Line</a>
+          <li class="nav-item"><a class="nav-link" href="/cli">Command-Line</a>
             <!-- <ul class="nav flex-column">
               <li class="nav-item"><a class="nav-link" href="#idocs_installation_2">Installation</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_usage">Usage</a></li>
@@ -232,11 +232,11 @@
                 </tbody>
               </table>
             <h3>Examples</h3>
-            <pre><code class="JavaScript">{%raw%}// myvar = '<foo>';
+            <pre><code class="JavaScript">{%raw%}// myvar = '&lt;foo&gt;';
 {% autoescape true %}{{ myvar }}{% endautoescape %}
-// => <foo>
+// => &lt;foo&gt;
 {% autoescape false %}{{ myvar }}{% endautoescape %}
-// => <foo>{%endraw%}</code></pre>
+// => &lt;foo&gt;{%endraw%}</code></pre>
           </section>
           <hr class="divider">
 
@@ -246,7 +246,7 @@
             <p class="small-font">Sourse: <a
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/tags/block.js"> lib/tags/block.js</a></p>
             <p>Defines a block in a template that can be overridden by a template extending this one and/or will override the current template's parent template block of the same name.</p>
-            <p>See <a href="#inheritance">Template Inheritance</a> for more information.</p>
+            <p>See Template Inheritance for more information.</p>
             <h3>Parameters</h3>
             <div class="table-responsive">
               <table class="table table-bordered table-dark table-striped">
@@ -340,7 +340,7 @@
             <p class="small-font">Sourse: <a
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/tags/extends.js">lib/tags/extends.js</a></p>
             <p>Makes the current template extend a parent template. This tag must be the first item in your template.</p>
-            <p>See <a href="#inheritance">Template Inheritance</a> for more information.</p>
+            <p>See Template Inheritance for more information.</p>
             <h3>Parameters</h3>
             <div class="table-responsive">
             <table class="table table-bordered table-dark table-striped">
