@@ -212,12 +212,11 @@
 &lt;script src="myfile.js"&gt;&lt;/script&gt;{%endraw%}</code></pre>
               <li><p>Pre-run the template to prime Wjst's cache.</p></li>
               <pre><code class="JavaScript">{%raw%}wjst.run(myfile, {}, '/myfile.html');{%endraw%}</code></pre>
-             <p>Now, you are ready to render a template in-browser that can extend <pre><code class="JavaScript">myfile.html</code></p>
+              <li><p>Now, you are ready to render a template in-browser that can extend <code class="JavaScript">myfile.html</code></p></li>
               <pre><code class="JavaScript">{%raw%}const tpl = '{% extends "./myfile.html" %}{% block content %}{{ stuff }}{% endblock %}';
 const output = wjst.render(tpl, { filename: '/tpl', locals: { stuff: 'awesome' }});
 document.querySelector('#foo').innerHTML = output;{%endraw%}</code></pre>
             </ul>
-
           </section>
           <hr class="divider">
         </div>
