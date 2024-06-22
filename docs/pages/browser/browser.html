@@ -170,7 +170,7 @@
             </ul> -->
           </li>
 
-          <li class="nav-item"><a class="nav-link active" href="#idocs-command-line">Command-Line</a>
+          <li class="nav-item"><a class="nav-link" href="/cli">Command-Line</a>
             <ul class="nav flex-column">
               <li class="nav-item"><a class="nav-link" href="#idocs_installation_cli">Installation</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_usage">Usage</a></li>
@@ -178,7 +178,7 @@
             </ul>
           </li>
 
-          <li class="nav-item"><a class="nav-link" href="/idocs-browser-usage">Browser Usage</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#idocs-browser-usage">Browser Usage</a></li>
 
           <li class="nav-item"><a class="nav-link" href="/idocs-extending-wjst">Extending Wjst</a>
             <!-- <ul class="nav flex-column">
@@ -199,52 +199,25 @@
         <div class="container">
 
           <!-- Getting Started ============================ -->
-          <section id="idocs-command-line">
-            <h1>Template Loaders</h1>
-          </section>
+          <section id="idocs-browser-usage">
+            <h1>Wjst in the Browser</h1>
+            <p>Most of Wjst works in the browser in the same way that Wjst works within node.js. The only exception to this is that Wjst is unable to look up files by their path name, unless you directly tell Wjst what each template's path name is before hand.</p>
+            <p>In short, Wjst cannot resolve the directive <code class="JavaScript">{%raw%}{% extends "./myfile.html" %}{%endraw%}</code> and <code class="JavaScript">{%raw%}{% include "./myfile.html" %}{%endraw%}</code> without first having already been told about <code class="JavaScript">{%raw%}./myfile.html{%endraw%}</code>.</p>
+            <p>The best way to work around this is to first pre-compile your templates using the Wjst <a href="/cli">command-line interface</a>.</p>
+            <ul class="dot-list">
+              <li><p>Compile each template into JavaScript files. Assign a method name to the output that will be globally available in your browser.</p></li>
+              <pre><code class="JavaScript">{%raw%}$ wjst compile myfile.html --method-name=myfile > myfile.js{%endraw%}</code></pre>
+              <li><p>Include Wjst and your <code class="JavaScript">myfile.js</code> in your web page.</p></li>
+              <pre><code class="JavaScript">{%raw%}&lt;script src="wjst.min.js"&gt;&lt;/script&gt;
+&lt;script src="myfile.js"&gt;&lt;/script&gt;{%endraw%}</code></pre>
+              <li><p>Pre-run the template to prime Wjst's cache.</p></li>
+              <pre><code class="JavaScript">{%raw%}wjst.run(myfile, {}, '/myfile.html');{%endraw%}</code></pre>
+             <p>Now, you are ready to render a template in-browser that can extend <pre><code class="JavaScript">myfile.html</code></p>
+              <pre><code class="JavaScript">{%raw%}const tpl = '{% extends "./myfile.html" %}{% block content %}{{ stuff }}{% endblock %}';
+const output = wjst.render(tpl, { filename: '/tpl', locals: { stuff: 'awesome' }});
+document.querySelector('#foo').innerHTML = output;{%endraw%}</code></pre>
+            </ul>
 
-          <!------------------ idocs_installation_cli ------------------>
-          <section id="idocs_installation_cli">
-            <h2>Installation</h2>
-            <p class="lead">Via NPM:</p>
-              <pre><code class="JavaScript">{%raw%}$ npm install wjst --global{%endraw%}</code></pre>
-          </section>
-          <hr class="divider">
-
-          <!------------------ idocs_usage ------------------>
-          <section id="idocs_usage">
-            <h2>Usage</h2>
-            <pre><code class="JavaScript">{%raw%}$ wjst compile [file...] [options]
-$ wjst render [file...] [options]
-$ wjst run [file...] [options]{%endraw%}</code></pre>
-            <h3>Options</h3>
-            <pre><code class="JavaScript">{%raw%}-v, --version  Show the Wjst version number.
--o, --output   Output location. [default: "stdout"]
--h, --help     Show this help screen.
--j, --json     Variable context as a JSON file.
--c, --context  Variable context as a CommonJS-style file. Used only if option `j` is not provided.
--m, --minify   Minify compiled functions with uglify-js
---filters      Custom filters as a CommonJS-style file
---tags         Custom tags as a CommonJS-style file
---options      Customize Wjst's Options from a CommonJS-style file
---wrap-start   Template wrapper beginning for "compile". [default: "var tpl = "]
---wrap-end     Template wrapper end for "compile". [default: ";"]
---method-name  Method name to set template to and run from. [default: "tpl"]{%endraw%}</code></pre>
-          </section>
-
-          <!------------------ idocs_examples ------------------>
-          <section id="idocs_examples">
-            <h2>Usage</h2>
-            <p>Render a single file:</p>
-            <pre><code class="JavaScript">{%raw%}$ wjst render ./index.html{%endraw%}</code></pre>
-            <p>Compile and cache a template into a renderable function and minify the output with uglify-js:</p>
-            <pre><code class="JavaScript">{%raw%}$ wjst compile ./index.html -m > ./cache/index.js{%endraw%}</code></pre>
-            <p>Run and build the previously cached template:</p>
-            <pre><code class="JavaScript">{%raw%}$ wjst run ./cache/index.js{%endraw%}</code></pre>
-            <p>Import a JSON file as the variable context for rendering a template:</p>
-            <pre><code class="JavaScript">{%raw%}$ wjst render ./index.html -j ./index.json{%endraw%}</code></pre>
-            <p>Make your template an AMD module:</p>
-            <pre><code class="JavaScript">{%raw%}$ wjst compile ./index.html --wrap-start="define(function () { return " --wrap-end="; });"{%endraw%}</code></pre>
           </section>
           <hr class="divider">
         </div>
