@@ -221,7 +221,7 @@
                 <tbody>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">autoescape</code></th>
+                    <td scope="row"><code class="JavaScript">autoescape</code></td>
                     <td>boolean</td>
                     <td>Controls whether or not variable output will automatically be escaped for safe HTML output.
                       Defaults to <code class="JavaScript">true</code>. Functions executed in variable statements will
@@ -230,7 +230,7 @@
                   </tr>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">varControls</code></th>
+                    <td scope="row"><code class="JavaScript">varControls</code></td>
                     <td>array</td>
                     <td>Open and close controls for variables. Defaults to <code
                         class="JavaScript">{%raw%}['{{', '}}']{%endraw%}</code>.</td>
@@ -238,7 +238,7 @@
                   </tr>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">tagControls</code></th>
+                    <td scope="row"><code class="JavaScript">tagControls</code></td>
                     <td>array</td>
                     <td>Open and close controls for tags. Defaults to <code
                         class="JavaScript">{%raw%}['{%', '%}']{%endraw%}</code>.</td>
@@ -246,7 +246,7 @@
                   </tr>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">cmtControls</code></th>
+                    <td scope="row"><code class="JavaScript">cmtControls</code></td>
                     <td>array</td>
                     <td>Open and close controls for comments. Defaults to <code
                         class="JavaScript">{%raw%}['{#', '#}']{%endraw%}</code>.</td>
@@ -254,14 +254,14 @@
                   </tr>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">locals</code></th>
+                    <td scope="row"><code class="JavaScript">locals</code></td>
                     <td>object</td>
                     <td>Default variable context to be passed to <b>all</b> templates.</td>
                   </tr>
                   </tr>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">cache</code></th>
+                    <td scope="row"><code class="JavaScript">cache</code></td>
                     <td>CacheOptions</td>
                     <td>Cache control for templates. Defaults to saving in <code
                         class="JavaScript">{%raw%}'memory'{%endraw%}</code>. Send <code
@@ -272,7 +272,7 @@
                   </tr>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">loader</code></th>
+                    <td scope="row"><code class="JavaScript">loader</code></td>
                     <td>TemplateLoader</td>
                     <td>The method that Wjst will use to load templates. Defaults to <code
                         class="JavaScript">{%raw%}wjst.loaders.fs{%endraw%}</code>.</td>
@@ -362,10 +362,10 @@ wjst.setDefaults({ loader: wjst.loaders.memory({
                 <tbody>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">options</code></th>
-                    <th scope="row"><code class="JavaScript">WjstOpts</code></th>
+                    <td scope="row"><code class="JavaScript">options</code></td>
+                    <td scope="row"><code class="JavaScript">WjstOpts</code></td>
                     <td>✓</td>
-                    <th scope="row"><code class="JavaScript">{}</code></th>
+                    <td scope="row"><code class="JavaScript">{}</code></td>
                     <td>Wjst options object.</td>
                   </tr>
                   </tr>
@@ -406,10 +406,10 @@ wjst.setDefaults({ loader: wjst.loaders.memory({
                 <tbody>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">offset</code></th>
-                    <th scope="row"><code class="JavaScript">number</code></th>
+                    <td scope="row"><code class="JavaScript">offset</code></td>
+                    <td scope="row"><code class="JavaScript">number</code></td>
                     <td></td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td scope="row"><code class="JavaScript">undefined</code></td>
                     <td>Offset from GMT, in minutes.</td>
                   </tr>
                   </tr>
@@ -442,10 +442,10 @@ wjst.setDefaults({ loader: wjst.loaders.memory({
                 <tbody>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">opts</code></th>
-                    <th scope="row"><code class="JavaScript">WjstOpts</code></th>
+                    <td scope="row"><code class="JavaScript">opts</code></td>
+                    <td scope="row"><code class="JavaScript">WjstOpts</code></td>
                     <td>✓</td>
-                    <th scope="row"><code class="JavaScript">{}</code></th>
+                    <td scope="row"><code class="JavaScript">{}</code></td>
                     <td>Wjst options object.</td>
                   </tr>
                   </tr>
@@ -485,20 +485,20 @@ wjst.render('Tacos are <%= tacos =>!', { locals: { tacos: 'delicious' }});
                 <tbody>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">name</code></th>
-                    <th scope="row"><code class="JavaScript">string</code></th>
+                    <td scope="row"><code class="JavaScript">name</code></td>
+                    <td scope="row"><code class="JavaScript">string</code></td>
                     <td></td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td scope="row"><code class="JavaScript">undefined</code></td>
                     <td>Name of filter, used in templates. <b>Will</b> overwrite previously defined filters, if using
                       the same name.</td>
                   </tr>
                   </tr>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">method</code></th>
-                    <th scope="row"><code class="JavaScript">function</code></th>
+                    <td scope="row"><code class="JavaScript">method</code></td>
+                    <td scope="row"><code class="JavaScript">function</code></td>
                     <td></td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td scope="row"><code class="JavaScript">undefined</code></td>
                     <td>Function that acts against the input. See Custom Filters for more information.</td>
                   </tr>
                   </tr>
@@ -539,46 +539,46 @@ wjst.setFilter('replaceMs', replaceMs);
                 <tbody>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">name</code></th>
-                    <th scope="row"><code class="JavaScript">string</code></th>
+                    <td scope="row"><code class="JavaScript">name</code></td>
+                    <td scope="row"><code class="JavaScript">string</code></td>
                     <td></td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td scope="row"><code class="JavaScript">undefined</code></td>
                     <td>Tag name.</td>
                   </tr>
                   </tr>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">parse</code></th>
-                    <th scope="row"><code class="JavaScript">function</code></th>
+                    <td scope="row"><code class="JavaScript">parse</code></td>
+                    <td scope="row"><code class="JavaScript">function</code></td>
                     <td></td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td scope="row"><code class="JavaScript">undefined</code></td>
                     <td>Method for parsing tokens.</td>
                   </tr>
                   </tr>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">compile</code></th>
-                    <th scope="row"><code class="JavaScript">function</code></th>
+                    <td scope="row"><code class="JavaScript">compile</code></td>
+                    <td scope="row"><code class="JavaScript">function</code></td>
                     <td></td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td scope="row"><code class="JavaScript">undefined</code></td>
                     <td>Method for compiling renderable output.</td>
                   </tr>
                   </tr>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">ends</code></th>
-                    <th scope="row"><code class="JavaScript">boolean</code></th>
+                    <td scope="row"><code class="JavaScript">ends</code></td>
+                    <td scope="row"><code class="JavaScript">boolean</code></td>
                     <td>✓</td>
-                    <th scope="row"><code class="JavaScript">false</code></th>
+                    <td scope="row"><code class="JavaScript">false</code></td>
                     <td>Whether or not this tag requires an <i>end</i> tag.</td>
                   </tr>
                   </tr>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">parse</code></th>
-                    <th scope="row"><code class="JavaScript">function</code></th>
+                    <td scope="row"><code class="JavaScript">parse</code></td>
+                    <td scope="row"><code class="JavaScript">function</code></td>
                     <td>✓</td>
-                    <th scope="row"><code class="JavaScript">false</code></th>
+                    <td scope="row"><code class="JavaScript">false</code></td>
                     <td>If false, this tag will not be compiled outside of <code class="JavaScript">block</code> tags
                       when extending a parent template.</td>
                   </tr>
@@ -620,19 +620,19 @@ wjst.setTag('tacos', tacotag.parse, tacotag.compile, tacotag.ends, tacotag.block
                 <tbody>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">name</code></th>
-                    <th scope="row"><code class="JavaScript">string</code></th>
+                    <td scope="row"><code class="JavaScript">name</code></td>
+                    <td scope="row"><code class="JavaScript">string</code></td>
                     <td></td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td scope="row"><code class="JavaScript">undefined</code></td>
                     <td>Tag name.</td>
                   </tr>
                   </tr>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">object</code></th>
-                    <th scope="row"><code class="JavaScript">*</code></th>
+                    <td scope="row"><code class="JavaScript">object</code></td>
+                    <td scope="row"><code class="JavaScript">*</code></td>
                     <td></td>
-                    <th scope="row"><code class="JavaScript">false</code></th>
+                    <td scope="row"><code class="JavaScript">false</code></td>
                     <td>The method, value, or object that should be available via the given name.</td>
                   </tr>
                   </tr>
@@ -676,19 +676,19 @@ wjst.setTag('tacos', tacotag.parse, tacotag.compile, tacotag.ends, tacotag.block
                 <tbody>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">source</code></th>
-                    <th scope="row"><code class="JavaScript">string</code></th>
+                    <td scope="row"><code class="JavaScript">source</code></td>
+                    <td scope="row"><code class="JavaScript">string</code></td>
                     <td></td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td scope="row"><code class="JavaScript">undefined</code></td>
                     <td>Wjst template source string.</td>
                   </tr>
                   </tr>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">options</code></th>
-                    <th scope="row"><code class="JavaScript">WjstOpts</code></th>
+                    <td scope="row"><code class="JavaScript">options</code></td>
+                    <td scope="row"><code class="JavaScript">WjstOpts</code></td>
                     <td>✓</td>
-                    <th scope="row"><code class="JavaScript">{}</code></th>
+                    <td scope="row"><code class="JavaScript">{}</code></td>
                     <td>Wjst options object.</td>
                   </tr>
                   </tr>
@@ -740,19 +740,19 @@ In order to render a pre-compiled template, you must have access to filters and 
                 <tbody>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">source</code></th>
-                    <th scope="row"><code class="JavaScript">string</code></th>
+                    <td scope="row"><code class="JavaScript">source</code></td>
+                    <td scope="row"><code class="JavaScript">string</code></td>
                     <td></td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td scope="row"><code class="JavaScript">undefined</code></td>
                     <td>Wjst template source string.</td>
                   </tr>
                   </tr>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">options</code></th>
-                    <th scope="row"><code class="JavaScript">WjstOpts</code></th>
+                    <td scope="row"><code class="JavaScript">options</code></td>
+                    <td scope="row"><code class="JavaScript">WjstOpts</code></td>
                     <td>✓</td>
-                    <th scope="row"><code class="JavaScript">{}</code></th>
+                    <td scope="row"><code class="JavaScript">{}</code></td>
                     <td>Wjst options object.</td>
                   </tr>
                   </tr>
@@ -789,28 +789,28 @@ In order to render a pre-compiled template, you must have access to filters and 
                 <tbody>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">pathName</code></th>
-                    <th scope="row"><code class="JavaScript">string</code></th>
+                    <td scope="row"><code class="JavaScript">pathName</code></td>
+                    <td scope="row"><code class="JavaScript">string</code></td>
                     <td></td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td scope="row"><code class="JavaScript">undefined</code></td>
                     <td>File location.</td>
                   </tr>
                   </tr>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">locals</code></th>
-                    <th scope="row"><code class="JavaScript">object</code></th>
+                    <td scope="row"><code class="JavaScript">locals</code></td>
+                    <td scope="row"><code class="JavaScript">object</code></td>
                     <td>✓</td>
-                    <th scope="row"><code class="JavaScript">{}</code></th>
+                    <td scope="row"><code class="JavaScript">{}</code></td>
                     <td>Template variable context.</td>
                   </tr>
                   </tr>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">cb</code></th>
-                    <th scope="row"><code class="JavaScript">Function</code></th>
+                    <td scope="row"><code class="JavaScript">cb</code></td>
+                    <td scope="row"><code class="JavaScript">Function</code></td>
                     <td>✓</td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td scope="row"><code class="JavaScript">undefined</code></td>
                     <td>Asyncronous callback function. If not provided, compileFile will run syncronously.</td>
                   </tr>
                   </tr>
@@ -852,19 +852,19 @@ In order to render a pre-compiled template, you must have access to filters and 
                 <tbody>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">source</code></th>
-                    <th scope="row"><code class="JavaScript">string</code></th>
+                    <td scope="row"><code class="JavaScript">source</code></td>
+                    <td scope="row"><code class="JavaScript">string</code></td>
                     <td></td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td scope="row"><code class="JavaScript">undefined</code></td>
                     <td>Wjst template source string.</td>
                   </tr>
                   </tr>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">options</code></th>
-                    <th scope="row"><code class="JavaScript">WjstOpts</code></th>
+                    <td scope="row"><code class="JavaScript">options</code></td>
+                    <td scope="row"><code class="JavaScript">WjstOpts</code></td>
                     <td>✓</td>
-                    <th scope="row"><code class="JavaScript">{}</code></th>
+                    <td scope="row"><code class="JavaScript">{}</code></td>
                     <td>Wjst options object.</td>
                   </tr>
                   </tr>
@@ -910,28 +910,28 @@ When compiling a source string, a file path should be specified in the options o
                 <tbody>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">pathname</code></th>
-                    <th scope="row"><code class="JavaScript">string</code></th>
+                    <td scope="row"><code class="JavaScript">pathname</code></td>
+                    <td scope="row"><code class="JavaScript">string</code></td>
                     <td></td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td scope="row"><code class="JavaScript">undefined</code></td>
                     <td>File location.</td>
                   </tr>
                   </tr>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">options</code></th>
-                    <th scope="row"><code class="JavaScript">WjstOpts</code></th>
+                    <td scope="row"><code class="JavaScript">options</code></td>
+                    <td scope="row"><code class="JavaScript">WjstOpts</code></td>
                     <td>✓</td>
-                    <th scope="row"><code class="JavaScript">{}</code></th>
+                    <td scope="row"><code class="JavaScript">{}</code></td>
                     <td>Wjst options object.</td>
                   </tr>
                   </tr>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">cb</code></th>
-                    <th scope="row"><code class="JavaScript">Function</code></th>
+                    <td scope="row"><code class="JavaScript">cb</code></td>
+                    <td scope="row"><code class="JavaScript">Function</code></td>
                     <td>✓</td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td scope="row"><code class="JavaScript">undefined</code></td>
                     <td>Asyncronous callback function. If not provided, compileFile will run syncronously.</td>
                   </tr>
                   </tr>
@@ -978,28 +978,28 @@ When compiling a source string, a file path should be specified in the options o
                 <tbody>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">tpl</code></th>
-                    <th scope="row"><code class="JavaScript">function</code></th>
+                    <td scope="row"><code class="JavaScript">tpl</code></td>
+                    <td scope="row"><code class="JavaScript">function</code></td>
                     <td></td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td scope="row"><code class="JavaScript">undefined</code></td>
                     <td>Pre-compiled Wjst template function. Use the Wjst CLI to compile your templates.</td>
                   </tr>
                   </tr>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">locals</code></th>
-                    <th scope="row"><code class="JavaScript">object</code></th>
+                    <td scope="row"><code class="JavaScript">locals</code></td>
+                    <td scope="row"><code class="JavaScript">object</code></td>
                     <td>✓</td>
-                    <th scope="row"><code class="JavaScript">{}</code></th>
+                    <td scope="row"><code class="JavaScript">{}</code></td>
                     <td>Template variable context.</td>
                   </tr>
                   </tr>
                   <tr>
                   <tr>
-                    <th scope="row"><code class="JavaScript">filepath</code></th>
-                    <th scope="row"><code class="JavaScript">string</code></th>
+                    <td scope="row"><code class="JavaScript">filepath</code></td>
+                    <td scope="row"><code class="JavaScript">string</code></td>
                     <td>✓</td>
-                    <th scope="row"><code class="JavaScript">undefined</code></th>
+                    <td scope="row"><code class="JavaScript">undefined</code></td>
                     <td>Filename used for caching the template.</td>
                   </tr>
                   </tr>

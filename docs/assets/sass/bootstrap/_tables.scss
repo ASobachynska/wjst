@@ -112,7 +112,7 @@
 .table {
   .thead-dark {
     th {
-      color: $table-dark-color;
+      color: #f8f9fa;
       background-color: $table-dark-bg;
       border-color: $table-dark-border-color;
     }
@@ -128,7 +128,7 @@
 }
 
 .table-dark {
-  color: $table-dark-color;
+  color: #f8f9fa;
   background-color: $table-dark-bg;
 
   th,
