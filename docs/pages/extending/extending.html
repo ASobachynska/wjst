@@ -184,10 +184,10 @@
             <ul class="nav flex-column">
               <li class="nav-item"><a class="nav-link" href="#idocs_custom_filters">Custom Filters</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_custom_tags">Custom Tags</a></li>
-              <li class="nav-item"><a class="nav-link" href="#idocs_parse">parse</a></li>
-              <li class="nav-item"><a class="nav-link" href="#idocs_compile">compile</a></li>
-              <li class="nav-item"><a class="nav-link" href="#idocs_ends">ends</a></li>
-              <li class="nav-item"><a class="nav-link" href="#idocs_blockLevel">blockLevel</a></li>
+              <li class="nav-item"><a class="nav-link" href="#idocs_parse">⤷ parse</a></li>
+              <li class="nav-item"><a class="nav-link" href="#idocs_compile">⤷ compile</a></li>
+              <li class="nav-item"><a class="nav-link" href="#idocs_ends">⤷ ends</a></li>
+              <li class="nav-item"><a class="nav-link" href="#idocs_blockLevel">⤷ blockLevel</a></li>
               <li class="nav-item"><a class="nav-link" href="#idocs_token_types">Token Types</a></li>
             </ul>
           </li>
@@ -201,6 +201,10 @@
           <!-- Getting Started ============================ -->
           <section id="extending">
             <h1>Extending Wjst</h1>
+          </section>
+
+          <!------------------ idocs_custom_filters ------------------>
+          <section id="idocs_custom_filters">
             <h2>Custom Filters</h2>
             <p>Filters are simply functions that perform transformations on their first input argument.</p>
             <p>Filters are run at render time, so they may not directly modify the compiled template structure in any
@@ -223,18 +227,18 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td scope="row"><code class="JavaScript">input</code></th>
+                    <th scope="row"><code class="JavaScript">input</code></th>
                     <th scope="row"><code class="JavaScript">*</code></th>
-                    <td></td>
+                    <th></th>
                     <th scope="row"><code class="JavaScript">undefined</code></th>
-                    <td>Input argument, automatically sent from Wjst's built-in parser.</td>
+                    <th>Input argument, automatically sent from Wjst's built-in parser.</th>
                   </tr>
                   <tr>
-                    <td scope="row"><code class="JavaScript">args</code></th>
+                    <th scope="row"><code class="JavaScript">args</code></th>
                     <th scope="row"><code class="JavaScript">*</code></th>
-                    <td>✓</td>
+                    <th>✓</th>
                     <th scope="row"><code class="JavaScript">undefined</code></th>
-                    <td>All other arguments are defined by the Filter author.</td>
+                    <th>All other arguments are defined by the Filter author.</th>
                   </tr>
                 </tbody>
               </table>
@@ -250,8 +254,124 @@ wjst.setFilter('foobar', function (input, idx) {
 function bazbop (input) { return input; }
 bazbop.safe = true;
 wjst.setFilter('bazbop', bazbop);
-// => {{ "<p>"|bazbop }}
-// => <p>{%endraw%}</code></pre>
+// => {{ "&lt;p&gt;"|bazbop }}
+// => &lt;p&gt;{%endraw%}</code></pre>
+          </section>
+          <hr class="divider">
+
+          <!------------------ idocs_custom_tags ------------------>
+          <section id="idocs_custom_tags">
+            <h2>Custom Tags</h2>
+            <p>Wjst can be extended to handle custom tags that will perform operations on full blocks of your templates. Use  <a href="/api/#setTag"><code class="JavaScript">wjst.setTag(name, parse, compile, ends, blockLevel)</code></a> to add your custom tag.</p>
+            <p>All of Wjst's tags are written using the same api (with a few exceptions for core modules, like <code class="JavaScript">extends</code> and <code class="JavaScript">block</code>). View a tag's source to see more examples to write your own custom tags.</p>
+            <h3></h3>
+          </section>
+          <hr class="divider">
+
+           <!------------------ idocs_parse ------------------>
+           <section id="idocs_parse">
+            <h3>parse(str, line, parser, types, stack, options, wjst)</h3>
+            <p>Define custom parsing methods for your tag.</p>
+            <h4>Arguments</h4>
+              <div class="table-responsive">
+                <table class="table table-bordered table-dark table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Type</th>
+                      <th scope="col">Optional</th>
+                      <th scope="col">Default</th>
+                      <th scope="col">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td scope="row"><code class="JavaScript">str</code></td>
+                      <td scope="row"><code class="JavaScript">string</code></td>
+                      <td></td>
+                      <td scope="row"><code class="JavaScript">undefined</code></td>
+                      <td>The full token string of the tag.</td>
+                    </tr>
+                    <tr>
+                      <td scope="row"><code class="JavaScript">line</code></td>
+                      <td scope="row"><code class="JavaScript">number</code></td>
+                      <td></td>
+                      <td scope="row"><code class="JavaScript">undefined</code></td>
+                      <td>The line number that this tag appears on.</td>
+                    </tr>
+                    <tr>
+                      <td scope="row"><code class="JavaScript">parser</code></td>
+                      <td scope="row"><code class="JavaScript">TokenParser</code></td>
+                      <td></td>
+                      <td scope="row"><code class="JavaScript">undefined</code></td>
+                      <td>A TokenParser instance.</td>
+                    </tr>
+                    <tr>
+                      <td scope="row"><code class="JavaScript">types</code></td>
+                      <td scope="row"><code class="JavaScript">TYPES</code></td>
+                      <td></td>
+                      <td scope="row"><code class="JavaScript">undefined</code></td>
+                      <td>Lexer token type enum.</td>
+                    </tr>
+                    <tr>
+                      <td scope="row"><code class="JavaScript">stack</code></td>
+                      <td scope="row"><code class="JavaScript">TagToken[]</code></td>
+                      <td></td>
+                      <td scope="row"><code class="JavaScript">undefined</code></td>
+                      <td>The current stack of open tags.</td>
+                    </tr>
+                    <tr>
+                      <td scope="row"><code class="JavaScript">options</code></td>
+                      <td scope="row"><code class="JavaScript">WjstOpts</code></td>
+                      <td></td>
+                      <td scope="row"><code class="JavaScript">undefined</code></td>
+                      <td>Wjst Options Object.</td>
+                    </tr>
+                    <tr>
+                      <td scope="row"><code class="JavaScript">wjst</code></td>
+                      <td scope="row"><code class="JavaScript">object</code></td>
+                      <td></td>
+                      <td scope="row"><code class="JavaScript">undefined</code></td>
+                      <td>The Wjst instance (gives acces to loaders, parsers, etc)</td>
+                    </tr>
+                  </tbody>
+                </table>
+          </section>
+          <hr class="divider">
+
+           <!------------------ idocs_compile ------------------>
+           <section id="idocs_compile">
+            <h2>Custom Tags</h2>
+            <p>Wjst can be extended to handle custom tags that will perform operations on full blocks of your templates. Use  <a href="/api/#setTag"><code class="JavaScript">wjst.setTag(name, parse, compile, ends, blockLevel)</code></a> to add your custom tag.</p>
+            <p>All of Wjst's tags are written using the same api (with a few exceptions for core modules, like <code class="JavaScript">extends</code> and <code class="JavaScript">block</code>). View a tag's source to see more examples to write your own custom tags.</p>
+            <h3></h3>
+          </section>
+          <hr class="divider">
+
+           <!------------------ idocs_ends ------------------>
+           <section id="idocs_ends">
+            <h2>Custom Tags</h2>
+            <p>Wjst can be extended to handle custom tags that will perform operations on full blocks of your templates. Use  <a href="/api/#setTag"><code class="JavaScript">wjst.setTag(name, parse, compile, ends, blockLevel)</code></a> to add your custom tag.</p>
+            <p>All of Wjst's tags are written using the same api (with a few exceptions for core modules, like <code class="JavaScript">extends</code> and <code class="JavaScript">block</code>). View a tag's source to see more examples to write your own custom tags.</p>
+            <h3></h3>
+          </section>
+          <hr class="divider">
+
+           <!------------------ idocs_blockLevel ------------------>
+           <section id="idocs_blockLevel">
+            <h2>Custom Tags</h2>
+            <p>Wjst can be extended to handle custom tags that will perform operations on full blocks of your templates. Use  <a href="/api/#setTag"><code class="JavaScript">wjst.setTag(name, parse, compile, ends, blockLevel)</code></a> to add your custom tag.</p>
+            <p>All of Wjst's tags are written using the same api (with a few exceptions for core modules, like <code class="JavaScript">extends</code> and <code class="JavaScript">block</code>). View a tag's source to see more examples to write your own custom tags.</p>
+            <h3></h3>
+          </section>
+          <hr class="divider">
+
+           <!------------------ idocs_token_types ------------------>
+           <section id="idocs_token_types">
+            <h2>Custom Tags</h2>
+            <p>Wjst can be extended to handle custom tags that will perform operations on full blocks of your templates. Use  <a href="/api/#setTag"><code class="JavaScript">wjst.setTag(name, parse, compile, ends, blockLevel)</code></a> to add your custom tag.</p>
+            <p>All of Wjst's tags are written using the same api (with a few exceptions for core modules, like <code class="JavaScript">extends</code> and <code class="JavaScript">block</code>). View a tag's source to see more examples to write your own custom tags.</p>
+            <h3></h3>
           </section>
           <hr class="divider">
         </div>
