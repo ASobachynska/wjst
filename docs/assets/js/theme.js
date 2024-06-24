@@ -17,9 +17,10 @@ $(window).on('load', function () {
 	$('body').delay(333);
 });
 
-/*-------------------------------
-    Primary Menu
---------------------------------- */
+/*-------------------------------Primary Menu--------------------------------- 
+Перевірка ширини вікна перед відкриттям/закриттям підменю.
+Анімація для розгортання та згортання підменю.
+Управління класами show для стрілок в меню.*/
 
 // Dropdown show on hover
 $('.primary-menu ul.navbar-nav li.dropdown, .login-signup ul.navbar-nav li.dropdown').on("mouseover", function() {
@@ -77,45 +78,39 @@ $('.primary-menu .navbar-nav .dropdown-toggle[href="#"], .primary-menu .dropdown
 });
 
 
-// Mobile Menu
+// Mobile Menu 
 $('.navbar-toggler').on('click', function() {
 	$(this).toggleClass('show');
 });
 
 
-// /*------------------------
-//    Side Navigation
-// -------------------------- */
+// /*------------------------Side Navigation-------------------------- */
 
-$('#sidebarCollapse').on('click', function () {
-	$('#sidebarCollapse span:nth-child(3)').toggleClass('w-50');
-	$('.idocs-navigation-new').toggleClass('active');
-});
+// $('#sidebarCollapse').on('click', function () {
+// 	$('#sidebarCollapse span:nth-child(3)').toggleClass('w-50');
+// 	$('.idocs-navigation-new').toggleClass('active');
+// });
 
 
-// /*------------------------
-//    Sections Scroll
-// -------------------------- */
+// /*------------------------Sections Scroll-------------------------- */
 
-$('.smooth-scroll,.idocs-navigation a').on('click', function() {
-	event.preventDefault();
-    var sectionTo = $(this).attr('href');
-	$('html, body').stop().animate({
-      scrollTop: $(sectionTo).offset().top - 120}, 1000, 'easeInOutExpo');
-});
-/*------------------------
-   Side Navigation
--------------------------- */
+// $('.smooth-scroll,.idocs-navigation a').on('click', function() {
+// 	event.preventDefault();
+//     var sectionTo = $(this).attr('href');
+// 	$('html, body').stop().animate({
+//       scrollTop: $(sectionTo).offset().top - 120}, 1000, 'easeInOutExpo');
+// });
+
+
+/*------------------------Side Navigation-------------------------- */
 
 $('#sidebarCollapse').on('click', function () {
     $('#sidebarCollapse span:nth-child(3)').toggleClass('w-50');
-    $('.idocs-navigation-new').toggleClass('active');
+    $('.idocs-navigation').toggleClass('active');
 });
 
 
-/*------------------------
-   Sections Scroll
--------------------------- */
+/*------------------------Sections Scroll-------------------------- */
 // Використовуємо делегування подій для кліків на посилання в навігації
 $(document).on('click', '.idocs-navigation .nav-link', function(event) {
     event.preventDefault();
@@ -145,9 +140,7 @@ $(document).on('click', '.idocs-navigation .nav-link', function(event) {
 
 
 
-/*-----------------------------
-    Magnific Popup
-------------------------------- */
+/*-----------------------------Magnific Popup------------------------------- */
 
 // Image on Modal
 $('.popup-img').each(function() {
@@ -169,22 +162,16 @@ $(this).magnificPopup({
 });
 
 
-/*------------------------
-   Highlight Js
--------------------------- */
+/*------------------------Highlight Js-------------------------- */
 
 hljs.initHighlightingOnLoad();
 
 
-/*------------------------
-   tooltips
--------------------------- */
+/*------------------------tooltips-------------------------- */
 $('[data-toggle=\'tooltip\']').tooltip({container: 'body'});
 
 
-/*------------------------
-   Scroll to top
--------------------------- */
+/*------------------------Scroll to top-------------------------- */
 $(function () {
 		$(window).on('scroll', function(){
 			if ($(this).scrollTop() > 400) {

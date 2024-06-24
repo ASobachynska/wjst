@@ -647,9 +647,10 @@ hr {
 .box .idocs-navigation {
   left: auto;
 }
-.box .idocs-navigation-new {
+
+/* .box .idocs-navigation-new {
   left: auto;
-}
+} */
 
 @media (min-width: 1200px) {
   .container {
@@ -749,11 +750,13 @@ hr {
   border-color: #D0C61F;
 }
 
+/* 
 .idocs-navigation-new .nav-link.active {
   color: #D0C61F;
-}
+} */
+
 /*=== 3.1 Бічна нав-newігація NEW NEW NEW===*/
-.idocs-navigation-new {
+/* .idocs-navigation-new {
   position: fixed;
   top: 70px;
   left: 0;
@@ -848,7 +851,7 @@ hr {
     border-right: 1px solid rgba(59, 211, 235, 0.1);
 
   }
-}
+} */
 
 /*=== 3.2 Вміст документів ===*/
 .idocs-content {
@@ -905,19 +908,6 @@ hr {
 }
 
 @media (max-width: 767.98px) {
-  .idocs-navigation-new {
-    margin-left: -260px;
-  }
-  .idocs-navigation-new.active {
-    margin-left: 0;
-  }
-
-  .idocs-content {
-    margin-left: 0px;
-  }
-}
-
-@media (max-width: 767.98px) {
   .idocs-navigation-1 {
     margin-left: -260px;
   }
@@ -929,7 +919,7 @@ hr {
     margin-left: 0px;
   }
 }
-
+/* 
 @media (max-width: 767.98px) {
   .idocs-navigation-1-new {
     margin-left: -260px;
@@ -941,7 +931,7 @@ hr {
   .idocs-content-1-new {
     margin-left: 0px;
   }
-}
+} */
 
 /*=== 3.3 Розділювач розділів ===*/
 .divider {
