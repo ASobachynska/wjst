@@ -18,7 +18,7 @@
   <!-- Magnific Popup -->
   <link rel="stylesheet" type="text/css" href="/wjst/assets/vendor/magnific-popup/magnific-popup.min.css" />
   <!-- Highlight Syntax -->
-  <link rel="stylesheet" type="text/css" href="/wjst/assets/vendor/highlight.js/styles/github.css" />
+  <link rel="stylesheet" type="text/css" href="/wjst/assets/vendor/highlight.js/styles/hybrid.css" />
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" type="text/css" href="/wjst/assets/css/stylesheet.css" />
 
@@ -200,7 +200,7 @@
             <h1>Filters</h1>
             <p>The rendering of variables can be modified by filters. Filters are special functions that are applied
               after any object token in a variable block using the pipe character, for example: <code
-                class="JavaScript">{%raw%}{{ names|join(', ') }}</code>.</p>
+                class="JavaScript">{%raw%}{{ names|join(', ') }}{%endraw%}</code>.</p>
             <p>Filters can also be chained together, one after another. In this case, we have a list of names in HTML
               tags that we want to remove, output together, and make title-cased:</p>
             <pre><code class="JavaScript">{%raw%}// names = ['&lt;p>paul&lt;/p>', '&lt;p>jim&lt;/p>'];

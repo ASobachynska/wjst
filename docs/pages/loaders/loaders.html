@@ -18,7 +18,7 @@
   <!-- Magnific Popup -->
   <link rel="stylesheet" type="text/css" href="/wjst/assets/vendor/magnific-popup/magnific-popup.min.css" />
   <!-- Highlight Syntax -->
-  <link rel="stylesheet" type="text/css" href="/wjst/assets/vendor/highlight.js/styles/github.css" />
+  <link rel="stylesheet" type="text/css" href="/wjst/assets/vendor/highlight.js/styles/hybrid.css" />
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" type="text/css" href="/wjst/assets/css/stylesheet.css" />
 
@@ -207,7 +207,7 @@
           <section id="idocs_builtin">
             <h2>Built-In Loaders</h2>
             <h3>wjst.loaders.fs(basepath, encoding)</h3>
-            <p class="small-font">Sourse: <a
+            <p class="small-font">Source: <a
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/loaders/filesystem.js">lib/loaders/filesystem.js</a>
             </p>
             <p>Loads templates from the file system.</p>
@@ -246,7 +246,7 @@
 wjst.setDefaults({ loader: wjst.loaders.fs(__dirname + '/templates' )});{%endraw%}</code></pre>
 
               <h3>wjst.loaders.memory(mapping, basepath)</h3>
-              <p class="small-font">Sourse: <a
+              <p class="small-font">Source: <a
                   href="https://github.com/WebArtWork/wjst/blob/master/lib/loaders/memory.js">lib/loaders/memory.js</a></p>
               <p>Loads templates from a provided object mapping.</p>
               <h4>Arguments</h4>
@@ -281,7 +281,7 @@ wjst.setDefaults({ loader: wjst.loaders.fs(__dirname + '/templates' )});{%endraw
                 <pre><code class="JavaScript">{%raw%}const templates = {
   "layout": "{% block content %}{% endblock %}",
   "home.html": "{% extends 'layout.html' %}{% block content %}...{% endblock %}"
-  };
+};
 wjst.setDefaults({ loader: wjst.loaders.memory(templates) });{%endraw%}</code></pre>
           </section>
           <hr class="divider">
@@ -296,10 +296,7 @@ wjst.setDefaults({ loader: wjst.loaders.memory(templates) });{%endraw%}</code></
           <!------------------ idocs_resolve ------------------>
           <section id="idocs_resolve">
             <h3>⤷ resolve(to, from)</h3>
-            <p>Resolves to to an absolute path or unique identifier. This is used for building correct, normalized, and absolute paths to a given template.</p>
-            <p>Used within an <code class="JavaScript">{%raw%}{% if %}{%endraw%}</code> tag, the code block following
-              this tag up until <code class="JavaScript">{%raw%}{% endif %}{%endraw%}</code> will be rendered if the if
-              statement returns false.</p>
+            <p>Resolves <code class="JavaScript">to</code> to an absolute path or unique identifier. This is used for building correct, normalized, and absolute paths to a given template.</p>
               <h4>Arguments</h4>
               <div class="table-responsive">
                 <table class="table table-bordered table-dark table-striped">
@@ -329,9 +326,7 @@ wjst.setDefaults({ loader: wjst.loaders.memory(templates) });{%endraw%}</code></
           <section id="idocs_load">
             <h3>⤷ load(identifier, cb)</h3>
             <p>Loads a single template. Given a unique <code class="JavaScript">identifier</code> found by the <code class="JavaScript">resolve</code> method this should return the given template.</p>
-            <p>Like <code class="JavaScript">{%raw%}{% else %}{%endraw%}</code>, except this tag can take more
-              conditional statements.</p>
-              <h4>Arguments</h4>
+            <h4>Arguments</h4>
               <div class="table-responsive">
                 <table class="table table-bordered table-dark table-striped">
                   <thead>

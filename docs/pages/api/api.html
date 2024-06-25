@@ -18,7 +18,7 @@
   <!-- Magnific Popup -->
   <link rel="stylesheet" type="text/css" href="/wjst/assets/vendor/magnific-popup/magnific-popup.min.css" />
   <!-- Highlight Syntax -->
-  <link rel="stylesheet" type="text/css" href="/wjst/assets/vendor/highlight.js/styles/github.css" />
+  <link rel="stylesheet" type="text/css" href="/wjst/assets/vendor/highlight.js/styles/hybrid.css" />
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" type="text/css" href="/wjst/assets/css/stylesheet.css" />
 
@@ -335,8 +335,8 @@ wjst.setDefaults({ loader: wjst.loaders.memory({
             <h2>wjst.version</h2>
             <p class="small-font">Source: <a
                 href="https://github.com/WebArtWork/wjst/blob/master/lib/swig.js#L15">lib/wjst.js#L15</a></p>
-            <h3>Examples</h3>
             <p>Wjst version number as a string.</p>
+            <h3>Examples</h3>
             <pre><code class="JavaScript">if (wjst.version === "1.4.2") { ... }</code></pre></code></pre>
           </section>
           <hr class="divider">
@@ -455,12 +455,12 @@ wjst.setDefaults({ loader: wjst.loaders.memory({
             <h3>Returns</h3>
             <p><code class="JavaScript">object</code>:New Wjst environment.</p>
             <h3>Examples</h3>
-            <pre><code class="JavaScript">const wjst = require('wjst');
+            <pre><code class="JavaScript">{%raw%}const wjst = require('wjst');
 const mywjst = new wjst.Wjst({varControls: ['<%=', '%>']});
 mywjst.render('Tacos are <%= tacos =>!', { locals: { tacos: 'delicious' }});
 // => Tacos are delicious!
 wjst.render('Tacos are <%= tacos =>!', { locals: { tacos: 'delicious' }});
-// => 'Tacos are <%= tacos =>!'</code></pre>
+// => 'Tacos are <%= tacos =>!'{%endraw%}</code></pre>
           </section>
           <hr class="divider">
 
@@ -932,7 +932,7 @@ When compiling a source string, a file path should be specified in the options o
                     <td scope="row"><code class="JavaScript">Function</code></td>
                     <td>✓</td>
                     <td scope="row"><code class="JavaScript">undefined</code></td>
-                    <td>Asyncronous callback function. If not provided, compileFile will run syncronously.</td>
+                    <td>Asyncronous callback function. If not provided, <code class="JavaScript">compileFile</code> will run syncronously.</td>
                   </tr>
                   </tr>
                 </tbody>
@@ -949,7 +949,7 @@ When compiling a source string, a file path should be specified in the options o
 //      tokens: [{ compile: [Function] }],
 //      blocks: {}
 //    }
-              tpl({ tacos: 'Tacos!!!!' });
+tpl({ tacos: 'Tacos!!!!' });
 // => Tacos!!!!{% endraw %}</code></pre>
             <pre><code class="JavaScript">{% raw %}wjst.compileFile('/myfile.txt', { varControls: ['&lt;%=', '=%>'], tagControls: ['&lt;%', '%>']});
 // => will compile 'myfile.txt' using the var and tag controls as specified.{% endraw %}</code></pre>
@@ -1013,7 +1013,7 @@ When compiling a source string, a file path should be specified in the options o
             <pre><code class="JavaScript">{% raw %}&lt;script src="mytpl.js">&lt;/script>
 &lt;script>
   wjst.run(mytpl, {});
-  // => "rendered template..."s
+  // => "rendered template..."
 &lt;/script>{% endraw %}</code></pre>
           </section>
           <hr class="divider">
