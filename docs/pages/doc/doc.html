@@ -221,16 +221,16 @@
 
           <section id="idocs_basic_usage">
             <h2>Basic Usage</h2>
-            <p>Wjst has multiple ways to compile and render templates. Check the API documentation for more detailed
+            <p>Wjst has multiple ways to compile and render templates. Check the  <a href="/api">API documentation</a> for more detailed
               information and usage.</p>
-            <pre><code class="JavaScript">const wjst = require('wjst');
+            <pre><code class="JavaScript">{%raw%}const wjst = require('wjst');
 
 // Compile a file and store it, rendering it later
 const tpl = wjst.compileFile('/path/to/template.html');
 console.log(tpl({ article: { title: 'Wjst is fun!' }}));
                 
 // Immediately render a Wjst template from a string
-console.log(wjst.render('{% if foo %}Hooray!{% endif %}', { locals: { foo: true }})); </code></pre>
+console.log(wjst.render(&apos;{% if foo %}Hooray!{% endif %}&apos;, { locals: { foo: true }})); {%endraw%}</code></pre>
           </section>
 
           <hr class="divider">
@@ -268,28 +268,27 @@ console.log(wjst.render('{% if foo %}Hooray!{% endif %}', { locals: { foo: true 
 
             <h3>Filters</h3>
             <p>Variables can be modified using using special, chainable control structures called Filters:</p>
-            <pre><code class="JavaScript">{{ name|title }} was born on {{ birthday|date('F jS, Y') }}
-// => Jane was born on July 6th, 1985</code></pre>
+            <pre><code class="JavaScript">{%raw%}{{ name|title }} was born on {{ birthday|date('F jS, Y') }}
+// => Jane was born on July 6th, 1985{%endraw%}</code></pre>
 
             <h3>Functions</h3>
-            <p>Variables can also be JavaScript functions. It is important to note that, regardless of your autoescape
-              setting, functions will not be auto-escaped.</p>
-            <pre><code class="JavaScript">const locals = { mystuff: function mystuff() { return '<p>Things!</p>'; } };
+            <p>Variables can also be JavaScript functions. It is important to note that, regardless of your <a href="/api/#idocs_object_wjstopts">autoescape setting</a>, functions will not be auto-escaped.</p>
+            <pre><code class="JavaScript">{%raw%}const locals = { mystuff: function mystuff() { return '&lt;p&gt;Things!&lt;/p&gt;'; } };
 wjst.render('{{ mystuff() }}', { locals: locals });
-// => &lt;p&gt;Things!&lt;/p&gt;</code></pre>
+// => &lt;p&gt;Things!&lt;/p&gt;{%endraw%}</code></pre>
 
-            <p>If you want to enforce escaping output on functions, just pipe them to the escape filter.</p>
-            <pre><code class="JavaScript"> {{ mystuff()|escape }}
-// => &amp;lt;p&amp;gt;Things&amp;lt;/p&amp;gt; </code></pre>
+            <p>If you want to enforce escaping output on functions, just pipe them to the <a href="/filters/#idocs_escape">escape filter</a>.</p>
+            <pre><code class="JavaScript">{%raw%}{{ mystuff()|escape }}
+// => &amp;lt;p&amp;gt;Things&amp;lt;/p&amp;gt;{%endraw%}</code></pre>
           </section>
           <hr class="divider">
 
           <!------------------ Logic Tags ------------------>
           <section id="idocs_logic_tags">
             <h2>Logic Tags</h2>
-            <p>Wjst includes some basic operational blocks, called Tags, for helping you control output on a larger
+            <p>Wjst includes some basic operational blocks, called <a href="/tags">Tags</a>, for helping you control output on a larger
               scale than variables.
-              Tags are written using curly-percent syntax: .</p>
+              Tags are written using curly-percent syntax:</p>
 
             <pre><code class="JavaScript">{% raw %}{% if foo %}bar{% endif %}
 // Create a list of people, only if there are items in the people array
@@ -313,7 +312,7 @@ wjst.render('{{ mystuff() }}', { locals: locals });
 {% endblock burritos %}
 {% endraw %}</code></pre></code></pre>
 
-            <p>View the Tags documentation for a full list of tags and usage instructions.</p>
+            <p>View the <a href="/tags">Tags documentation</a> for a full list of tags and usage instructions.</p>
             <hr class="divider">
           </section>
 
@@ -348,10 +347,8 @@ It will be fully stripped and ignored during parsing.
           <!------------------ Template Inheritance ------------------>
           <section id="idocs_template_inheritance">
             <h2>Template Inheritance</h2>
-            <p>Wjst uses extends & block for template inheritance.</p>
+            <p>Wjst uses <code class="JavaScript">extends</code> & <code class="JavaScript">block</code> for template inheritance.</p>
             <h3>layout.html</h3>
-            <p>To remove whitespace, simply put a dash (-) at the beginning or end of your tag to remove the preceding
-              or following whitespace, respectively.</p>
             <pre><code class="JavaScript">{% raw %}&lt;!doctype html&gt;
 &lt;html&gt;
 &lt;head&gt;
@@ -368,8 +365,6 @@ It will be fully stripped and ignored during parsing.
 &lt;/html&gt;{% endraw %}</code></pre>
 
             <h3>index.html</h3>
-            <p>To remove whitespace, simply put a dash (-) at the beginning or end of your tag to remove the preceding
-              or following whitespace, respectively.</p>
             <pre><code class="JavaScript">{% raw %}{% extends 'layout.html' %}
 
 {% block title %}My Page{% endblock %}
