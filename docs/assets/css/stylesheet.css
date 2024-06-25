@@ -37,7 +37,7 @@ body, html {
 }
 
 body {
-  background: #dddddd;
+  background: #212529;
   color: #f8f9fa;
 }
 
@@ -47,7 +47,7 @@ body {
   width: 100%;
   height: 100%;
   z-index: 999999999 !important;
-  background-color: #f8f9fa; 
+  background-color: #212529; 
   top: 0;
   left: 0;
   right: 0;
@@ -3254,4 +3254,27 @@ input:-internal-autofill-selected {
   right: auto;
   left: -40px;
   border-radius: 4px 0px 0px 4px;
+}
+
+/* Налаштування треку смуги прокручування */
+::-webkit-scrollbar {
+  width: 12px; /* ширина смуги прокручування */
+  height: 12px; /* висота смуги прокручування */
+}
+
+/* Налаштування повзунка смуги прокручування */
+::-webkit-scrollbar-thumb {
+  background: #495057; /* колір повзунка смуги прокручування */
+  border-radius: 6px; /* округлі кути */
+}
+
+/* Налаштування треку смуги прокручування */
+::-webkit-scrollbar-track {
+  background: #111418; /* колір фону треку смуги прокручування */
+  border-radius: 6px; /* округлі кути */
+}
+
+/* Додавання ефекту при наведенні на повзунок смуги прокручування */
+::-webkit-scrollbar-thumb:hover {
+  background: #343a40; /* темніший колір при наведенні */
 }
